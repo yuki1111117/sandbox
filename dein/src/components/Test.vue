@@ -1,14 +1,11 @@
 <template lang="">
-    <div>
-
-ああテスト
-    </div>
+  <div>
+    ああテスト
+  </div>
 </template>
 <script>
 export default {
-name:'Test'
-}
+  name: "Test"
+};
 </script>
-<style lang="">
-
-</style>
+<style lang=""></style>
