@@ -10,17 +10,10 @@
           transition="scale-transition"
           width="40"
         />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
       </div>
-
+      <h3 class="display-2 font-weight-bold mb-3">
+        はむちんの小屋
+      </h3>
       <v-spacer></v-spacer>
 
       <v-btn
