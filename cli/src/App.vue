@@ -12,16 +12,16 @@
         />
       </div>
       <h3 class="display-2 font-weight-bold mb-3">
-        はむちんの小屋
+        はむの小屋だからよ
       </h3>
       <v-spacer></v-spacer>
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        href="https://github.com/yuki1111117/sandbox"
         target="_blank"
         text
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">Github</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
