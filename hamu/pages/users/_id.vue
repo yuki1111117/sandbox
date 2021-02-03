@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     user() {
-      return this.users.find((user) => user.id === this.id)
+      return this.users.find((user) => user.id == this.id)
     },
   },
 }
