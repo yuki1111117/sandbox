@@ -1,6 +1,19 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar
+      app
+      hide-on-scroll
+      dark
+      src="https://picsum.photos/1920/1080?random"
+      fade-img-on-scroll
+    >
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+        ></v-img>
+      </template>
+
       <v-toolbar-title>はむのハウスだからよ</v-toolbar-title>
       <div class="d-flex align-center">
         <v-img
@@ -22,8 +35,6 @@
 
     <v-main>
       <HelloWorld />
-    </v-main>
-    <v-app>
       <v-card>
         <v-card-title>
           <h1 class="display-1">ログイン</h1>
@@ -35,7 +46,9 @@
           </v-form>
         </v-card-text>
       </v-card>
-    </v-app>
+    </v-main>
+
+    <v-footer color="primary" dark app> はむのハウス </v-footer>>
   </v-app>
 </template>
 
