@@ -12,7 +12,7 @@
         />
       </div>
       <h3 class="display-2 font-weight-bold mb-3">
-        はむの小屋だからよ
+        はむのハウスだからよ
       </h3>
       <v-spacer></v-spacer>
 
@@ -21,7 +21,7 @@
         target="_blank"
         text
       >
-        <span class="mr-2">Github</span>
+        <span class="mr-2">Githubだからよ</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
