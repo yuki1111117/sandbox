@@ -16,12 +16,9 @@
         </h1>
 
         <p class="subheading font-weight-regular">
-        ログインだからよ
-         大事にしてくれよな
-
+          ログインだからよ 大事にしてくれよな
         </p>
       </v-col>
-
     </v-row>
   </v-container>
 </template>

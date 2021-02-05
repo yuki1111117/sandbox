@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
+      <v-toolbar-title>はむのハウスだからよ</v-toolbar-title>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -11,16 +12,9 @@
           width="40"
         />
       </div>
-      <h3 class="display-2 font-weight-bold mb-3">
-        はむのハウスだからよ
-      </h3>
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/yuki1111117/sandbox"
-        target="_blank"
-        text
-      >
+      <v-btn href="https://github.com/yuki1111117/sandbox" target="_blank" text>
         <span class="mr-2">Githubだからよ</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
