@@ -1,4 +1,6 @@
-# hamu
+# hamu house
+
+## hamu house is hamu's house
 
 ### 作りたいアプリ概要
 

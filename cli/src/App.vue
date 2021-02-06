@@ -2,7 +2,7 @@
   <v-app>
     <!-- LeftNavBar -->
     <v-navigation-drawer app v-model="drawer" clipped
-      >Navigation Lists</v-navigation-drawer
+      >ナビだからよ</v-navigation-drawer
     >
 
     <!-- HeadNavBar -->
