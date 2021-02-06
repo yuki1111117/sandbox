@@ -21,8 +21,6 @@
         ></v-img>
       </template>
       <!-- BarContent -->
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>はむのハウスだからよ</v-toolbar-title>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -30,9 +28,12 @@
           contain
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
           transition="scale-transition"
-          width="40"
+          width="18"
         />
       </div>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>はむのハウスだからよ</v-toolbar-title>
+
       <v-spacer></v-spacer>
       <v-btn href="https://github.com/yuki1111117/sandbox" target="_blank" text>
         <span class="mr-2">Githubだからよ</span>
