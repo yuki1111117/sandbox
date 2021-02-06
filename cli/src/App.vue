@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- LeftNavBar -->
-    <v-navigation-drawer app v-model="drawer"
+    <v-navigation-drawer app v-model="drawer" clipped
       >Navigation Lists</v-navigation-drawer
     >
 
@@ -12,6 +12,7 @@
       dark
       src="https://picsum.photos/id/10/1920/1080"
       fade-img-on-scroll
+      clipped-left
     >
       <!-- BarColor -->
       <template v-slot:img="{ props }">
@@ -57,13 +58,11 @@
       </v-card>
     </v-main>
 
-    <v-system-bar dark>
-      <v-spacer></v-spacer>
-      <v-icon>mdi-wifi-strength-4</v-icon>
-      <v-icon>mdi-signal-cellular-outline</v-icon>
-      <v-icon>mdi-battery</v-icon>
-      <span>12:30</span>
-    </v-system-bar>
+    <v-footer absolute app dark>
+      <v-col class="" cols="12">
+        {{ new Date().getFullYear() }} — <strong>はむのハウス</strong>
+      </v-col></v-footer
+    >
   </v-app>
 </template>
 
