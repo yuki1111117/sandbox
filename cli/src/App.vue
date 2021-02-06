@@ -96,7 +96,7 @@
       <v-toolbar-title>はむのハウスだからよ</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn href="https://github.com/yuki1111117/sandbox" target="_blank" text>
-        <span class="mr-2">Githubだからよ</span>
+        <span class="mr-2">ユーザーアカウント予定地だからよ</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
@@ -131,10 +131,22 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld"; export default { name: "App",
-components: { HelloWorld }, data() { return { drawer: null, nav_lists: [ { name:
-"Getting Started", icon: "mdi-vuetify" }, { name: "ユーザー設定", icon:
-"mdi-cogs" }, { name: "Styles & animations", icon: "mdi-palette" }, { name:
-"UIComponents", icon: "mdi-view-dashboard" }, { name: "Directives", icon:
-"mdi-function" }, { name: "Preminum themes", icon: "mdi-vuetify" } ] }; } };
+import HelloWorld from "./components/HelloWorld";
+export default {
+  name: "App",
+  components: { HelloWorld },
+  data() {
+    return {
+      drawer: null,
+      nav_lists: [
+        { name: "Getting Started", icon: "mdi-vuetify" },
+        { name: "ユーザー設定", icon: "mdi-cogs" },
+        { name: "Styles & animations", icon: "mdi-palette" },
+        { name: "UIComponents", icon: "mdi-view-dashboard" },
+        { name: "Directives", icon: "mdi-function" },
+        { name: "Preminum themes", icon: "mdi-vuetify" }
+      ]
+    };
+  }
+};
 </script>
