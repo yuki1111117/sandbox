@@ -17,7 +17,7 @@
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+          gradient="to top right, rgba(0,0,0,.5), rgba(0,0,0,.8)"
         ></v-img>
       </template>
       <!-- BarContent -->
@@ -56,17 +56,17 @@
       </v-card>
     </v-main>
 
-    <v-footer dark app> はむさのハウス </v-footer>
+    <v-system-bar dark>
+      <v-spacer></v-spacer>
+      <v-icon>mdi-wifi-strength-4</v-icon>
+      <v-icon>mdi-signal-cellular-outline</v-icon>
+      <v-icon>mdi-battery</v-icon>
+      <span>12:30</span>
+    </v-system-bar>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-export default {
-  name: "App",
-  components: { HelloWorld },
-  data() {
-    return { drawer: null };
-  }
-};
+import HelloWorld from "./components/HelloWorld"; export default { name: "App",
+components: { HelloWorld }, data() { return { drawer: null }; } };
 </script>
