@@ -2,6 +2,25 @@
 
 ## hamu house is hamu's house
 
+## Build Setup
+
+```bash
+# install dependencies
+$ yarn install
+
+# serve with hot reload at localhost:3000
+$ yarn dev
+
+# build for production and launch server
+$ yarn build
+$ yarn start
+
+# generate static project
+$ yarn generate
+```
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
 ### 作りたいアプリ概要
 
 #### 困ったときに何をすればいいのか明確にするための、自由度の高いランキングサイト：Dein（仮名）
