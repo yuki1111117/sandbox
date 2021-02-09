@@ -4,5 +4,8 @@
         "titleBar.activeForeground": "#000000",
         "activityBar.background": "#41B883",
         "activityBar.foreground": "#000000"
-    }
+    },
+    "workbench.iconTheme": "material-icon-theme",
+
+
 }
