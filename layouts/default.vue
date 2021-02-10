@@ -26,17 +26,15 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
+      <v-spacer />
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn icon @click.stop="soundPlay">
+        <v-icon>mdi-music-clef-treble</v-icon>
+      </v-btn>
+      <audio id="HamuAudio" src="/sounds/bgm_maoudamashii_healing08.mp3" loop>
+        あなたのブラウザーはくそ古いです。
+      </audio>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
@@ -46,7 +44,12 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
+    <v-navigation-drawer
+      v-model="rightDrawer"
+      :clipped="clipped"
+      :right="right"
+      fixed
+    >
       <v-list>
         <v-list-item @click.native="right = !right">
           <v-list-item-action>
@@ -57,7 +60,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ new Date().getFullYear() }} はむさのハウス</span>
     </v-footer>
   </v-app>
 </template>
@@ -80,12 +83,22 @@ export default {
           title: 'Inspire',
           to: '/inspire',
         },
+        {
+          icon: 'mdi-crown',
+          title: 'Ranking',
+          to: '/ranking',
+        },
       ],
-      miniVariant: false,
+      miniVariant: true,
       right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js',
+      rightDrawer: null,
+      title: 'はむさのハウス',
     }
+  },
+  methods: {
+    soundPlay: function ring() {
+      document.getElementById('HamuAudio').play()
+    },
   },
 }
 </script>

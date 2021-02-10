@@ -18,5 +18,8 @@ module.exports = {
   ],
   plugins: ['vue'],
   // add your custom rules here
-  rules: {},
+  rules: {
+    'vue/no-unused-vars': 'off',
+    'vue/html-self-closing': 'off',
+  },
 }
