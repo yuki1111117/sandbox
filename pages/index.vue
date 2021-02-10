@@ -3,7 +3,7 @@
     <marquee>はむのハウスだからよ・・・よろしくしてくれよな</marquee>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
-        <vuetify-logo />
+        <hamu-logo />
       </div>
       <v-card>
         <v-card-title class="headline"> ありのままでいこうや </v-card-title>
@@ -91,22 +91,25 @@
   </v-row>
 </template>
 
+<script>
+import HamuLogo from '~/components/HamuLogo.vue'
+
+export default {
+  components: {
+    HamuLogo,
+  },
+}
+</script>
+
 <style scoped>
 #cars {
   background-repeat: repeat;
+  z-index: -1;
 }
 .car {
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 20px;
+  z-index: 1;
 }
 </style>
-<script>
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
-export default {
-  components: {
-    VuetifyLogo,
-  },
-}
-</script>

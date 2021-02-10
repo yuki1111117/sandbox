@@ -91,3 +91,6 @@ sw.*
 
 # lisenced music file ...hamu house
 assets/
+
+# firebase
+.firebase

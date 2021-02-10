@@ -1,71 +1,56 @@
 <template>
-  <div id="app" class="container mt-5">
-    <h2>ユーザ登録画面</h2>
-    <div class="row">
-      <div class="col-sm-8">
-        <form @submit.prevent="registerUser">
-          <div class="form-group">
-            <label for="email">メールアドレス:</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              v-model="email"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">パスワード:</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              v-model="password"
-            />
-          </div>
-          <button type="submit" class="btn btn-info">登録</button>
-        </form>
+  <section class="container">
+    <div>
+      <hamu-logo />
+      <h1 class="title">nuxt-firebase-studies</h1>
+      <h2 class="subtitle">
+        Nuxt.jsとFirebaseを使って簡単なWebサービスを作るテストです。
+      </h2>
+      <div class="links">
+        <button @click="googleLogin">googleでログイン</button>
       </div>
     </div>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
-
-    <script>
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      var firebaseConfig = {
-        apiKey: 'AIzaSyDPmv1Nr6a_24QFhhWXXtvIGGN8_QeUo5I',
-        authDomain: 'hamusa-c1fd6.firebaseapp.com',
-        projectId: 'hamusa-c1fd6',
-        storageBucket: 'hamusa-c1fd6.appspot.com',
-        messagingSenderId: '1029394351767',
-        appId: '1:1029394351767:web:9190fb4523b78196f04bd2',
-        measurementId: 'G-DHC5JQKQGY',
-      }
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig)
-      firebase.analytics()
-    </script>
-  </div>
+  </section>
 </template>
 
 <script>
-import firebase from 'firebase'
-
+import firebase from '@/plugins/firebase'
+import HamuLogo from '~/components/HamuLogo.vue'
 export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-    }
-  },
+  components: { HamuLogo },
   methods: {
-    registerUser() {
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+    googleLogin() {
+      firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
     },
   },
 }
 </script>
+
+<style scoped>
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.title {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* 1 */
+  display: block;
+  font-weight: 300;
+  font-size: 100px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+.links {
+  padding-top: 15px;
+}
+</style>
