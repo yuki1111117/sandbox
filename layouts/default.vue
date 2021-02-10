@@ -120,7 +120,7 @@ export default {
       ],
       miniVariant: true,
       right: true,
-      rightDrawer: true,
+      rightDrawer: null,
       title: 'はむちんのハウス',
     }
   },
