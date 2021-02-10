@@ -83,11 +83,6 @@ export default {
           to: '/',
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
-        },
-        {
           icon: 'mdi-crown',
           title: 'Ranking',
           to: '/ranking',
@@ -112,11 +107,21 @@ export default {
           title: 'Category',
           to: '/category/index',
         },
+        {
+          icon: 'mdi-format-list-bulleted',
+          title: 'Posts',
+          to: '/posts',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Inspire',
+          to: '/inspire',
+        },
       ],
       miniVariant: true,
       right: true,
       rightDrawer: true,
-      title: 'はむさのハウス',
+      title: 'はむちんのハウス',
     }
   },
   methods: {

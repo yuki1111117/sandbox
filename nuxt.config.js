@@ -4,7 +4,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - hamu house',
-    title: 'はむさのハウス',
+    title: 'はむちんのハウス',
     htmlAttrs: {
       lang: 'en',
     },

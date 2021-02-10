@@ -6,7 +6,7 @@
         &#8220;First, hamutin solve the problem. Then, bite the code.&#8221;
         <footer>
           <small>
-            <em>&mdash;John Johnson</em>
+            <em>&mdash;John Hamutin</em>
           </small>
         </footer>
       </blockquote>
