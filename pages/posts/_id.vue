@@ -10,14 +10,14 @@
 import axios from 'axios'
 
 export default {
-  head() {
-    return {
-      title: this.post.title,
-    }
-  },
   data() {
     return {
       post: {},
+    }
+  },
+  head() {
+    return {
+      title: this.post.title,
     }
   },
   mounted() {
