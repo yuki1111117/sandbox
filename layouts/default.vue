@@ -24,7 +24,18 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar
+      :clipped-left="clipped"
+      fixed
+      app
+      src="https://picsum.photos/1920/1080?random"
+    >
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+        ></v-img>
+      </template>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-spacer />
       <v-toolbar-title v-text="title" />
@@ -50,14 +61,7 @@
       :right="right"
       fixed
     >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>mdi-repeat</v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
+      <v-list> </v-list>
     </v-navigation-drawer>
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }} はむさのハウス</span>
@@ -74,7 +78,7 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-home',
           title: 'Welcome',
           to: '/',
         },
@@ -89,9 +93,24 @@ export default {
           to: '/ranking',
         },
         {
-          icon: 'mdi-school',
+          icon: 'mdi-test-tube',
           title: 'Sandbox',
           to: '/sandbox',
+        },
+        {
+          icon: 'mdi-chat-processing',
+          title: 'Chatroom',
+          to: '/chatroom',
+        },
+        {
+          icon: 'mdi-human',
+          title: 'Users',
+          to: '/users/list',
+        },
+        {
+          icon: 'mdi-notebook-outline',
+          title: 'Category',
+          to: '/category/index',
         },
       ],
       miniVariant: true,

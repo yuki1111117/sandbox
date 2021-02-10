@@ -1,5 +1,6 @@
 <template>
   <v-row justify="center" align="center">
+    <marquee>はむのハウスだからよ・・・よろしくしてくれよな</marquee>
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
         <vuetify-logo />
@@ -12,7 +13,7 @@
           <p>はむさのハウスだからよ</p>
           <p>作りたてだからよ 勘弁してくれよな</p>
           <p>
-            Thank you for developing with Vuetify and I look forward to bringing
+            Thank you for developing with hamutin and I look forward to bringing
             more exciting features in the future.
           </p>
           <div class="text-xs-right">
@@ -37,7 +38,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire">Continue</v-btn>
+          <v-btn color="primary" nuxt to="/inspire">Inspire</v-btn>
+          <v-btn color="primary" nuxt to="/ranking">Ranking</v-btn>
+          <v-btn color="primary" nuxt to="/sandbox">Sandbox</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
