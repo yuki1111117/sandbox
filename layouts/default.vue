@@ -32,8 +32,8 @@
       <v-btn icon @click.stop="soundPlay">
         <v-icon>mdi-music-clef-treble</v-icon>
       </v-btn>
-      <audio id="HamuAudio" src="/sounds/bgm_maoudamashii_healing08.mp3" loop>
-        あなたのブラウザーはくそ古いです。
+      <audio id="HamuAudio" src="/assets/sounds/flowerfairyfly.mp3" loop>
+        あなたのブラウザーは古いです。
       </audio>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
@@ -88,10 +88,15 @@ export default {
           title: 'Ranking',
           to: '/ranking',
         },
+        {
+          icon: 'mdi-school',
+          title: 'Sandbox',
+          to: '/sandbox',
+        },
       ],
       miniVariant: true,
       right: true,
-      rightDrawer: null,
+      rightDrawer: true,
       title: 'はむさのハウス',
     }
   },
