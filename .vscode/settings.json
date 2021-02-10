@@ -6,4 +6,7 @@
     "activityBar.foreground": "#000000"
   },
   "workbench.iconTheme": "material-icon-theme",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": null,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
