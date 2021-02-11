@@ -14,8 +14,11 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.state.users.find((user) => user.id == this.id) // eslint-disable-line
+      return this.$store.state.users
     },
+  },
+  mounted() {
+    this.$store.dispatch('getUser', this.id)
   },
 }
 </script>

@@ -1,22 +1,44 @@
 import Vuex from 'vuex'
+import axios from 'axios'
 
 const appStore = () => {
   return new Vuex.Store({
     state: {
       message: 'Hello Vuex',
-      users: [
-        { id: 1, name: 'John', email: 'john@example.com', age: 22 },
-        { id: 2, name: 'Merry', email: 'merry@facebook.com', age: 33 },
-        { id: 3, name: 'Ken', email: 'ken@amazon.com', age: 29 },
-      ],
+      users: [],
+      user: {},
       count: 0,
     },
     mutations: {
       increment(state) {
         state.count++
       },
+      setUsers(state, users) {
+        state.users = users
+      },
+      setUser(state, user) {
+        state.user = user
+      },
     },
-    actions: {},
+    actions: {
+      incrementOne(context) {
+        context.commit('increment')
+      },
+      getUsers({ commit }) {
+        return axios
+          .get('https://jsonplaceholder.typicode.com/users')
+          .then((response) => {
+            commit('setUsers', response.data)
+          })
+      },
+      getUser({ commit }, id) {
+        return axios
+          .get('https://jsonplaceholder.typicode.com/users/' + id)
+          .then((response) => {
+            commit('setUsers', response.data)
+          })
+      },
+    },
     modules: {},
   })
 }

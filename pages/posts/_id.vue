@@ -22,9 +22,7 @@ export default {
   },
   mounted() {
     axios
-      .get(
-        'https://jsonplaceholder.typicode.com/posts/' + this.$route.params.id
-      )
+      .get('/posts/' + this.$route.params.id)
       .then((response) => (this.post = response.data))
   },
 }
