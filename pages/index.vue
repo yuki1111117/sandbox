@@ -2,6 +2,7 @@
   <v-row justify="center" align="center">
     <marquee>はむのハウスだからよ・・・よろしくしてくれよな</marquee>
     <v-col cols="12" sm="8" md="6">
+      <h1>{{ message }}</h1>
       <div class="text-center">
         <hamu-logo />
       </div>
@@ -97,6 +98,11 @@ import HamuLogo from '~/components/HamuLogo.vue'
 export default {
   components: {
     HamuLogo,
+  },
+  computed: {
+    message() {
+      return this.$store.state.message
+    },
   },
 }
 </script>
