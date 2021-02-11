@@ -17,3 +17,6 @@ FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
 
 # VS Extensions for hamu house
 RUN code --install-extension esbenp.prettier-vscode
+
+# firebase for hamu house
+RUN npm install -g firebase-tools
