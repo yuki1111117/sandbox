@@ -113,6 +113,11 @@ export default {
           to: '/posts',
         },
         {
+          icon: 'mdi-ninja',
+          title: 'CloneSites',
+          to: '/clonesites',
+        },
+        {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire',
