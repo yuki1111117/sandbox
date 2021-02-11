@@ -9,8 +9,13 @@ const appStore = () => {
         { id: 2, name: 'Merry', email: 'merry@facebook.com', age: 33 },
         { id: 3, name: 'Ken', email: 'ken@amazon.com', age: 29 },
       ],
+      count: 0,
     },
-    mutations: {},
+    mutations: {
+      increment(state) {
+        state.count++
+      },
+    },
     actions: {},
     modules: {},
   })

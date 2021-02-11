@@ -118,6 +118,11 @@ export default {
           to: '/clonesites',
         },
         {
+          icon: 'mdi-cookie',
+          title: 'Counter',
+          to: '/counter',
+        },
+        {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire',
