@@ -24,18 +24,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-      src="https://picsum.photos/1920/1080?random"
-    >
-      <template #img="{ props }">
-        <v-img
-          v-bind="props"
-          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
-        ></v-img>
-      </template>
+    <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-spacer />
       <v-toolbar-title v-text="title" />
@@ -44,7 +33,7 @@
         <v-icon>mdi-music-clef-treble</v-icon>
       </v-btn>
       <audio id="HamuAudio" src="/assets/sounds/flowerfairyfly.mp3" loop>
-        あなたのブラウザーは古いです。
+        あなたのブラウザーは古いからよ
       </audio>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
