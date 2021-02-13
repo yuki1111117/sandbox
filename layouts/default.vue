@@ -35,23 +35,18 @@
       <audio id="HamuAudio" src="/assets/sounds/flowerfairyfly.mp3" loop>
         あなたのブラウザーは古いからよ
       </audio>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      <router-link to="/sandbox">
+        <v-btn icon>
+          <v-icon>mdi-test-tube</v-icon>
+        </v-btn>
+      </router-link>
     </v-app-bar>
     <v-main>
       <v-container>
         <nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :clipped="clipped"
-      :right="right"
-      fixed
-    >
-      <v-list> </v-list>
-    </v-navigation-drawer>
+
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }} はむさのハウス</span>
     </v-footer>

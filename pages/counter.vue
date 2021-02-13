@@ -3,7 +3,7 @@
     <h1>Counter</h1>
     <marquee>クッキー増やすからよ</marquee>
     <p>
-      <button @click="incrementOne">不思議なぽっけだからよ</button>
+      <v-btn @click="incrementOne">不思議なぽっけだからよ</v-btn>
     </p>
     <h1>クッキーが{{ count }}枚あるからよ</h1>
   </div>

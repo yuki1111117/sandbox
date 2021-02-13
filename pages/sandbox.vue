@@ -1,48 +1,17 @@
 <template>
-  <section class="container">
-    <div>
-      <hamu-logo />
-      <h1 class="title">
-        {{ name }}
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.jsとFirebaseを使って簡単なWebサービスを作るテストです。
-      </h2>
-
-      <div class="links">
+  <v-app dark>
+    <marquee>ログインのテストだからよ・・・ログインしてくれよな</marquee>
+    <v-row justify="center" align="center">
+      <v-col cols="12" sm="8" md="6">
+        <div class="text-center">
+          <hamu-logo />
+        </div>
         <Home v-if="!isLogin"></Home>
         <MyPage v-if="isLogin" :user="userData"></MyPage>
-      </div>
-    </div>
-
-    <h2>ユーザ登録画面</h2>
-    <div class="row">
-      <div class="col-sm-8">
-        <form @submit.prevent="registerUser">
-          <div class="form-group">
-            <label for="email">メールアドレス:</label>
-            <input
-              id="email"
-              v-model="email"
-              type="email"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">パスワード:</label>
-            <input
-              id="password"
-              v-model="password"
-              type="password"
-              class="form-control"
-            />
-          </div>
-          <button type="submit" class="btn btn-info">登録</button>
-        </form>
-      </div>
-    </div>
-    <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
-  </section>
+        <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
+      </v-col>
+    </v-row>
+  </v-app>
 </template>
 
 <script>
@@ -56,10 +25,7 @@ export default {
     Home,
     MyPage,
   },
-  asyncData(context) {
-    // コンポーネントをロードする前に毎回呼び出されます
-    return { name: 'Hello, World！！', isLogin: false, userData: null }
-  },
+
   fetch() {
     // `fetch` メソッドはページの描画前にストアを満たすために使用されます
   },
