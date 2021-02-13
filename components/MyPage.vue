@@ -14,8 +14,7 @@
 import firebase from '@/plugins/firebase'
 export default {
   props: ['user'],
-  data(context) {
-    // コンポーネントをロードする前に毎回呼び出されます
+  data() {
     return { note_content: 'hello' }
   },
   methods: {
@@ -25,8 +24,8 @@ export default {
     saveContent(value) {
       firebase
         .database()
-        .ref('cookie/' + this.user.uid)
-        .push({ content: value })
+        .ref('memo/' + this.user.uid)
+        .set({ content: value })
     },
   },
 }

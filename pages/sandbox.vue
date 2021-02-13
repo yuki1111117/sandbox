@@ -11,11 +11,14 @@
         <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
       </v-col>
     </v-row>
+    <h2>Count: {{ count }}</h2>
+    <h2>isLogin: {{ isLogin }}</h2>
   </v-app>
 </template>
 
 <script>
 import firebase from '@/plugins/firebase'
+import { mapState } from 'vuex'
 import HamuLogo from '~/components/HamuLogo.vue'
 import Home from '~/components/Home.vue'
 import MyPage from '~/components/MyPage.vue'
@@ -25,23 +28,9 @@ export default {
     Home,
     MyPage,
   },
-  asyncData() {
-    // コンポーネントをロードする前に毎回呼び出されます
-    return { isLogin: false, userData: null }
-  },
-  fetch() {
-    // `fetch` メソッドはページの描画前にストアを満たすために使用されます
-  },
+  computed: mapState(['count', 'isLogin', 'userData']),
   mounted() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.isLogin = true
-        this.userData = user
-      } else {
-        this.isLogin = false
-        this.userData = null
-      }
-    })
+    this.$store.dispatch('getUserState')
   },
   methods: {
     googleLogin() {
