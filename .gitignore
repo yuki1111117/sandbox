@@ -93,6 +93,6 @@ sw.*
 assets/
 
 # firebase
-.firebase
+hosting*
 
 .github

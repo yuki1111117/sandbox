@@ -25,7 +25,10 @@ export default {
     Home,
     MyPage,
   },
-
+  asyncData() {
+    // コンポーネントをロードする前に毎回呼び出されます
+    return { isLogin: false, userData: null }
+  },
   fetch() {
     // `fetch` メソッドはページの描画前にストアを満たすために使用されます
   },
