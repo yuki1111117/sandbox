@@ -8,7 +8,9 @@
       <v-list-item v-for="(value, index) in chats" :key="index">
         <v-card-text>
           <div>{{ value.user.name }} {{ value.time }}</div>
-          <div class="text--primary">{{ value.chat }}</div>
+          <div class="text--primary">
+            {{ value.chat }}
+          </div>
         </v-card-text>
         <v-card-actions>
           <v-btn icon @click="deleteMessage(index)">
