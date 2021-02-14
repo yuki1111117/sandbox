@@ -28,9 +28,11 @@ export default {
     Home,
     MyPage,
   },
-  computed: mapState(['count', 'isLogin', 'userData']),
+  computed: {
+    ...mapState(['count', 'isLogin', 'userData']),
+  },
   mounted() {
-    this.$store.dispatch('getUserState')
+    this.$store.dispatch('getUserData')
   },
   methods: {
     googleLogin() {

@@ -35,9 +35,9 @@
       <audio id="HamuAudio" src="/assets/sounds/flowerfairyfly.mp3" loop>
         あなたのブラウザーは古いからよ
       </audio>
-      <router-link to="/sandbox">
+      <router-link to="/account">
         <v-btn icon>
-          <v-icon>mdi-test-tube</v-icon>
+          <v-icon>mdi-account-outline</v-icon>
         </v-btn>
       </router-link>
     </v-app-bar>
@@ -72,9 +72,9 @@ export default {
           to: '/ranking',
         },
         {
-          icon: 'mdi-test-tube',
-          title: 'Sandbox',
-          to: '/sandbox',
+          icon: 'mdi-account-outline',
+          title: 'Account',
+          to: '/account',
         },
         {
           icon: 'mdi-chat-processing',

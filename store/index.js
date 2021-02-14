@@ -12,10 +12,14 @@ const appStore = () => {
       count: 0,
       isLogin: false,
       userData: null,
+      nickName: 'はむちん',
     },
     mutations: {
       increment(state) {
         state.count++
+      },
+      setCookie(state, value) {
+        state.count = value
       },
       setUsers(state, users) {
         state.users = users
@@ -26,7 +30,7 @@ const appStore = () => {
       isLoginChange(state, bool) {
         state.isLogin = bool
       },
-      userDataChange(state, value) {
+      setUserData(state, value) {
         state.userData = value
       },
     },
@@ -41,14 +45,20 @@ const appStore = () => {
           .ref('cookie/' + context.state.userData.uid)
           .set({ count: context.state.count })
       },
-      getUserState({ commit }) {
+      getUserData(context) {
         firebase.auth().onAuthStateChanged((user) => {
           if (user) {
-            commit('isLoginChange', true)
-            commit('userDataChange', user)
+            context.commit('isLoginChange', true)
+            context.commit('setUserData', user)
+            firebase
+              .database()
+              .ref('cookie/' + context.state.userData.uid + '/count')
+              .on('value', (snapshot) =>
+                context.commit('setCookie', snapshot.val())
+              )
           } else {
-            commit('isLoginChange', false)
-            commit('userDataChange', null)
+            context.commit('isLoginChange', false)
+            context.commit('setUserData', null)
           }
         })
       },
@@ -67,7 +77,6 @@ const appStore = () => {
           })
       },
     },
-    modules: {},
   })
 }
 
