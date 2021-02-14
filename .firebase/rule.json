@@ -6,6 +6,14 @@
         ".write": "$uid === auth.uid"
       }
     },
+    "chat": {
+      ".read": true,
+      ".write": true,
+      "$uid": {
+        ".read": true,
+        ".write": "$uid === auth.uid"
+      }
+    },
     "memo": {
       "$uid": {
         ".read": "$uid === auth.uid",

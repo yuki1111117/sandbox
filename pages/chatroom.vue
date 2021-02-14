@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h1>Firebaseを使った読み書き確認</h1>
-    <input v-model="message" />
-    <v-btn @click="addMessage">メッセージを追加</v-btn>
+    <marquee>つぶやくからよ</marquee>
+    <h1>Firebaseを使った読み書き確認だからよ</h1>
+    <v-text-field v-model="chat" label="はむが書き込むところだからよ" />
+    <v-btn @click="addMessage">書き込む </v-btn>
     <ul>
-      <li v-for="(message, index) in messages" :key="index">
-        {{ message.content }} index:{{ index }}
+      <li v-for="(value, index) in chats" :key="index">
+        {{ value.user.name }}が{{ value.chat }}って言ってる
       </li>
     </ul>
   </div>
@@ -19,25 +20,25 @@ export default {
   name: 'Home',
   data() {
     return {
-      message: '',
-      messages: [],
+      chat: '眠いなあ',
+      chats: [],
     }
   },
   mounted() {
     firebase
       .database()
-      .ref('slack')
-      .on('value', (snapshot) => (this.messages = snapshot.val()))
+      .ref('chats')
+      .on('value', (snapshot) => (this.chats = snapshot.val()))
   },
   methods: {
     addMessage() {
       firebase
         .database()
-        .ref('slack')
+        .ref('chats')
         .push({
-          content: this.message,
+          chat: this.chat,
           user: {
-            name: 'John Doe',
+            name: 'はむ',
           },
         })
     },

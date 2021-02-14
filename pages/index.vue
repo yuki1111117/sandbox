@@ -33,7 +33,6 @@
           <v-spacer />
           <v-btn color="primary" nuxt to="/inspire"> Inspire </v-btn>
           <v-btn color="primary" nuxt to="/ranking"> Ranking </v-btn>
-          <v-btn color="primary" nuxt to="/sandbox"> Sandbox </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
