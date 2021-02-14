@@ -42,7 +42,9 @@ const appStore = () => {
         context.commit('increment')
         firebase
           .database()
-          .ref('publicR/' + context.state.userData.uid + '/cookie/')
+          .ref('publicR')
+          .child(context.state.userData.uid)
+          .child('cookie')
           .set({ count: context.state.count })
       },
       getUserData(context) {
@@ -52,10 +54,10 @@ const appStore = () => {
             context.commit('setUserData', user)
             firebase
               .database()
-              .ref(
-                'publicR/' + context.state.userData.uid + '/cookie' + '/count/'
-              )
-
+              .ref('publicR')
+              .child(context.state.userData.uid)
+              .child('cookie')
+              .child('count')
               .on('value', (snapshot) =>
                 context.commit('setCookie', snapshot.val())
               )

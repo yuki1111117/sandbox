@@ -66,6 +66,8 @@ export default {
       clipped: true,
       drawer: null,
       fixed: false,
+      email: '',
+      password: '',
       items: [
         {
           icon: 'mdi-crown',
