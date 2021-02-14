@@ -1,8 +1,8 @@
 <template>
   <div>
     <p>Ranking</p>
-    <marquee
-      >ランキングのランキングを作るからよ・・・使えるか確かめたいからよ</marquee
-    >
+    <marquee>
+      ランキングのランキングを作るからよ・・・確かめたいからよ
+    </marquee>
   </div>
 </template>

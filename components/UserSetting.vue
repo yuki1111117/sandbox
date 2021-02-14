@@ -1,11 +1,11 @@
 <template>
   <v-col dark>
-    <p class="text-justify">こんにちは, {{ userData.displayName }}さん</p>
-    <v-btn @click="logout">ログアウト</v-btn>
-    <v-textarea solo name="input-7-4" v-model="note_content">
-      v-model="note_content"></v-textarea
-    >
-    <v-btn @click="saveContent(note_content)">メモを保存する</v-btn>
+    <p class="text-justify">こんにちは, {{ nickName }}さん</p>
+    <v-btn @click="logout"> ログアウト </v-btn>
+    <v-textarea v-model="note_content" solo name="input-7-4">
+      v-model="note_content">
+    </v-textarea>
+    <v-btn @click="saveContent(note_content)"> メモを保存する </v-btn>
   </v-col>
 </template>
 <script>
@@ -15,7 +15,7 @@ export default {
   data() {
     return { note_content: 'hello' }
   },
-  computed: mapState(['userData']),
+  computed: mapState(['userData', 'nickName']),
   methods: {
     logout() {
       firebase.auth().signOut()

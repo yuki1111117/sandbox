@@ -1,5 +1,11 @@
 {
   "rules": {
+    "scene": {
+      "$uid": {
+        ".read": true,
+        ".write": "$uid === auth.uid"
+      }
+    },
     "memo": {
       "$uid": {
         ".read": "$uid === auth.uid",

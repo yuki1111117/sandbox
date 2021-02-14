@@ -6,8 +6,8 @@
         <div class="text-center">
           <hamu-logo />
         </div>
-        <Home v-if="!isLogin"></Home>
-        <MyPage v-if="isLogin"></MyPage>
+        <Login v-if="!isLogin"></Login>
+        <UserSetting v-if="isLogin"></UserSetting>
         <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
         <h2>クッキーの枚数: {{ count }}</h2>
         <h2>isLogin: {{ isLogin }}</h2>
@@ -19,13 +19,13 @@
 <script>
 import { mapState } from 'vuex'
 import HamuLogo from '~/components/HamuLogo.vue'
-import Home from '~/components/Home.vue'
-import MyPage from '~/components/MyPage.vue'
+import Login from '~/components/Login.vue'
+import UserSetting from '~/components/UserSetting.vue'
 export default {
   components: {
     HamuLogo,
-    Home,
-    MyPage,
+    Login,
+    UserSetting,
   },
   computed: {
     ...mapState(['count', 'isLogin', 'userData']),
