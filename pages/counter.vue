@@ -3,7 +3,12 @@
     <h1>Counter</h1>
     <marquee>クッキー増やすからよ</marquee>
     <p>
-      <v-btn @click="incrementOne">不思議なぽっけだからよ</v-btn>
+      <v-btn v-if="!isLogin" @click="incrementOne">
+        名無しのぽっけだからよ
+      </v-btn>
+      <v-btn v-if="isLogin" @click="incrementAndBackup">
+        不思議なぽっけだからよ
+      </v-btn>
     </p>
     <h1>クッキーが{{ count }}枚あるからよ</h1>
   </div>
@@ -13,7 +18,7 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  computed: mapState(['count']),
-  methods: mapActions(['incrementOne']),
+  computed: mapState(['count', 'isLogin']),
+  methods: mapActions(['incrementOne', 'incrementAndBackup']),
 }
 </script>

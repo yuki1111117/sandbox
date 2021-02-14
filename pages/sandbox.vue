@@ -7,11 +7,11 @@
           <hamu-logo />
         </div>
         <Home v-if="!isLogin"></Home>
-        <MyPage v-if="isLogin" :user="userData"></MyPage>
+        <MyPage v-if="isLogin"></MyPage>
         <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
       </v-col>
     </v-row>
-    <h2>Count: {{ count }}</h2>
+    <h2>クッキーの枚数: {{ count }}</h2>
     <h2>isLogin: {{ isLogin }}</h2>
   </v-app>
 </template>

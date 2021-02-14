@@ -34,12 +34,12 @@ const appStore = () => {
       incrementOne(context) {
         context.commit('increment')
       },
-      incrementAndBackup({ commit }, state) {
-        commit('increment')
+      incrementAndBackup(context) {
+        context.commit('increment')
         firebase
           .database()
-          .ref('cookie/' + this.user.uid)
-          .set({ count: state.count })
+          .ref('cookie/' + context.state.userData.uid)
+          .set({ count: context.state.count })
       },
       getUserState({ commit }) {
         firebase.auth().onAuthStateChanged((user) => {

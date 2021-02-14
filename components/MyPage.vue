@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>こんにちは, {{ user.displayName }}さん</span>
+    <span>こんにちは, {{ userData.displayName }}さん</span>
     <p>
       <button @click="logout">ログアウト</button>
     </p>
@@ -12,11 +12,12 @@
 </template>
 <script>
 import firebase from '@/plugins/firebase'
+import { mapState } from 'vuex'
 export default {
-  props: ['user'],
   data() {
     return { note_content: 'hello' }
   },
+  computed: mapState(['userData']),
   methods: {
     logout() {
       firebase.auth().signOut()
@@ -24,7 +25,7 @@ export default {
     saveContent(value) {
       firebase
         .database()
-        .ref('memo/' + this.user.uid)
+        .ref('memo/' + this.userData.uid)
         .set({ content: value })
     },
   },
