@@ -62,6 +62,15 @@ const appStore = () => {
           }
         })
       },
+      getIsLogin(context) {
+        firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+            context.commit('isLoginChange', true)
+          } else {
+            context.commit('isLoginChange', false)
+          }
+        })
+      },
       getUsers({ commit }) {
         return axios
           .get('https://jsonplaceholder.typicode.com/users')

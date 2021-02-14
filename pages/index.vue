@@ -22,19 +22,11 @@
           </div>
           <hr class="my-3" />
           <a
-            href="https://nuxtjs.org/"
+            href="https://github.com/yuki1111117/sandbox"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Nuxt Documentation
-          </a>
-          <br />
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
+            Hamutin GitHub
           </a>
         </v-card-text>
         <v-card-actions>

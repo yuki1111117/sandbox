@@ -27,7 +27,9 @@
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-spacer />
-      <v-toolbar-title v-text="title" />
+      <router-link to="/">
+        <v-toolbar-title v-text="title" />
+      </router-link>
       <v-spacer />
       <v-btn icon @click.stop="soundPlay">
         <v-icon>mdi-music-clef-treble</v-icon>
@@ -48,12 +50,16 @@
     </v-main>
 
     <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }} はむさのハウス</span>
+      <span>isLogin: {{ isLogin }}</span>
+      <v-spacer />
+      <span>クッキーの数: {{ count }} </span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import firebase from '@/plugins/firebase'
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -62,19 +68,9 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-home',
-          title: 'Welcome',
-          to: '/',
-        },
-        {
           icon: 'mdi-crown',
           title: 'Ranking',
           to: '/ranking',
-        },
-        {
-          icon: 'mdi-account-outline',
-          title: 'Account',
-          to: '/account',
         },
         {
           icon: 'mdi-chat-processing',
@@ -118,9 +114,19 @@ export default {
       title: 'はむちんのハウス',
     }
   },
+  computed: mapState(['count', 'isLogin']),
+  mounted() {
+    this.$store.dispatch('getUserData')
+  },
   methods: {
     soundPlay: function ring() {
       document.getElementById('HamuAudio').play()
+    },
+    googleLogin() {
+      firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+    },
+    registerUser() {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
     },
   },
 }

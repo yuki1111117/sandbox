@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col class="text-center">
-      <img src="/hamu2.jpg" alt="Vuetify.js" class="mb-5" />
+      <v-img src="/hamu2.jpg" aspect-ratio="1.7"></v-img>
       <blockquote class="blockquote">
         First, hamutin solve the problem. Then, bite a code.&#8221;
         <footer>

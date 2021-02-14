@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-col dark>
     <v-card width="400px" class="mx-auto mt-5">
       <v-card-title>
         <h1 class="display-1">ログイン＆新規登録</h1>
@@ -28,7 +28,7 @@
       </v-card-text>
     </v-card>
     <v-btn class="info" @click="googleLogin"> googleでログイン </v-btn>
-  </v-app>
+  </v-col>
 </template>
 
 <script>

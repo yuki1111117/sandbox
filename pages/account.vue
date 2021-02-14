@@ -9,15 +9,14 @@
         <Home v-if="!isLogin"></Home>
         <MyPage v-if="isLogin"></MyPage>
         <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
+        <h2>クッキーの枚数: {{ count }}</h2>
+        <h2>isLogin: {{ isLogin }}</h2>
       </v-col>
     </v-row>
-    <h2>クッキーの枚数: {{ count }}</h2>
-    <h2>isLogin: {{ isLogin }}</h2>
   </v-app>
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
 import { mapState } from 'vuex'
 import HamuLogo from '~/components/HamuLogo.vue'
 import Home from '~/components/Home.vue'
@@ -33,11 +32,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getUserData')
-  },
-  methods: {
-    googleLogin() {
-      firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-    },
   },
 }
 </script>
