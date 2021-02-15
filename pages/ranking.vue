@@ -51,12 +51,12 @@ export default {
         keydayo: {
           name: 'Frozen Yogurt',
           chat: 'chat',
-          user: { nickName: 'hamu' },
+          nickName: 'hamu',
         },
         hamudayo: {
           name: 'Frozen Yogurt',
           chat: 'chat',
-          user: { nickName: 'hamu' },
+          nickName: 'hamu',
         },
       },
     }
