@@ -1,14 +1,13 @@
 <template>
   <div>
     <marquee>つぶやくからよ</marquee>
-    <h3>{{ chats }}</h3>
     <h1>読み書き確認だからよ</h1>
     <v-text-field v-model="chat" label="はむが書き込むところだからよ" />
     <v-btn @click="addMessage"> 書き込む </v-btn>
     <v-card class="mx-auto" max-width="auto">
       <v-list-item v-for="(value, index) in chats" :key="index">
         <v-card-text>
-          <div>{{ value.user.name }} {{ value.time }}</div>
+          <div>{{ value.nickName }} {{ value.time }}</div>
           <div class="text--primary">
             {{ value.chat }}
           </div>

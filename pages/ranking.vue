@@ -4,7 +4,7 @@
     <v-data-table
       v-model="selected"
       :headers="headers"
-      :items="chats"
+      :items="chatsValues"
       :sort-by="['calories', 'fat']"
       :sort-desc="[false, true]"
       :single-select="singleSelect"
@@ -20,19 +20,19 @@
         ></v-switch>
       </template>
     </v-data-table>
-    <h2>{{ chatsValues }}</h2>
-    <h2>{{ chatsKeys }}</h2>
-    <h2>{{ chatsValuesWithKeys }}</h2>
   </v-app>
 </template>
 
 <script>
+import firebase from 'firebase/app'
+import 'firebase/database'
+
 export default {
   data() {
     return {
       singleSelect: false,
       selected: [],
-      arrayData: [],
+      chatsRemoteData: {},
       headers: [
         {
           text: 'Dessert (100g serving)',
@@ -43,33 +43,14 @@ export default {
         { text: 'Chat', value: 'chat' },
         { text: 'NickName', value: 'nickName' },
       ],
-      chats: [
-        {
-          name: 'Frozen Yogurt',
-          chat: 'chat',
-          user: { nickName: 'hamu' },
-        },
-      ],
-      chatsObj: {
-        keydayo: {
-          name: 'Frozen Yogurt',
-          chat: 'chat',
-          nickName: 'hamu',
-        },
-        hamudayo: {
-          name: 'Frozen Yogurt',
-          chat: 'chat',
-          nickName: 'hamu',
-        },
-      },
     }
   },
   computed: {
     chatsValues() {
-      return Object.values(this.chatsObj)
+      return Object.values(this.chatsRemoteData)
     },
     chatsKeys() {
-      return Object.keys(this.chatsObj)
+      return Object.keys(this.chatsRemoteData)
     },
     chatsValuesWithKeys() {
       this.chatsValues.map(
@@ -77,6 +58,12 @@ export default {
       )
       return this.chatsValues
     },
+  },
+  mounted() {
+    firebase
+      .database()
+      .ref('chats')
+      .on('value', (snapshot) => (this.chatsRemoteData = snapshot.val()))
   },
 }
 </script>
