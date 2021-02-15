@@ -1,6 +1,7 @@
 <template>
   <div>
     <marquee>つぶやくからよ</marquee>
+    <h3>{{ chats }}</h3>
     <h1>読み書き確認だからよ</h1>
     <v-text-field v-model="chat" label="はむが書き込むところだからよ" />
     <v-btn @click="addMessage"> 書き込む </v-btn>
