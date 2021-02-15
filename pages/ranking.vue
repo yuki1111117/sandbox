@@ -20,6 +20,7 @@
         ></v-switch>
       </template>
     </v-data-table>
+    <h2>{{ tableData }}</h2>
   </v-app>
 </template>
 
@@ -37,22 +38,33 @@ export default {
           value: 'name',
         },
         { text: 'Chat', value: 'chat' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
         { text: 'NickName', value: 'nickName' },
       ],
       chats: [
         {
           name: 'Frozen Yogurt',
           chat: 'chat',
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
           user: { nickName: 'hamu' },
         },
       ],
+      chatsObj: {
+        keydayo: {
+          name: 'Frozen Yogurt',
+          chat: 'chat',
+          user: { nickName: 'hamu' },
+        },
+        hamudayo: {
+          name: 'Frozen Yogurt',
+          chat: 'chat',
+          user: { nickName: 'hamu' },
+        },
+      },
     }
+  },
+  computed: {
+    tableData() {
+      return Object.entries(this.chatsObj)
+    },
   },
 }
 </script>
