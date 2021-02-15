@@ -20,7 +20,9 @@
         ></v-switch>
       </template>
     </v-data-table>
-    <h2>{{ tableData }}</h2>
+    <h2>{{ chatsValues }}</h2>
+    <h2>{{ chatsKeys }}</h2>
+    <h2>{{ chatsValuesWithKeys }}</h2>
   </v-app>
 </template>
 
@@ -30,6 +32,7 @@ export default {
     return {
       singleSelect: false,
       selected: [],
+      arrayData: [],
       headers: [
         {
           text: 'Dessert (100g serving)',
@@ -62,8 +65,17 @@ export default {
     }
   },
   computed: {
-    tableData() {
-      return Object.entries(this.chatsObj)
+    chatsValues() {
+      return Object.values(this.chatsObj)
+    },
+    chatsKeys() {
+      return Object.keys(this.chatsObj)
+    },
+    chatsValuesWithKeys() {
+      this.chatsValues.map(
+        (value, index) => (value.key = this.chatsKeys[index])
+      )
+      return this.chatsValues
     },
   },
 }
