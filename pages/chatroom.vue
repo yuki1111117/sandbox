@@ -61,18 +61,13 @@ export default {
         time.getMinutes() +
         ':' +
         time.getSeconds()
-      firebase
-        .database()
-        .ref('chats')
-        .push({
-          chat: this.chat,
-          time: this.now,
-          createdAt: firebase.database.ServerValue.TIMESTAMP,
-          user: {
-            name: 'はむ',
-          },
-          good: 0,
-        })
+      firebase.database().ref('chats').push({
+        chat: this.chat,
+        time: this.now,
+        createdAt: firebase.database.ServerValue.TIMESTAMP,
+        nickName: 'はむ',
+        good: 0,
+      })
     },
     deleteMessage(index) {
       firebase.database().ref('chats').child(index).remove()
