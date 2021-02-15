@@ -2,23 +2,14 @@
   <v-app id="inspire">
     <marquee>とりあえずテーブルでランキング作るからよ</marquee>
     <v-data-table
-      v-model="selected"
       :headers="headers"
       :items="chatsValues"
-      :sort-by="['calories', 'fat']"
-      :sort-desc="[false, true]"
+      :sort-by="['good']"
+      :sort-desc="[true, false]"
       :single-select="singleSelect"
       item-key="name"
-      show-select
       class="elevation-1"
     >
-      <template #top>
-        <v-switch
-          v-model="singleSelect"
-          label="Single select"
-          class="pa-3"
-        ></v-switch>
-      </template>
     </v-data-table>
   </v-app>
 </template>
@@ -30,18 +21,12 @@ import 'firebase/database'
 export default {
   data() {
     return {
-      singleSelect: false,
-      selected: [],
       chatsRemoteData: {},
       headers: [
-        {
-          text: 'Dessert (100g serving)',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
         { text: 'Chat', value: 'chat' },
         { text: 'NickName', value: 'nickName' },
+        { text: 'Good', value: 'good' },
+        { text: 'Time', value: 'time' },
       ],
     }
   },
