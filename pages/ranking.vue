@@ -4,11 +4,13 @@
     <v-data-table
       :headers="headers"
       :items="chatsValues"
+      :items-per-page="50"
       :sort-by="['good']"
+      multi-sort
       :sort-desc="[true, false]"
-      :single-select="singleSelect"
       item-key="name"
       class="elevation-1"
+      dense
     >
     </v-data-table>
   </v-app>
