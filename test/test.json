@@ -1,10 +1,18 @@
 [
-  [
-    "keydayo",
-    { "name": "Frozen Yogurt", "chat": "chat", "user": { "nickName": "hamu" } }
-  ],
-  [
-    "hamudayo",
-    { "name": "Frozen Yogurt", "chat": "chat", "user": { "nickName": "hamu" } }
-  ]
+  {
+    "key": "keydayo",
+    "value": {
+      "name": "Frozen Yogurt",
+      "chat": "chat",
+      "user": { "nickName": "hamu" }
+    }
+  },
+  {
+    "key": "hamudayo",
+    "value": {
+      "name": "Frozen Yogurt",
+      "chat": "chat",
+      "user": { "nickName": "hamu" }
+    }
+  }
 ]
