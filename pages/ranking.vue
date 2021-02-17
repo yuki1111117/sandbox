@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <marquee>とりあえずテーブルでランキング作るからよ</marquee>
-    <v-data-iterator :items="chatsValues" item-key="name" hide-default-footer>
+    <v-data-iterator :items="chatsValues" item-key="name">
       <template #default="{ items }">
         <v-row>
           <v-col
@@ -12,10 +12,20 @@
             md="4"
             lg="3"
           >
-            <v-card>
-              <v-card-title>
-                <h4>{{ item.nickName }}</h4>
-              </v-card-title>
+            <v-card color="#385F73" dark>
+              <div class="d-flex flex-no-wrap justify-space-between">
+                <div>
+                  <v-card-title class="headline">
+                    <h4>{{ item.chat }}</h4>
+                  </v-card-title>
+                  <v-card-subtitle v-text="item.nickName"></v-card-subtitle>
+                  <v-card-subtitle>いいね数：{{ item.good }}</v-card-subtitle>
+                  <v-card-subtitle v-text="item.time"></v-card-subtitle>
+                </div>
+                <v-avatar class="ma-3" size="100" tile>
+                  <v-img src="/hamu.jpg"></v-img>
+                </v-avatar>
+              </div>
             </v-card>
           </v-col>
         </v-row>
