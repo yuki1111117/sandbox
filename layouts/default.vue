@@ -39,7 +39,9 @@
       </audio>
       <router-link to="/account">
         <v-btn icon>
-          <v-icon>mdi-account-outline</v-icon>
+          <v-avatar size="36">
+            <img src="/hamu.jpg" alt="hamutin" />
+          </v-avatar>
         </v-btn>
       </router-link>
     </v-app-bar>
