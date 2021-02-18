@@ -1,36 +1,50 @@
 <template>
   <v-app id="inspire">
     <marquee>とりあえずテーブルでランキング作るからよ</marquee>
+
     <v-data-iterator :items="chatsValues" item-key="name">
       <template #default="{ items }">
-        <v-row>
-          <v-col
-            v-for="item in items"
-            :key="item.nickName"
-            cols="12"
-            sm="6"
-            md="4"
-            lg="3"
-          >
-            <v-card color="#385F73" dark>
-              <div class="d-flex flex-no-wrap justify-space-between">
-                <div>
-                  <v-card-title class="headline">
-                    <h4>{{ item.chat }}</h4>
-                  </v-card-title>
-                  <v-card-subtitle v-text="item.nickName"></v-card-subtitle>
-                  <v-card-subtitle>いいね数：{{ item.good }}</v-card-subtitle>
-                  <v-card-subtitle v-text="item.time"></v-card-subtitle>
-                </div>
-                <v-avatar class="ma-3" size="100" tile>
-                  <v-img src="/hamu.jpg"></v-img>
-                </v-avatar>
-              </div>
-            </v-card>
-          </v-col>
-        </v-row>
+        <v-container fluid class="full-height">
+          <v-row class="fill-height">
+            <v-col
+              v-for="item in items"
+              :key="item.nickName"
+              cols="12"
+              sm="10"
+              md="8"
+              lg="6"
+              xl="4"
+            >
+              <v-badge
+                avator
+                overlap
+                color="rgba(0,0,0,0)"
+                offset-x="40px"
+                offset-y="-1px"
+              >
+                <template #badge>
+                  <v-avatar size="40px" rounded>
+                    <v-img src="/hamu.jpg"></v-img>
+                  </v-avatar>
+                </template>
+                <v-card color="#385F73" dark>
+                  <h3>{{ item.chat }}</h3>
+                  <h5>
+                    {{ item.nickName }} いいね数：{{ item.good }}
+                    {{ item.time }}
+                  </h5>
+                  <h4>
+                    Small plates, salads & sandwiches - an intimate setting with
+                    12 indoor seats plus patio seating.
+                  </h4>
+                </v-card>
+              </v-badge>
+            </v-col>
+          </v-row>
+        </v-container>
       </template>
     </v-data-iterator>
+
     <!-- <v-data-table
       dense
       :headers="headers"
@@ -84,3 +98,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+v-card {
+  overflow: hidden;
+}
+</style>
