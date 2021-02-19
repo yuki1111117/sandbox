@@ -27,7 +27,7 @@
                     <v-img src="/hamu.jpg"></v-img>
                   </v-avatar>
                 </template>
-                <v-card color="#385F73" dark>
+                <v-list three-line dark color="#1C1C1C7">
                   <h3>{{ item.chat }}</h3>
                   <h5>
                     {{ item.nickName }} いいね数：{{ item.good }}
@@ -37,7 +37,7 @@
                     Small plates, salads & sandwiches - an intimate setting with
                     12 indoor seats plus patio seating.
                   </h4>
-                </v-card>
+                </v-list>
               </v-badge>
             </v-col>
           </v-row>
@@ -98,9 +98,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-v-card {
-  overflow: hidden;
-}
-</style>
