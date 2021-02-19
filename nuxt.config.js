@@ -60,6 +60,10 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
           background: '#1C1C1C',
+          chat: '#131530',
+        },
+        light: {
+          background: '#D9C5BF',
         },
       },
     },

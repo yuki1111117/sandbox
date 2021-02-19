@@ -27,6 +27,8 @@
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-spacer />
+      <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
+      <v-spacer />
       <router-link to="/">
         <v-toolbar-title v-text="title" />
       </router-link>
@@ -53,6 +55,7 @@
 
     <v-footer :absolute="!fixed" app>
       <span>isLogin: {{ isLogin }}</span>
+
       <v-spacer />
       <span>クッキーの数: {{ count }} </span>
     </v-footer>
