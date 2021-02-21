@@ -21,7 +21,7 @@
                     </v-avatar>
                   </div>
                   <div class="cardText">
-                    <v-card-text class="cardInfo">
+                    <v-card-text class="cardInfo text--disabled">
                       {{ index + 1 }}{{ item.nickName }} いいね数：{{
                         item.good
                       }}
@@ -114,7 +114,7 @@ export default {
   font-size: 12px;
   padding-top: 0px;
   padding-left: 5px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
   padding-right: 0px;
 }
 
