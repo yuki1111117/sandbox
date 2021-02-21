@@ -52,15 +52,16 @@ export default {
       dark: true,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
+          primary: colors.green.accent4,
+          accent: '#E1DBEC',
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-          background: '#1C1C1C',
-          chat: '#131530',
+          background: colors.deepPurple.darken4,
+          chat: colors.deepPurple.darken3,
+          appbar: colors.deepPurple.darken4,
         },
         light: {
           background: '#D9C5BF',
