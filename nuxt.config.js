@@ -60,7 +60,7 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
           background: colors.deepPurple.darken4,
-          chat: colors.deepPurple.darken3,
+          chat: colors.black,
           appbar: colors.deepPurple.darken4,
         },
         light: {

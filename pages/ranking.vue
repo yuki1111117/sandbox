@@ -1,50 +1,36 @@
 <template>
   <v-app>
     <v-row class="fill-height">
-      <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-        <v-card color="chat" width="375px">
+      <v-col cols="12" sm="6" md="5" lg="4" xl="3">
+        <v-card color="chat" width="100%">
           <v-data-iterator
             :items="chatsValues"
             :sort-by="sortBy.toLowerCase()"
             :sort-desc="sortDesc"
           >
             <template #default="{ items }">
-              <v-list-item v-for="(item, index) in items" :key="item.key">
-                <div>
-                  <v-app-bar flat color="rgba(0, 0, 0, 0)">
+              <v-list-item
+                v-for="(item, index) in items"
+                :key="item.key"
+                class="itemPadding"
+              >
+                <div class="cardContainer">
+                  <div class="cardAvator">
                     <v-avatar size="40px">
                       <v-img src="/hamu.jpg"></v-img>
                     </v-avatar>
-                    <v-spacer></v-spacer>
-                    <v-btn color="white" icon>
-                      <v-icon>mdi-dots-vertical</v-icon>
-                    </v-btn>
-                  </v-app-bar>
-                  <v-card-text>
-                    <v-card-sub-title>
-                      <p>{{ item.chat }}</p>
+                  </div>
+                  <div class="cardText">
+                    <v-card-text class="cardInfo">
                       {{ index + 1 }}{{ item.nickName }} いいね数：{{
                         item.good
                       }}
                       {{ item.time }}
-                    </v-card-sub-title>
-                    <div class="font-weight-normal">
-                      吾輩わがはいは猫である。名前はまだ無い。
-                      どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。
-                    </div>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn icon>
-                      <v-icon>mdi-heart</v-icon>
-                    </v-btn>
-                    <v-btn icon>
-                      <v-icon>mdi-bookmark</v-icon>
-                    </v-btn>
-                    <v-btn icon>
-                      <v-icon>mdi-share-variant</v-icon>
-                    </v-btn>
-                  </v-card-actions>
+                    </v-card-text>
+                    <v-card-text class="cardTitleText font-weight-normal">
+                      {{ item.chat }}
+                    </v-card-text>
+                  </div>
                 </div>
               </v-list-item>
             </template>
@@ -95,3 +81,57 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.reset {
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  font-size: inherit;
+}
+
+.itemPadding {
+  padding-top: 8px;
+  padding-bottom: 10px;
+  padding-left: 8px;
+}
+
+.cardContainer {
+  display: flex;
+}
+.cardAvator {
+  display: flex;
+  padding-top: 4px;
+}
+
+.cardText {
+  display: block;
+}
+
+.cardInfo {
+  display: flex;
+  font-size: 12px;
+  padding-top: 0px;
+  padding-left: 5px;
+  padding-bottom: 10px;
+  padding-right: 0px;
+}
+
+.cardComment {
+  display: flex;
+}
+.cardTitleText {
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  line-height: 1.3125;
+  word-break: break-all;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+  padding-left: 5px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+</style>
