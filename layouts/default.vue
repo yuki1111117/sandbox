@@ -24,7 +24,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app color="appbar">
+    <v-app-bar :clipped-left="clipped" fixed app color="appbar" dense>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-spacer />
       <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>

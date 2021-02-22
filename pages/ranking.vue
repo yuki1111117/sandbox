@@ -4,9 +4,11 @@
       <v-col cols="12" sm="6" md="5" lg="4" xl="3">
         <v-card color="chat" width="100%">
           <v-data-iterator
-            :items="chatsValues"
+            :items="chatsValuesWithKeys"
             :sort-by="sortBy.toLowerCase()"
             :sort-desc="sortDesc"
+            :items-per-page="1000"
+            :hide-default-footer="true"
           >
             <template #default="{ items }">
               <v-list-item
@@ -30,6 +32,21 @@
                     <v-card-text class="cardTitleText font-weight-normal">
                       {{ item.chat }}
                     </v-card-text>
+                    <v-row justify="end">
+                      <v-card-actions class="text--disabled">
+                        <v-btn icon @click="deleteMessage(item)">
+                          <v-icon>mdi mdi-eraser</v-icon>
+                        </v-btn>
+                        <v-icon size="12px" color="rgba(255, 255, 255, 0.5)">
+                          mdi-heart
+                        </v-icon>
+                        <span class="subheading mr-2">{{ item.good }}</span>
+                        <v-icon size="12px" color="rgba(255, 255, 255, 0.5)">
+                          mdi mdi-cursor-pointer
+                        </v-icon>
+                        <span class="subheading">45</span>
+                      </v-card-actions>
+                    </v-row>
                   </div>
                 </div>
               </v-list-item>
@@ -79,6 +96,11 @@ export default {
       .ref('chats')
       .on('value', (snapshot) => (this.chatsRemoteData = snapshot.val()))
   },
+  methods: {
+    deleteMessage(item) {
+      firebase.database().ref('chats').child(item.key).remove()
+    },
+  },
 }
 </script>
 
@@ -99,6 +121,7 @@ export default {
 
 .cardContainer {
   display: flex;
+  width: 100%;
 }
 .cardAvator {
   display: flex;
@@ -107,6 +130,7 @@ export default {
 
 .cardText {
   display: block;
+  width: 100%;
 }
 
 .cardInfo {
