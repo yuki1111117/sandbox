@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-row class="fill-height">
+    <v-row class="fill-height bg">
       <marquee>つぶやくからよ</marquee>
       <h1>読み書き確認だからよ</h1>
       <v-text-field v-model="chat" label="はむが書き込むところだからよ" />
@@ -98,3 +98,13 @@ export default {
   },
 }
 </script>
+
+<style>
+.bg {
+  background-image: url('~assets/img/057-23.jpg');
+  background-repeat: repeat;
+  background-size: 500px;
+  width: 100%;
+  height: auto;
+}
+</style>

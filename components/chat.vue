@@ -26,12 +26,12 @@
               </div>
               <div class="cardText">
                 <div class="cardInfoTop d-flex justify-space-between">
-                  <v-card-text class="cardInfo text--disabled">
+                  <v-card-text class="cardInfo text--secondary">
                     {{ item.nickName }}
+                  </v-card-text>
+                  <v-card-text class="cardInfo text--disabled">
                     <v-spacer></v-spacer>
-                    <span>
-                      {{ item.time }}
-                    </span>
+                    {{ item.time }}
                   </v-card-text>
                 </div>
                 <v-card-text class="cardTitleText font-weight-normal">
@@ -54,12 +54,12 @@
                     >
                       mdi-heart
                     </v-icon>
-                    <span>{{ item.good }}</span>
+                    <span class="infoText">{{ item.good }}</span>
                     <v-icon size="12px" color="rgba(255, 255, 255, 0.5)">
                       mdi mdi-cursor-pointer
                     </v-icon>
-                    <span class="subheading">45</span>
-                    <v-card-text class="cardInfo text--disabled"> </v-card-text>
+                    <span class="infoText">45</span>
+                    <v-card-text class="cardInfo text--disabled"></v-card-text>
                   </v-card-actions>
                 </v-row>
               </div>
@@ -139,6 +139,9 @@ export default {
   font-size: inherit;
 }
 
+.infoText {
+  font-size: 12px;
+}
 .itemPadding {
   padding-top: 8px;
   padding-bottom: 10px;
@@ -148,6 +151,56 @@ export default {
 .cardContainer {
   display: flex;
   width: 100%;
+  /* 以下第０版さんより拝借もの */
+  background-color: #fff; /* 背景色 */
+  border: 1px solid #ccc; /* 線の太さ・種類・色 */
+  box-shadow: 1px 1px 6px 0px #ccc;
+  -moz-box-shadow: 1px 1px 6px 0px #ccc;
+  -webkit-box-shadow: 1px 1px 6px 0px #ccc;
+  -o-box-shadow: 1px 1px 6px 0px #ccc;
+  margin: 20px 5px; /* 外側の余白 上下・左右 */
+  padding: 30px 20px 20px 20px; /* 内側の余白 上・右・下・左 */
+  position: relative;
+  z-index: 0;
+}
+
+.cardContainer:after {
+  /* 以下第０版さんより拝借もの */
+  background-color: #d9ccb3; /* マステ部分の色1 */
+  background-image: linear-gradient(
+      45deg,
+      #dfd4be 25%,
+      transparent 25%,
+      transparent 75%,
+      #dfd4be 75%,
+      #dfd4be
+    ),
+    linear-gradient(
+      45deg,
+      #dfd4be 25%,
+      transparent 25%,
+      transparent 75%,
+      #dfd4be 75%,
+      #dfd4be
+    ); /* マステ部分の色2 */
+  background-position: 0 0, 12px 12px;
+  background-size: 24px 24px;
+  border-left: 2px dotted rgba(255, 255, 255, 0.9);
+  border-right: 2px dotted rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  content: 'はむの一言';
+  display: block;
+  margin: 0 0 10px 0;
+  padding: 5px 20px;
+  color: #fff; /* マステ部分文字色 */
+  text-align: center;
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -webkit-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
 }
 .cardAvator {
   display: flex;
