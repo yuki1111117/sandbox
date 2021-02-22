@@ -1,6 +1,6 @@
 <template>
-  <v-col cols="12" sm="6" md="5" lg="4" xl="3">
-    <h2>総合いいね数ランキング</h2>
+  <v-col cols="12" sm="6" md="6" lg="4" xl="3">
+    <h2>{{ title }}</h2>
     <v-card color="chat" width="100%">
       <v-data-iterator
         :items="chatsValuesWithKeys"
@@ -42,20 +42,20 @@
                   <v-card-actions class="text--disabled">
                     <v-icon
                       size="12px"
-                      color="rgba(255, 255, 255, 0.5)"
+                      color="fontcolor"
                       @click="deleteMessage(item)"
                     >
                       mdi mdi-eraser
                     </v-icon>
                     <v-icon
                       size="12px"
-                      color="rgba(255, 255, 255, 0.5)"
+                      color="fontcolor"
                       @click="goodMessage(item)"
                     >
                       mdi-heart
                     </v-icon>
                     <span class="infoText">{{ item.good }}</span>
-                    <v-icon size="12px" color="rgba(255, 255, 255, 0.5)">
+                    <v-icon size="12px" color="fontcolor">
                       mdi mdi-cursor-pointer
                     </v-icon>
                     <span class="infoText">45</span>
@@ -76,10 +76,22 @@ import firebase from 'firebase/app'
 import 'firebase/database'
 
 export default {
+  props: {
+    title: {
+      type: String,
+      required: false,
+      default: 'Ranking',
+    },
+    sortBy: {
+      type: String,
+      required: false,
+      default: 'good',
+    },
+  },
   data() {
     return {
+      props: ['testmsg'],
       chatsRemoteData: {},
-      sortBy: 'good',
       sortDesc: true,
       headers: [
         { text: 'Chat', value: 'chat' },
@@ -130,7 +142,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '~vuetify/src/styles/styles.sass';
+
 .reset {
   padding-top: 0px;
   padding-left: 0px;
@@ -151,8 +165,8 @@ export default {
 .cardContainer {
   display: flex;
   width: 100%;
-  /* 以下第０版さんより拝借もの */
-  background-color: #fff; /* 背景色 */
+  /* 以下第０版さんより拝借ものを少し改変 */
+  background-color: map-get($material-light, 'background'); /* 背景色 */
   border: 1px solid #ccc; /* 線の太さ・種類・色 */
   box-shadow: 1px 1px 6px 0px #ccc;
   -moz-box-shadow: 1px 1px 6px 0px #ccc;
@@ -165,7 +179,7 @@ export default {
 }
 
 .cardContainer:after {
-  /* 以下第０版さんより拝借もの */
+  /* 以下第０版さんより拝借ものを若干変更 */
   background-color: #d9ccb3; /* マステ部分の色1 */
   background-image: linear-gradient(
       45deg,
@@ -188,7 +202,7 @@ export default {
   border-left: 2px dotted rgba(255, 255, 255, 0.9);
   border-right: 2px dotted rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  content: 'はむの一言';
+  content: 'hamu';
   display: block;
   margin: 0 0 10px 0;
   padding: 5px 20px;

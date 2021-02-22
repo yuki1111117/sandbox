@@ -21,5 +21,6 @@ module.exports = {
   rules: {
     'vue/no-unused-vars': 'off',
     'vue/html-self-closing': 'off',
+    'vue/attribute-hyphenation': 'off',
   },
 }

@@ -65,9 +65,11 @@ export default {
           background: colors.deepPurple.darken4,
           chat: colors.black,
           appbar: colors.deepPurple.darken4,
+          fontcolor: 'rgba(255, 255, 255, 0.5)',
         },
         light: {
           background: '#D9C5BF',
+          fontcolor: 'rgba(0, 0, 0, 0.5)',
         },
       },
     },

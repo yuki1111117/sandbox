@@ -1,33 +1,14 @@
 <template>
   <v-app>
+    <marquee>つぶやくからよ</marquee>
+    <h1>読み書き確認だからよ</h1>
+    <v-text-field v-model="chat" label="はむが書き込むところだからよ" />
+    <v-btn @click="addMessage"> 書き込む </v-btn>
     <v-row class="fill-height bg">
-      <marquee>つぶやくからよ</marquee>
-      <h1>読み書き確認だからよ</h1>
-      <v-text-field v-model="chat" label="はむが書き込むところだからよ" />
-      <v-btn @click="addMessage"> 書き込む </v-btn>
-      <v-card class="mx-auto" max-width="auto">
-        <v-list-item v-for="(value, index) in chats" :key="index">
-          <v-card-text>
-            <div>{{ value.nickName }} {{ value.time }}</div>
-            <div class="text--primary">
-              {{ value.chat }}
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn icon @click="deleteMessage(index)">
-              <v-icon>mdi mdi-eraser</v-icon>
-            </v-btn>
-            <v-btn icon @click="goodMessage(index)">
-              <v-icon>mdi mdi-thumb-up-outline</v-icon>
-              {{ value.good }}
-            </v-btn>
-          </v-card-actions>
-        </v-list-item>
-      </v-card>
-      <Chat></Chat>
-      <Chat></Chat>
-      <Chat></Chat>
-      <Chat></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
     </v-row>
   </v-app>
 </template>
@@ -41,7 +22,6 @@ export default {
   components: {
     Chat,
   },
-  name: 'Home',
   data() {
     return {
       chat: '眠いなあ',
