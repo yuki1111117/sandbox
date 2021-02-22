@@ -34,13 +34,17 @@
                     </v-card-text>
                     <v-row justify="end">
                       <v-card-actions class="text--disabled">
-                        <v-btn icon @click="deleteMessage(item)">
-                          <v-icon>mdi mdi-eraser</v-icon>
-                        </v-btn>
+                        <v-icon
+                          size="12px"
+                          color="rgba(255, 255, 255, 0.5)"
+                          @click="deleteMessage(item)"
+                        >
+                          mdi mdi-eraser
+                        </v-icon>
                         <v-icon size="12px" color="rgba(255, 255, 255, 0.5)">
                           mdi-heart
                         </v-icon>
-                        <span class="subheading mr-2">{{ item.good }}</span>
+                        <span>{{ item.good }}</span>
                         <v-icon size="12px" color="rgba(255, 255, 255, 0.5)">
                           mdi mdi-cursor-pointer
                         </v-icon>
