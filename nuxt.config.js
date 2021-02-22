@@ -38,6 +38,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -45,6 +46,11 @@ export default {
     baseURL: 'https://jsonplaceholder.typicode.com/',
   },
 
+  styleResources: {
+    sass: ['@/assets/sass/variable.sass'],
+    scss: ['@/assets/scss/_variable.scss', '@/assets/scss/_mixin.scss'],
+    stylus: ['@/assets/stylus/layout.styl'],
+  },
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
@@ -70,7 +76,7 @@ export default {
           test: colors.green.accent4,
         },
         light: {
-          background: '#D9C5BF',
+          background: 'f4ab8d',
           chat: colors.white,
           fontcolor: colors.black,
           chatbox: '#FFF4D6',
