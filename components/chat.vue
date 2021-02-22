@@ -143,7 +143,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~vuetify/src/styles/styles.sass';
+@import '~vuetify/src/components/VStepper/_variables.scss';
 
 .reset {
   padding-top: 0px;
@@ -166,13 +166,13 @@ export default {
   display: flex;
   width: 100%;
   /* 以下第０版さんより拝借ものを少し改変 */
-  background-color: map-get($material-light, 'background'); /* 背景色 */
+  background-color: #fff4d6; /* 背景色 */
   border: 1px solid #ccc; /* 線の太さ・種類・色 */
   box-shadow: 1px 1px 6px 0px #ccc;
   -moz-box-shadow: 1px 1px 6px 0px #ccc;
   -webkit-box-shadow: 1px 1px 6px 0px #ccc;
   -o-box-shadow: 1px 1px 6px 0px #ccc;
-  margin: 20px 5px; /* 外側の余白 上下・左右 */
+  margin: 10px 5px; /* 外側の余白 上下・左右 */
   padding: 30px 20px 20px 20px; /* 内側の余白 上・右・下・左 */
   position: relative;
   z-index: 0;
