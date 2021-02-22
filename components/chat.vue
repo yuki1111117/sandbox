@@ -17,18 +17,27 @@
           >
             <div class="cardContainer">
               <div class="cardAvator">
+                <v-card-text class="cardRankingInfo text--disabled">
+                  {{ index + 1 }}
+                </v-card-text>
                 <v-avatar size="40px" rounded>
                   <v-img src="/hamu.jpg"></v-img>
                 </v-avatar>
               </div>
               <div class="cardText">
-                <v-card-text class="cardInfo text--disabled">
-                  {{ index + 1 }}{{ item.nickName }} いいね数：{{ item.good }}
-                  {{ item.time }}
-                </v-card-text>
+                <div class="cardInfoTop d-flex justify-space-between">
+                  <v-card-text class="cardInfo text--disabled">
+                    {{ item.nickName }}
+                    <v-spacer></v-spacer>
+                    <span>
+                      {{ item.time }}
+                    </span>
+                  </v-card-text>
+                </div>
                 <v-card-text class="cardTitleText font-weight-normal">
                   {{ item.chat }}
                 </v-card-text>
+
                 <v-row justify="end">
                   <v-card-actions class="text--disabled">
                     <v-icon
@@ -38,7 +47,11 @@
                     >
                       mdi mdi-eraser
                     </v-icon>
-                    <v-icon size="12px" color="rgba(255, 255, 255, 0.5)">
+                    <v-icon
+                      size="12px"
+                      color="rgba(255, 255, 255, 0.5)"
+                      @click="goodMessage(item)"
+                    >
                       mdi-heart
                     </v-icon>
                     <span>{{ item.good }}</span>
@@ -46,6 +59,7 @@
                       mdi mdi-cursor-pointer
                     </v-icon>
                     <span class="subheading">45</span>
+                    <v-card-text class="cardInfo text--disabled"> </v-card-text>
                   </v-card-actions>
                 </v-row>
               </div>
@@ -99,6 +113,19 @@ export default {
     deleteMessage(item) {
       firebase.database().ref('chats').child(item.key).remove()
     },
+    goodMessage(item) {
+      firebase
+        .database()
+        .ref('chats')
+        .child(item.key)
+        .child('good')
+        .on('value', (snapshot) => (this.good = snapshot.val()))
+      firebase
+        .database()
+        .ref('chats')
+        .child(item.key)
+        .update({ good: this.good + 1 })
+    },
   },
 }
 </script>
@@ -139,6 +166,18 @@ export default {
   padding-left: 5px;
   padding-bottom: 0px;
   padding-right: 0px;
+}
+
+.cardRankingInfo {
+  display: flex;
+  font-size: 12px;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-right: 5px;
+}
+.cardInfoTop {
+  display: flex;
 }
 
 .cardComment {
