@@ -23,18 +23,19 @@ mixin cardContainerPug(classes)
             | mdi-heart
           span.infoText {{ item.good }}
           v-icon(size='12px' color='fontcolor')
-            | mdi mdi-cursor-pointer
+              | mdi mdi-cursor-pointer
           span.infoText 45
           v-card-text.cardInfo.text--disabled
 
 v-col(cols='12' sm='6' md='6' lg='4' xl='3')
+    nuxt-link(to="/chatroom/" + 'test')      
       h2 {{ title }}
-      v-card(color='chat' width='100%')
-        v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='1000' :hide-default-footer='true')
-          template(#default='{ items }')
-            v-list-item.itemPadding(v-for='(item, index) in items' :key='item.key')
-              template(v-if="$vuetify.theme.dark == true"): +cardContainerPug('cardContainer cardContainerDark')
-              template(v-if="$vuetify.theme.dark == false"): +cardContainerPug('cardContainer cardContainerLight')
+    v-card(color='chat' width='100%')
+      v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='1000' :hide-default-footer='true')
+        template(#default='{ items }')
+          v-list-item.itemPadding(v-for='(item, index) in items' :key='item.key')
+            template(v-if="$vuetify.theme.dark == true"): +cardContainerPug('cardContainer cardContainerDark')
+            template(v-if="$vuetify.theme.dark == false"): +cardContainerPug('cardContainer cardContainerLight')
 
 </template>
 
