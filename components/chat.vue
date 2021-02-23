@@ -22,10 +22,9 @@ mixin cardContainerPug(classes)
           v-icon(size='12px' color='fontcolor' @click='goodMessage(item)')
             | mdi-heart
           span.infoText {{ item.good }}
-          v-icon(size='12px' color='fontcolor')
-              | mdi mdi-cursor-pointer
+          nuxt-link(to="/chatroom/" + 'test')      
+            h6 返信 
           span.infoText 45
-          v-card-text.cardInfo.text--disabled
 
 v-col(cols='12' sm='6' md='6' lg='4' xl='3')
     nuxt-link(to="/chatroom/" + 'test')      
