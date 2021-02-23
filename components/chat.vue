@@ -104,123 +104,112 @@ export default {
 }
 </script>
 
-<style scoped>
-.reset {
-  padding-top: 0px;
-  padding-left: 0px;
-  padding-bottom: 0px;
-  padding-right: 0px;
-  font-size: inherit;
-}
+<style scoped lang="sass">
+.reset
+  padding-top: 0px
+  padding-left: 0px
+  padding-bottom: 0px
+  padding-right: 0px
+  font-size: inherit
 
-.infoText {
-  font-size: 12px;
-}
-.itemPadding {
-  padding-top: 8px;
-  padding-bottom: 10px;
-  padding-left: 8px;
-}
+.infoText
+  font-size: 12px
 
-.cardContainer {
-  display: flex;
-  width: 100%;
-  /* 以下第０版さんより拝借ものを少し改変 */
-  background-color: #fff4d6; /* 背景色 */
-  border: 1px solid #ccc; /* 線の太さ・種類・色 */
-  box-shadow: 1px 1px 6px 0px #ccc;
-  -moz-box-shadow: 1px 1px 6px 0px #ccc;
-  -webkit-box-shadow: 1px 1px 6px 0px #ccc;
-  -o-box-shadow: 1px 1px 6px 0px #ccc;
-  margin: 10px 5px; /* 外側の余白 上下・左右 */
-  padding: 30px 20px 20px 20px; /* 内側の余白 上・右・下・左 */
-  position: relative;
-  z-index: 0;
-}
+.itemPadding
+  padding-top: 8px
+  padding-bottom: 10px
+  padding-left: 8px
 
-.cardContainer:after {
-  /* 以下第０版さんより拝借ものを若干変更 */
-  background-color: #d9ccb3; /* マステ部分の色1 */
-  background-image: linear-gradient(
-      45deg,
-      #dfd4be 25%,
-      transparent 25%,
-      transparent 75%,
-      #dfd4be 75%,
-      #dfd4be
-    ),
-    linear-gradient(
-      45deg,
-      #dfd4be 25%,
-      transparent 25%,
-      transparent 75%,
-      #dfd4be 75%,
-      #dfd4be
-    ); /* マステ部分の色2 */
-  background-position: 0 0, 12px 12px;
-  background-size: 24px 24px;
-  border-left: 2px dotted rgba(255, 255, 255, 0.9);
-  border-right: 2px dotted rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  content: 'hamu';
-  display: block;
-  margin: 0 0 10px 0;
-  padding: 5px 20px;
-  color: #fff; /* マステ部分文字色 */
-  text-align: center;
-  position: absolute;
-  top: -10px;
-  left: 20px;
-  transform: rotate(-3deg);
-  -moz-transform: rotate(-3deg);
-  -webkit-transform: rotate(-3deg);
-  -o-transform: rotate(-3deg);
-}
-.cardAvator {
-  display: flex;
-  padding-top: 4px;
-}
+.cardContainer
+  display: flex
+  width: 100%
 
-.cardText {
-  display: block;
-  width: 100%;
-}
+  /* 以下第０版さんより拝借ものを少し改変
+  background-color: #fff4d6
 
-.cardInfo {
-  display: flex;
-  font-size: 12px;
-  padding-top: 0px;
-  padding-left: 5px;
-  padding-bottom: 0px;
-  padding-right: 0px;
-}
+  /* 背景色
+  border: 1px solid #ccc
 
-.cardRankingInfo {
-  display: flex;
-  font-size: 12px;
-  padding-top: 0px;
-  padding-left: 0px;
-  padding-bottom: 0px;
-  padding-right: 5px;
-}
-.cardInfoTop {
-  display: flex;
-}
+  /* 線の太さ・種類・色
+  box-shadow: 1px 1px 6px 0px #ccc
+  -moz-box-shadow: 1px 1px 6px 0px #ccc
+  -webkit-box-shadow: 1px 1px 6px 0px #ccc
+  -o-box-shadow: 1px 1px 6px 0px #ccc
+  margin: 10px 5px
 
-.cardComment {
-  display: flex;
-}
-.cardTitleText {
-  font-size: 15px;
-  letter-spacing: 0.05em;
-  line-height: 1.3125;
-  word-break: break-all;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  text-overflow: ellipsis;
-  padding-left: 5px;
-  padding-right: 0px;
-  padding-bottom: 0px;
-  padding-top: 0px;
-}
+  /* 外側の余白 上下・左右
+  padding: 30px 20px 20px 20px
+
+  /* 内側の余白 上・右・下・左
+  position: relative
+  z-index: 0
+
+  &:after
+    /* 以下第０版さんより拝借ものを若干変更
+    background-color: #d9ccb3
+
+    /* マステ部分の色1
+    background-image: linear-gradient(45deg, #dfd4be 25%, transparent 25%, transparent 75%, #dfd4be 75%, #dfd4be), linear-gradient(45deg, #dfd4be 25%, transparent 25%, transparent 75%, #dfd4be 75%, #dfd4be)
+
+    /* マステ部分の色2
+    background-position: 0 0, 12px 12px
+    background-size: 24px 24px
+    border-left: 2px dotted rgba(255, 255, 255, 0.9)
+    border-right: 2px dotted rgba(255, 255, 255, 0.9)
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5)
+    content: 'hamu'
+    display: block
+    margin: 0 0 10px 0
+    padding: 5px 20px
+    color: #fff
+
+    /* マステ部分文字色
+    text-align: center
+    position: absolute
+    top: -10px
+    left: 20px
+    transform: rotate(-3deg)
+    -moz-transform: rotate(-3deg)
+    -webkit-transform: rotate(-3deg)
+    -o-transform: rotate(-3deg)
+
+.cardAvator
+  display: flex
+  padding-top: 4px
+
+.cardText
+  display: block
+  width: 100%
+
+.cardInfo
+  display: flex
+  font-size: 12px
+  padding-top: 0px
+  padding-left: 5px
+  padding-bottom: 0px
+  padding-right: 0px
+
+.cardRankingInfo
+  display: flex
+  font-size: 12px
+  padding-top: 0px
+  padding-left: 0px
+  padding-bottom: 0px
+  padding-right: 5px
+
+.cardInfoTop, .cardComment
+  display: flex
+
+.cardTitleText
+  font-size: 15px
+  letter-spacing: 0.05em
+  line-height: 1.3125
+  word-break: break-all
+  overflow: hidden
+  overflow-wrap: break-word
+  text-overflow: ellipsis
+  padding-left: 5px
+  padding-right: 0px
+  padding-bottom: 0px
+  padding-top: 0px
 </style>
