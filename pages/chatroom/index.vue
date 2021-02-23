@@ -11,6 +11,12 @@
       <Chat title="チャットするとこ" sortBy="time"></Chat>
       <Chat title="チャットするとこ" sortBy="time"></Chat>
       <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time"></Chat>
     </v-row>
   </v-app>
 </template>

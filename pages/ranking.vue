@@ -5,6 +5,14 @@
       <Chat></Chat>
       <Chat></Chat>
       <Chat></Chat>
+      <Chat></Chat>
+      <Chat></Chat>
+      <Chat></Chat>
+      <Chat></Chat>
+      <Chat></Chat>
+      <Chat></Chat>
+      <Chat></Chat>
+      <Chat></Chat>
     </v-row>
   </v-app>
 </template>
