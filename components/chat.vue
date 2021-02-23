@@ -1,74 +1,36 @@
-<template>
-  <v-col cols="12" sm="6" md="6" lg="4" xl="3">
-    <h2>{{ title }}</h2>
-    <v-card color="chat" width="100%">
-      <v-data-iterator
-        :items="chatsValuesWithKeys"
-        :sort-by="sortBy.toLowerCase()"
-        :sort-desc="sortDesc"
-        :items-per-page="1000"
-        :hide-default-footer="true"
-      >
-        <template #default="{ items }">
-          <v-list-item
-            v-for="(item, index) in items"
-            :key="item.key"
-            class="itemPadding"
-          >
-            <div class="cardContainer">
-              <div class="cardAvator">
-                <v-card-text class="cardRankingInfo text--disabled">
-                  {{ index + 1 }}
-                </v-card-text>
-                <v-avatar size="40px" rounded>
-                  <v-img src="/hamu.jpg"></v-img>
-                </v-avatar>
-              </div>
-              <div class="cardText">
-                <div class="cardInfoTop d-flex justify-space-between">
-                  <v-card-text class="cardInfo text--secondary">
-                    {{ item.nickName }}
-                  </v-card-text>
-                  <v-card-text class="cardInfo text--disabled">
-                    <v-spacer></v-spacer>
-                    {{ item.time }}
-                  </v-card-text>
-                </div>
-                <v-card-text class="cardTitleText font-weight-normal">
-                  {{ item.chat }}
-                </v-card-text>
-
-                <v-row justify="end">
-                  <v-card-actions class="text--disabled">
-                    <v-icon
-                      size="12px"
-                      color="fontcolor"
-                      @click="deleteMessage(item)"
-                    >
-                      mdi mdi-eraser
-                    </v-icon>
-                    <v-icon
-                      size="12px"
-                      color="fontcolor"
-                      @click="goodMessage(item)"
-                    >
-                      mdi-heart
-                    </v-icon>
-                    <span class="infoText">{{ item.good }}</span>
-                    <v-icon size="12px" color="fontcolor">
-                      mdi mdi-cursor-pointer
-                    </v-icon>
-                    <span class="infoText">45</span>
-                    <v-card-text class="cardInfo text--disabled"></v-card-text>
-                  </v-card-actions>
-                </v-row>
-              </div>
-            </div>
-          </v-list-item>
-        </template>
-      </v-data-iterator>
-    </v-card>
-  </v-col>
+<template lang="pug">
+v-col(cols='12' sm='6' md='6' lg='4' xl='3')
+      h2 {{ title }}
+      v-card(color='chat' width='100%')
+        v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='1000' :hide-default-footer='true')
+          template(#default='{ items }')
+            v-list-item.itemPadding(v-for='(item, index) in items' :key='item.key')
+              .cardContainer
+                .cardAvator
+                  v-card-text.cardRankingInfo.text--disabled
+                    | {{ index + 1 }}
+                  v-avatar(size='40px' rounded)
+                    v-img(src='/hamu.jpg')
+                .cardText
+                  .cardInfoTop.d-flex.justify-space-between
+                    v-card-text.cardInfo.text--secondary
+                      | {{ item.nickName }}
+                    v-card-text.cardInfo.text--disabled
+                      v-spacer
+                      | {{ item.time }}
+                  v-card-text.cardTitleText.font-weight-normal
+                    | {{ item.chat }}
+                  v-row(justify='end')
+                    v-card-actions.text--disabled
+                      v-icon(size='12px' color='fontcolor' @click='deleteMessage(item)')
+                        | mdi mdi-eraser
+                      v-icon(size='12px' color='fontcolor' @click='goodMessage(item)')
+                        | mdi-heart
+                      span.infoText {{ item.good }}
+                      v-icon(size='12px' color='fontcolor')
+                        | mdi mdi-cursor-pointer
+                      span.infoText 45
+                      v-card-text.cardInfo.text--disabled
 </template>
 
 <script>
@@ -142,9 +104,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-@import '~vuetify/src/components/VStepper/_variables.scss';
-
+<style scoped>
 .reset {
   padding-top: 0px;
   padding-left: 0px;
