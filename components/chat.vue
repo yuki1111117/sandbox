@@ -1,36 +1,41 @@
 <template lang="pug">
+mixin cardContainerPug(classes)
+  div(class=classes)
+    .cardAvator
+      v-card-text.cardRankingInfo.text--disabled
+        | {{ index + 1 }}
+      v-avatar(size='40px' rounded)
+        v-img(src='/hamu.jpg')
+    .cardText
+      .cardInfoTop.d-flex.justify-space-between
+        v-card-text.cardInfo.text--secondary
+          | {{ item.nickName }}
+        v-card-text.cardInfo.text--disabled
+          v-spacer
+          | {{ item.time }}
+      v-card-text.cardTitleText.font-weight-normal
+        | {{ item.chat }}
+      v-row(justify='end')
+        v-card-actions.text--disabled
+          v-icon(size='12px' color='fontcolor' @click='deleteMessage(item)')
+            | mdi mdi-eraser
+          v-icon(size='12px' color='fontcolor' @click='goodMessage(item)')
+            | mdi-heart
+          span.infoText {{ item.good }}
+          v-icon(size='12px' color='fontcolor')
+            | mdi mdi-cursor-pointer
+          span.infoText 45
+          v-card-text.cardInfo.text--disabled
+
 v-col(cols='12' sm='6' md='6' lg='4' xl='3')
       h2 {{ title }}
       v-card(color='chat' width='100%')
         v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='1000' :hide-default-footer='true')
           template(#default='{ items }')
             v-list-item.itemPadding(v-for='(item, index) in items' :key='item.key')
-              .cardContainer
-                .cardAvator
-                  v-card-text.cardRankingInfo.text--disabled
-                    | {{ index + 1 }}
-                  v-avatar(size='40px' rounded)
-                    v-img(src='/hamu.jpg')
-                .cardText
-                  .cardInfoTop.d-flex.justify-space-between
-                    v-card-text.cardInfo.text--secondary
-                      | {{ item.nickName }}
-                    v-card-text.cardInfo.text--disabled
-                      v-spacer
-                      | {{ item.time }}
-                  v-card-text.cardTitleText.font-weight-normal
-                    | {{ item.chat }}
-                  v-row(justify='end')
-                    v-card-actions.text--disabled
-                      v-icon(size='12px' color='fontcolor' @click='deleteMessage(item)')
-                        | mdi mdi-eraser
-                      v-icon(size='12px' color='fontcolor' @click='goodMessage(item)')
-                        | mdi-heart
-                      span.infoText {{ item.good }}
-                      v-icon(size='12px' color='fontcolor')
-                        | mdi mdi-cursor-pointer
-                      span.infoText 45
-                      v-card-text.cardInfo.text--disabled
+              template(v-if="$vuetify.theme.dark == true"): +cardContainerPug('cardContainer cardContainerDark')
+              template(v-if="$vuetify.theme.dark == false"): +cardContainerPug('cardContainer cardContainerLight')
+
 </template>
 
 <script>
@@ -125,7 +130,7 @@ export default {
   width: 100%
 
   /* 以下第０版さんより拝借ものを少し改変
-  background-color: #fff4d6
+  /* ダークとライトで分けてバックカラーは設定 */
 
   /* 背景色
   border: 1px solid #ccc
@@ -146,7 +151,7 @@ export default {
 
   &:after
     /* 以下第０版さんより拝借ものを若干変更
-    background-color: #d9ccb3
+    background-color: #dfd4be
 
     /* マステ部分の色1
     background-image: linear-gradient(45deg, #dfd4be 25%, transparent 25%, transparent 75%, #dfd4be 75%, #dfd4be), linear-gradient(45deg, #dfd4be 25%, transparent 25%, transparent 75%, #dfd4be 75%, #dfd4be)
@@ -172,6 +177,12 @@ export default {
     -moz-transform: rotate(-3deg)
     -webkit-transform: rotate(-3deg)
     -o-transform: rotate(-3deg)
+
+.cardContainerDark
+  background-color: black
+
+.cardContainerLight
+  background-color:  #fff4d6
 
 .cardAvator
   display: flex
