@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>チャット個別ページ{{ this.$route.params.id }}</h1>
+    <Chat title="チャットするとこ" sortBy="time" itemPerPage="1"></Chat>
   </div>
 </template>
 
