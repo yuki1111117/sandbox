@@ -5,18 +5,18 @@
     <v-text-field v-model="chat" label="はむが書き込むところだからよ" />
     <v-btn @click="addMessage"> 書き込む </v-btn>
     <v-row class="fill-height bg">
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
-      <Chat title="チャットするとこ" sortBy="time"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
     </v-row>
   </v-app>
 </template>
