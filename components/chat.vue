@@ -1,41 +1,36 @@
 <template lang="pug">
-mixin cardContainerPug(classes)
-  div(class=classes)
-    .cardAvator
-      v-card-text.cardRankingInfo.text--disabled
-        | {{ index + 1 }}
-      v-avatar(size='40px' rounded)
-        v-img(src='/hamu.jpg')
-    .cardText
-      .cardInfoTop.d-flex.justify-space-between
-        v-card-text.cardInfo.text--secondary
-          | {{ item.nickName }}
-        v-card-text.cardInfo.text--disabled
-          v-spacer
-          | {{ item.time }}
-      v-card-text.cardTitleText.font-weight-normal
-        | {{ item.chat }}
-      v-row(justify='end')
-        v-card-actions.text--disabled
-          v-icon(size='12px' color='fontcolor' @click='deleteMessage(item)')
-            | mdi mdi-eraser
-          v-icon(size='12px' color='fontcolor' @click='goodMessage(item)')
-            | mdi-heart
-          span.infoText {{ item.good }}
-          nuxt-link(to="/chatroom/" + 'test')      
-            h6 返信 
-          span.infoText 45
-
 v-col(cols='12' sm='6' md='6' lg='4' xl='3')
-    nuxt-link(to="/chatroom/" + 'test')      
-      h2 {{ title }}
-    v-card(color='chat' width='100%')
-      v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='itemPerPage' :hide-default-footer='true')
-        template(#default='{ items }')
-          v-list-item.itemPadding(v-for='(item, index) in items' :key='item.key')
-            template(v-if="$vuetify.theme.dark == true"): +cardContainerPug('cardContainer cardContainerDark')
-            template(v-if="$vuetify.theme.dark == false"): +cardContainerPug('cardContainer cardContainerLight')
-
+  nuxt-link(to='/chatroom/test')
+    h2 {{ title }}
+  v-card(color='chat' width='100%')
+    v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='itemPerPage' :hide-default-footer='true')
+      template(#default='{ items }')
+        v-list-item.itemPadding(v-for='(item, index) in items' :key='item.key')
+          .cardContainer.cardContainerDark
+            .cardAvator
+              v-card-text.cardRankingInfo.text--disabled
+                | {{ index + 1 }}
+              v-avatar(size='40px' rounded='rounded')
+                v-img(src='/hamu.jpg')
+            .cardText
+              .cardInfoTop.d-flex.justify-space-between
+                v-card-text.cardInfo.text--secondary
+                  | {{ item.nickName }}
+                v-card-text.cardInfo.text--disabled
+                  v-spacer
+                  | {{ item.time }}
+              v-card-text.cardTitleText.font-weight-normal
+                | {{ item.chat }}
+              v-row(justify='end')
+                v-card-actions.text--disabled
+                  v-icon(size='12px' color='fontcolor' @click='deleteMessage(item)')
+                    | mdi mdi-eraser
+                  v-icon(size='12px' color='fontcolor' @click='goodMessage(item)')
+                    | mdi-heart
+                  span.infoText {{ item.good }}
+                  nuxt-link(:to="'/chatroom/' + item.key")
+                    h6 返信
+                  span.infoText 45
 </template>
 
 <script>
