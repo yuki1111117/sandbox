@@ -21,6 +21,8 @@
     "eamodio.gitlens",
     "esbenp.prettier-vscode",
     "oderwat.indent-rainbow",
+    "Gruntfuggly.todo-tree",
+    "QzSG.kitty-time",
     "dariofuzinato.vue-peek",
     "octref.vetur"
   ],

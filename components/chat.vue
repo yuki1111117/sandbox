@@ -6,7 +6,7 @@ v-col(cols='12' sm='6' md='6' lg='4' xl='3')
     v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='itemPerPage' :hide-default-footer='true')
       template(#default='{ items }')
         v-list-item.itemPadding(v-for='(item, index) in items' :key='item.key')
-          .cardContainer.cardContainerDark
+          v-card(class="cardContainer" color='chatbox')
             .cardAvator
               v-card-text.cardRankingInfo.text--disabled
                 | {{ index + 1 }}
@@ -152,7 +152,6 @@ export default {
   &:after
     /* 以下第０版さんより拝借ものを若干変更
     background-color: #dfd4be
-
     /* マステ部分の色1
     background-image: linear-gradient(45deg, #dfd4be 25%, transparent 25%, transparent 75%, #dfd4be 75%, #dfd4be), linear-gradient(45deg, #dfd4be 25%, transparent 25%, transparent 75%, #dfd4be 75%, #dfd4be)
 
@@ -177,12 +176,6 @@ export default {
     -moz-transform: rotate(-3deg)
     -webkit-transform: rotate(-3deg)
     -o-transform: rotate(-3deg)
-
-.cardContainerDark
-  background-color: black
-
-.cardContainerLight
-  background-color:  #fff4d6
 
 .cardAvator
   display: flex
