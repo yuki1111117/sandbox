@@ -92,7 +92,6 @@ export default {
   background-image: url('~assets/img/057-23.jpg');
   background-repeat: repeat;
   background-size: 500px;
-  width: 100%;
   height: auto;
 }
 </style>
