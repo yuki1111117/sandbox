@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Chat from '~/components/chat.vue'
+import Chat from '~/components/chatRanking.vue'
 
 export default {
   components: {

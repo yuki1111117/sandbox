@@ -24,7 +24,7 @@
 <script>
 import firebase from 'firebase/app'
 import 'firebase/database'
-import Chat from '~/components/chat.vue'
+import Chat from '~/components/chatRanking.vue'
 
 export default {
   components: {

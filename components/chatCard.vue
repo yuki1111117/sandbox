@@ -1,33 +1,45 @@
 <template lang="pug">
 v-card(class="cardContainer" color='chatbox')
     .cardAvator
-    v-card-text.cardRankingInfo.text--disabled
-        | {{ index + 1 }}
-    v-avatar(size='40px' rounded='rounded')
-        v-img(src='/hamu.jpg')
+        v-card-text.cardRankingInfo.text--disabled
+            | {{ index + 1 }}
+        v-avatar(size='40px' rounded='rounded')
+            v-img(src='/hamu.jpg')
     .cardText
-    .cardInfoTop.d-flex.justify-space-between
-        v-card-text.cardInfo.text--secondary
-        | {{ item.nickName }}
-        v-card-text.cardInfo.text--disabled
-        v-spacer
-        | {{ item.time }}
-    v-card-text.cardTitleText.font-weight-normal
-        | {{ item.chat }}
-    v-row(justify='end')
-        v-card-actions.text--disabled
-        v-icon(size='12px' color='fontcolor' @click='deleteMessage(item)')
-            | mdi mdi-eraser
-        v-icon(size='12px' color='fontcolor' @click='goodMessage(item)')
-            | mdi-heart
-        span.infoText {{ item.good }}
-        nuxt-link(:to="'/chatroom/' + item.key")
-            h6 返信
-        span.infoText 45
+        .cardInfoTop.d-flex.justify-space-between
+            v-card-text.cardInfo.text--secondary
+                | {{ item.nickName }}
+            v-card-text.cardInfo.text--disabled
+                v-spacer
+                | {{ item.time }}
+        v-card-text.cardTitleText.font-weight-normal
+            | {{ item.chat }}
+        v-row(justify='end')
+            v-card-actions.text--disabled
+                v-icon(size='12px' color='fontcolor' @click='deleteMessage(item)')
+                    | mdi mdi-eraser
+                v-icon(size='12px' color='fontcolor' @click='goodMessage(item)')
+                    | mdi-heart
+                span.infoText {{ item.good }}
+                nuxt-link(:to="'/chatroom/' + item.key")
+                    h6 返信
+                span.infoText 45
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    item: {
+      type: Object,
+      required: true,
+    },
+    index: {
+      type: Number,
+      required: false,
+      default: 1,
+    },
+  },
+}
 </script>
 
 <style scoped lang="sass">
