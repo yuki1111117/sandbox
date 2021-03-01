@@ -29,7 +29,6 @@ export default {
       chat: '眠いなあ',
       chats: [],
       now: '',
-      good: 0,
     }
   },
   mounted() {
@@ -53,30 +52,15 @@ export default {
         time.getMinutes() +
         ':' +
         time.getSeconds()
+      const cardKey = firebase.database().ref('chatas').push().key
       firebase.database().ref('chats').push({
         chat: this.chat,
         time: this.now,
         createdAt: firebase.database.ServerValue.TIMESTAMP,
         nickName: 'はむちん',
         good: 0,
-        key: '-key',
+        key: cardKey,
       })
-    },
-    deleteMessage(index) {
-      firebase.database().ref('chats').child(index).remove()
-    },
-    goodMessage(index) {
-      firebase
-        .database()
-        .ref('chats')
-        .child(index)
-        .child('good')
-        .on('value', (snapshot) => (this.good = snapshot.val()))
-      firebase
-        .database()
-        .ref('chats')
-        .child(index)
-        .update({ good: this.good + 1 })
     },
   },
 }

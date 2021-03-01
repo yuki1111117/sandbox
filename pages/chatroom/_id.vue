@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <v-app>
     <h1>チャット個別ページ{{ this.$route.params.id }}</h1>
+    {{ chatsRemoteData }}
     <ChatCard :item="searchedObj"></ChatCard>
-  </div>
+    {{ searchedObj }}
+  </v-app>
 </template>
 
 <script>
@@ -17,31 +19,19 @@ export default {
   asyncData() {
     return { chatsRemoteData: {}, searchedObj: {} }
   },
-  computed: {
-    chatsValues() {
-      return Object.values(this.chatsRemoteData)
-    },
-    chatsKeys() {
-      return Object.keys(this.chatsRemoteData)
-    },
-    chatsValuesWithKeys() {
-      this.chatsValues.map(
-        (value, index) => (value.key = this.chatsKeys[index])
-      )
-      return this.chatsValues
-    },
-  },
-  async mounted() {
+  mounted() {
     firebase
       .database()
       .ref('chats')
       .on('value', (snapshot) => (this.chatsRemoteData = snapshot.val()))
-    await firebase
-      .database()
-      .ref('chats')
-      .child(this.$route.params.id)
-      .on('value', (snapshot) => (this.searchedObj = snapshot.val()))
-    this.searchedObj.key = this.$route.params.id
+  },
+  updated() {
+    this.searchedObj = this.chatsRemoteData[this.$route.params.id]
+    // firebase
+    //   .database()
+    //   .ref('chats')
+    //   .child(this.$route.params.id)
+    //   .on('value', (snapshot) => (this.searchedObj = snapshot.val()))
   },
   methods: {
     deleteMessage(item) {

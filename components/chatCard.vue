@@ -51,13 +51,7 @@ export default {
         .database()
         .ref('chats')
         .child(item.key)
-        .child('good')
-        .on('value', (snapshot) => (this.good = snapshot.val()))
-      firebase
-        .database()
-        .ref('chats')
-        .child(item.key)
-        .update({ good: this.good + 1 })
+        .update({ good: item.good + 1 })
     },
   },
 }
