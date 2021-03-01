@@ -5,18 +5,12 @@
     <v-text-field v-model="chat" label="はむが書き込むところだからよ" />
     <v-btn @click="addMessage"> 書き込む </v-btn>
     <v-row class="fill-height bg">
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
-      <Chat title="チャットするとこ" sortBy="time" itemPerPage="2"></Chat>
+      <ChatRanking title="チャットするとこ" sortBy="time" itemPerPage="2">
+      </ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time" itemPerPage="2">
+      </ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time" itemPerPage="2">
+      </ChatRanking>
     </v-row>
   </v-app>
 </template>
@@ -24,11 +18,11 @@
 <script>
 import firebase from 'firebase/app'
 import 'firebase/database'
-import Chat from '~/components/chatRanking.vue'
+import ChatRanking from '~/components/chatRanking.vue'
 
 export default {
   components: {
-    Chat,
+    ChatRanking,
   },
   data() {
     return {
@@ -65,6 +59,7 @@ export default {
         createdAt: firebase.database.ServerValue.TIMESTAMP,
         nickName: 'はむちん',
         good: 0,
+        key: '-key',
       })
     },
     deleteMessage(index) {

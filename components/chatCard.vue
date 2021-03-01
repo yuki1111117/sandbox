@@ -27,6 +27,9 @@ v-card(class="cardContainer" color='chatbox')
 </template>
 
 <script>
+import firebase from 'firebase/app'
+import 'firebase/database'
+
 export default {
   props: {
     item: {
@@ -36,7 +39,25 @@ export default {
     index: {
       type: Number,
       required: false,
-      default: 1,
+      default: 0,
+    },
+  },
+  methods: {
+    deleteMessage(item) {
+      firebase.database().ref('chats').child(item.key).remove()
+    },
+    goodMessage(item) {
+      firebase
+        .database()
+        .ref('chats')
+        .child(item.key)
+        .child('good')
+        .on('value', (snapshot) => (this.good = snapshot.val()))
+      firebase
+        .database()
+        .ref('chats')
+        .child(item.key)
+        .update({ good: this.good + 1 })
     },
   },
 }

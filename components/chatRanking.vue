@@ -6,7 +6,7 @@ v-col(cols='12' sm='6' md='6' lg='4' xl='3')
     v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='itemPerPage' :hide-default-footer='true')
       template(#default='{ items }')
         v-list-item.itemPadding(v-for='(value, i) in items' :key='value.key')
-          ChatCard(:item='value' :index='i')
+          ChatCard( :item='value' :index='i')
 </template>
 
 <script>
@@ -67,24 +67,6 @@ export default {
       .database()
       .ref('chats')
       .on('value', (snapshot) => (this.chatsRemoteData = snapshot.val()))
-  },
-  methods: {
-    deleteMessage(item) {
-      firebase.database().ref('chats').child(item.key).remove()
-    },
-    goodMessage(item) {
-      firebase
-        .database()
-        .ref('chats')
-        .child(item.key)
-        .child('good')
-        .on('value', (snapshot) => (this.good = snapshot.val()))
-      firebase
-        .database()
-        .ref('chats')
-        .child(item.key)
-        .update({ good: this.good + 1 })
-    },
   },
 }
 </script>

@@ -1,26 +1,21 @@
 <template>
   <div>
     <h1>チャット個別ページ{{ this.$route.params.id }}</h1>
-    <Chat title="返信するとこ" sortBy="time" itemPerPage="1"></Chat>
+    <ChatCard :item="searchedObj"></ChatCard>
   </div>
 </template>
 
 <script>
 import firebase from 'firebase/app'
 import 'firebase/database'
+import ChatCard from '~/components/chatCard.vue'
 
 export default {
-  data() {
-    return {
-      chatsRemoteData: {},
-      sortDesc: true,
-      headers: [
-        { text: 'Chat', value: 'chat' },
-        { text: 'NickName', value: 'nickName' },
-        { text: 'Good', value: 'good' },
-        { text: 'Time', value: 'time' },
-      ],
-    }
+  components: {
+    ChatCard,
+  },
+  asyncData() {
+    return { chatsRemoteData: {}, searchedObj: {} }
   },
   computed: {
     chatsValues() {
@@ -36,11 +31,17 @@ export default {
       return this.chatsValues
     },
   },
-  mounted() {
+  async mounted() {
     firebase
       .database()
       .ref('chats')
       .on('value', (snapshot) => (this.chatsRemoteData = snapshot.val()))
+    await firebase
+      .database()
+      .ref('chats')
+      .child(this.$route.params.id)
+      .on('value', (snapshot) => (this.searchedObj = snapshot.val()))
+    this.searchedObj.key = this.$route.params.id
   },
   methods: {
     deleteMessage(item) {
