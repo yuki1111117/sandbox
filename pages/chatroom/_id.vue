@@ -1,9 +1,8 @@
 <template>
   <v-app>
     <h1>チャット個別ページ{{ this.$route.params.id }}</h1>
-    {{ chatsRemoteData }}
+    <div v-show="false">{{ chatsRemoteData }}</div>
     <ChatCard :item="searchedObj" @from-child="alertMessage"></ChatCard>
-    {{ searchedObj }}
   </v-app>
 </template>
 
@@ -16,24 +15,33 @@ export default {
   components: {
     ChatCard,
   },
-
-  data() {
+  asyncData() {
     return {
-      urlId: this.$route.params.id,
       chatsRemoteData: {},
-      searchedObj: {},
+      searchedObj: {
+        chat: '眠いなあ',
+        createdAt: 1614603094812,
+        good: 1,
+        key: '-dummy',
+        nickName: 'はむちん',
+        time: '2121-2-1 21:51:35',
+      },
     }
+  },
+  data() {
+    return { urlId: this.$route.params.id }
   },
   mounted() {
     firebase
       .database()
       .ref('chats')
       .on('value', (snapshot) => (this.chatsRemoteData = snapshot.val()))
-    this.searchedObj = this.chatsRemoteData[this.urlId]
   },
   updated() {
     this.searchedObj = this.chatsRemoteData[this.urlId]
-    this.searchedObj.key = this.urlId
+    if (this.urlId) {
+      this.searchedObj.key = this.urlId
+    }
   },
   methods: {
     alertMessage(item) {

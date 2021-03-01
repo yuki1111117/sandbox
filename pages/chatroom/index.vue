@@ -1,18 +1,22 @@
-<template>
-  <v-app>
-    <marquee>つぶやくからよ</marquee>
-    <h1>チャットルームだからよ</h1>
-    <v-text-field v-model="chat" label="はむが書き込むところだからよ" />
-    <v-btn @click="addMessage"> 書き込む </v-btn>
-    <v-row class="fill-height bg">
-      <ChatRanking title="チャットするとこ" sortBy="time" itemPerPage="2">
-      </ChatRanking>
-      <ChatRanking title="チャットするとこ" sortBy="time" itemPerPage="2">
-      </ChatRanking>
-      <ChatRanking title="チャットするとこ" sortBy="time" itemPerPage="2">
-      </ChatRanking>
-    </v-row>
-  </v-app>
+<template lang="pug">
+v-app
+  marquee つぶやくからよ
+  h1 チャットルームだからよ
+  v-text-field(v-model='chat' label='はむが書き込むところだからよ')
+  v-btn(@click='addMessage')  書き込む 
+  v-row.fill-height.bg
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
+    ChatRanking(title='チャットするとこ' sortBy='time' itemPerPage='2')
 </template>
 
 <script>

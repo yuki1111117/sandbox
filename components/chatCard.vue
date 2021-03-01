@@ -34,7 +34,17 @@ export default {
   props: {
     item: {
       type: Object,
-      required: true,
+      required: false,
+      default() {
+        return {
+          chat: '眠いなあ',
+          createdAt: 1614603094812,
+          good: 1,
+          key: 'dummyKey',
+          nickName: 'はむちん',
+          time: '2121-2-1 21:51:35',
+        }
+      },
     },
     index: {
       type: Number,
