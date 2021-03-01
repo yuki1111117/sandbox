@@ -52,6 +52,7 @@ export default {
         .ref('chats')
         .child(item.key)
         .update({ good: item.good + 1 })
+      this.$emit('from-child', item)
     },
   },
 }
