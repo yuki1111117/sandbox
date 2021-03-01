@@ -2,7 +2,7 @@
   <v-app>
     <h1>チャット個別ページ{{ this.$route.params.id }}</h1>
     {{ chatsRemoteData }}
-    <ChatCard :item="searchedObj"></ChatCard>
+    <ChatCard :item="searchedObj" @from-child="alertMessage"></ChatCard>
     {{ searchedObj }}
   </v-app>
 </template>
@@ -16,39 +16,33 @@ export default {
   components: {
     ChatCard,
   },
-  asyncData() {
-    return { chatsRemoteData: {}, searchedObj: {} }
+
+  data() {
+    return {
+      urlId: this.$route.params.id,
+      chatsRemoteData: {},
+      searchedObj: {},
+    }
   },
   mounted() {
     firebase
       .database()
       .ref('chats')
       .on('value', (snapshot) => (this.chatsRemoteData = snapshot.val()))
+    this.searchedObj = this.chatsRemoteData[this.urlId]
   },
   updated() {
-    this.searchedObj = this.chatsRemoteData[this.$route.params.id]
-    // firebase
-    //   .database()
-    //   .ref('chats')
-    //   .child(this.$route.params.id)
-    //   .on('value', (snapshot) => (this.searchedObj = snapshot.val()))
+    this.searchedObj = this.chatsRemoteData[this.urlId]
+    this.searchedObj.key = this.urlId
   },
   methods: {
-    deleteMessage(item) {
-      firebase.database().ref('chats').child(item.key).remove()
-    },
-    goodMessage(item) {
+    alertMessage(item) {
       firebase
         .database()
         .ref('chats')
         .child(item.key)
-        .child('good')
-        .on('value', (snapshot) => (this.good = snapshot.val()))
-      firebase
-        .database()
-        .ref('chats')
-        .child(item.key)
-        .update({ good: this.good + 1 })
+        .update({ good: item.good + 1 })
+      this.searchedObj.key = this.urlId
     },
   },
 }

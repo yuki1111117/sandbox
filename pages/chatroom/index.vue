@@ -52,7 +52,7 @@ export default {
         time.getMinutes() +
         ':' +
         time.getSeconds()
-      const cardKey = firebase.database().ref('chatas').push().key
+      const cardKey = firebase.database().ref('chats').push().key
       firebase.database().ref('chats').push({
         chat: this.chat,
         time: this.now,
