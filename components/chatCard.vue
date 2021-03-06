@@ -1,29 +1,91 @@
-<template lang="pug">
-v-card(class="cardContainer" color='chatbox')
-    .cardAvator
-        v-card-text.cardRankingInfo.text--disabled
-            | {{ index + 1 }}
-        v-avatar(size='40px' rounded='rounded')
-            v-img(src='/hamu.jpg')
-    .cardText
-        .cardInfoTop.d-flex.justify-space-between
-            v-card-text.cardInfo.text--secondary
-                | {{ item.nickName }}
-            v-card-text.cardInfo.text--disabled
-                v-spacer
-                | {{ item.time }}
-        v-card-text.cardTitleText.font-weight-normal
-            | {{ item.chat }}
-        v-row(justify='end')
-            v-card-actions.text--disabled
-                v-icon(size='12px' color='fontcolor' @click='deleteMessage(item)')
-                    | mdi mdi-eraser
-                v-icon(size='12px' color='fontcolor' @click='goodMessage(item)')
-                    | mdi-heart
-                span.infoText {{ item.good }}
-                nuxt-link(:to="'/chatroom/' + item.key")
-                    h6 返信
-                span.infoText 45
+<template>
+  <v-card class="cardContainer" color="chatbox">
+    <v-dialog v-model="dialog" max-width="500px">
+      <v-card>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.name" label="Dessert name">
+                </v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.calories" label="Calories">
+                </v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.fat" label="Fat (g)">
+                </v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.carbs" label="Carbs (g)">
+                </v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.protein" label="Protein (g)">
+                </v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="close"> Cancel </v-btn>
+          <v-btn color="blue darken-1" text> Save </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <div class="cardAvator">
+      <v-card-text class="cardRankingInfo text--disabled">
+        {{ index + 1 }}
+      </v-card-text>
+      <v-avatar size="40px" rounded="rounded">
+        <v-img src="/hamu.jpg"></v-img>
+      </v-avatar>
+    </div>
+    <div class="cardText">
+      <div class="cardInfoTop d-flex justify-space-between">
+        <v-card-text class="cardInfo text--secondary">
+          {{ item.nickName }}
+        </v-card-text>
+        <v-card-text class="cardInfo text--disabled">
+          <v-spacer></v-spacer>{{ item.time }}
+        </v-card-text>
+      </div>
+      <v-card-text class="cardTitleText font-weight-normal">
+        {{ item.chat }}
+      </v-card-text>
+      <v-row justify="end">
+        <v-card-actions class="text--disabled">
+          <v-icon
+            class="iconBtn"
+            size="12px"
+            color="fontcolor"
+            @click.stop="dialog = true"
+          >
+            mdi mdi-pencil
+          </v-icon>
+          <v-icon
+            class="iconBtn"
+            size="12px"
+            color="fontcolor"
+            @click="deleteMessage(item)"
+          >
+            mdi mdi-eraser
+          </v-icon>
+          <v-icon size="12px" color="fontcolor" @click="goodMessage(item)">
+            mdi-heart
+          </v-icon>
+          <span class="infoText iconBtn">{{ item.good }}</span>
+          <nuxt-link :to="'/chatroom/' + item.key">
+            <h6>返信</h6>
+          </nuxt-link>
+          <span class="infoText">45</span>
+        </v-card-actions>
+      </v-row>
+    </div>
+  </v-card>
 </template>
 
 <script>
@@ -52,6 +114,18 @@ export default {
       default: 0,
     },
   },
+  data() {
+    return {
+      dialog: false,
+      editedItem: {
+        name: '',
+        calories: 0,
+        fat: 0,
+        carbs: 0,
+        protein: 0,
+      },
+    }
+  },
   methods: {
     deleteMessage(item) {
       firebase.database().ref('chats').child(item.key).remove()
@@ -63,6 +137,9 @@ export default {
         .child(item.key)
         .update({ good: item.good + 1 })
       this.$emit('from-child', item)
+    },
+    close() {
+      this.dialog = false
     },
   },
 }
@@ -163,4 +240,7 @@ export default {
   padding-right: 0px
   padding-bottom: 0px
   padding-top: 0px
+
+.iconBtn
+  margin-right: 12px
 </style>
