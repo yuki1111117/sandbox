@@ -6,23 +6,27 @@
           <v-container>
             <v-row>
               <v-col cols="12" sm="6" md="4">
-                <v-text-field v-model="editedItem.name" label="Dessert name">
+                <v-text-field v-model="editedItem.nickName" label="NickName">
                 </v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="4">
-                <v-text-field v-model="editedItem.calories" label="Calories">
+                <v-text-field
+                  v-model="editedItem.good"
+                  type="number"
+                  label="Good"
+                >
                 </v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="4">
-                <v-text-field v-model="editedItem.fat" label="Fat (g)">
+                <v-text-field v-model="editedItem.chat" label="Chat">
                 </v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="4">
-                <v-text-field v-model="editedItem.carbs" label="Carbs (g)">
+                <v-text-field v-model="editedItem.time" label="Time">
                 </v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="4">
-                <v-text-field v-model="editedItem.protein" label="Protein (g)">
+                <v-text-field v-model="editedItem.key" label="Key">
                 </v-text-field>
               </v-col>
             </v-row>
@@ -31,7 +35,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="close"> Cancel </v-btn>
-          <v-btn color="blue darken-1" text> Save </v-btn>
+          <v-btn color="blue darken-1" text @click="save(item)"> Save </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -62,7 +66,7 @@
             class="iconBtn"
             size="12px"
             color="fontcolor"
-            @click.stop="dialog = true"
+            @click="editItem(item)"
           >
             mdi mdi-pencil
           </v-icon>
@@ -117,13 +121,7 @@ export default {
   data() {
     return {
       dialog: false,
-      editedItem: {
-        name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
-      },
+      editedItem: {},
     }
   },
   methods: {
@@ -131,15 +129,36 @@ export default {
       firebase.database().ref('chats').child(item.key).remove()
     },
     goodMessage(item) {
+      this.editedItem = Object.assign({}, item)
+      this.editedItem.good = this.editedItem.good + 1
       firebase
         .database()
         .ref('chats')
         .child(item.key)
-        .update({ good: item.good + 1 })
-      this.$emit('from-child', item)
+        .update({ good: Number(this.editedItem.good) })
     },
+    editItem(item) {
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
+    },
+
     close() {
       this.dialog = false
+    },
+    save(item) {
+      firebase
+        .database()
+        .ref('chats')
+        .child(item.key)
+        .update({
+          chat: this.editedItem.chat,
+          createdAt: this.editedItem.createdAt,
+          good: Number(this.editedItem.good),
+          key: this.editedItem.key,
+          nickName: this.editedItem.nickName,
+          time: this.editedItem.time,
+        })
+      this.close()
     },
   },
 }

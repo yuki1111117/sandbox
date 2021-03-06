@@ -2,7 +2,7 @@
   <v-app>
     <h1>チャット個別ページ{{ this.$route.params.id }}</h1>
     <div v-show="false">{{ chatsRemoteData }}</div>
-    <ChatCard :item="searchedObj" @from-child="alertMessage"></ChatCard>
+    <ChatCard :item="searchedObj"></ChatCard>
   </v-app>
 </template>
 
@@ -42,16 +42,6 @@ export default {
     if (this.urlId) {
       this.searchedObj.key = this.urlId
     }
-  },
-  methods: {
-    alertMessage(item) {
-      firebase
-        .database()
-        .ref('chats')
-        .child(item.key)
-        .update({ good: item.good + 1 })
-      this.searchedObj.key = this.urlId
-    },
   },
 }
 </script>
