@@ -1,6 +1,6 @@
 <template lang="pug">
 v-col(cols='12' sm='6' md='6' lg='4' xl='3')
-  nuxt-link(to='/chatroom/test')
+  nuxt-link(to='/category/test')
     h2 {{ title }}
   v-card(color='chat' width='100%')
     v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='itemPerPage' :hide-default-footer='true')
