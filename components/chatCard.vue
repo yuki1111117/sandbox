@@ -43,6 +43,8 @@
     <div class="cardAvator">
       <v-card-text class="cardRankingInfo text--disabled">
         {{ index + 1 }}
+        <v-checkbox v-model="editedItem.done" @click="check(item)">
+        </v-checkbox>
       </v-card-text>
       <v-avatar size="40px" rounded="rounded">
         <v-img src="/hamu.jpg"></v-img>
@@ -83,9 +85,9 @@
           </v-icon>
           <span class="infoText iconBtn">{{ item.good }}</span>
           <nuxt-link :to="'/chatroom/' + item.key">
-            <h6>返信</h6>
+            <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
           </nuxt-link>
-          <span class="infoText">45</span>
+          <span class="infoText">99</span>
         </v-card-actions>
       </v-row>
     </div>
@@ -124,7 +126,13 @@ export default {
       editedItem: {},
     }
   },
+  created() {
+    this.initialize()
+  },
   methods: {
+    initialize() {
+      this.editedItem = Object.assign({}, this.item)
+    },
     deleteMessage(item) {
       firebase.database().ref('chats').child(item.key).remove()
     },
@@ -141,7 +149,11 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
-
+    check(item) {
+      firebase.database().ref('chats').child(item.key).update({
+        done: this.editedItem.done,
+      })
+    },
     close() {
       this.dialog = false
     },
@@ -152,7 +164,7 @@ export default {
         .child(item.key)
         .update({
           chat: this.editedItem.chat,
-          createdAt: this.editedItem.createdAt,
+          createdAt: Number(this.editedItem.createdAt),
           good: Number(this.editedItem.good),
           key: this.editedItem.key,
           nickName: this.editedItem.nickName,

@@ -63,6 +63,7 @@ export default {
         createdAt: firebase.database.ServerValue.TIMESTAMP,
         nickName: 'はむちん',
         good: 0,
+        done: false,
         key: cardKey,
       })
     },
