@@ -54,7 +54,6 @@ export default {
       })
       return Array.from(s).map((a) => {
         return {
-          text: a.toUpperCase(),
           value: a,
         }
       })

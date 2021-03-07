@@ -57,15 +57,19 @@ export default {
         ':' +
         time.getSeconds()
       const cardKey = firebase.database().ref('chats').push().key
-      firebase.database().ref('chats').push({
-        chat: this.chat,
-        time: this.now,
-        createdAt: firebase.database.ServerValue.TIMESTAMP,
-        nickName: 'はむちん',
-        good: 0,
-        done: false,
-        key: cardKey,
-      })
+      firebase
+        .database()
+        .ref('chats')
+        .push({
+          chat: this.chat,
+          time: this.now,
+          createdAt: firebase.database.ServerValue.TIMESTAMP,
+          nickName: 'はむちん',
+          good: 0,
+          goodObj: { count: 0 },
+          done: false,
+          key: cardKey,
+        })
     },
   },
 }

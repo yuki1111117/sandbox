@@ -83,7 +83,7 @@
           <v-icon size="12px" color="fontcolor" @click="goodMessage(item)">
             mdi-heart
           </v-icon>
-          <span class="infoText iconBtn">{{ item.good }}</span>
+          <span class="infoText iconBtn">{{ item.goodObj.count }}</span>
           <nuxt-link :to="'/chatroom/' + item.key">
             <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
           </nuxt-link>
@@ -108,6 +108,7 @@ export default {
           chat: '眠いなあ',
           createdAt: 1614603094812,
           good: 1,
+          goodObj: { count: 0 },
           key: 'dummyKey',
           nickName: 'はむちん',
           time: '2121-2-1 21:51:35',
@@ -138,12 +139,13 @@ export default {
     },
     goodMessage(item) {
       this.editedItem = Object.assign({}, item)
-      this.editedItem.good = this.editedItem.good + 1
+      this.editedItem.goodObj.count = this.editedItem.goodObj.count + 1
       firebase
         .database()
         .ref('chats')
         .child(item.key)
-        .update({ good: Number(this.editedItem.good) })
+        .child('goodObj')
+        .update({ count: Number(this.editedItem.goodObj.count) })
     },
     editItem(item) {
       this.editedItem = Object.assign({}, item)
