@@ -8,6 +8,8 @@
         label="ItemPerPage"
         type="Number"
       ></v-text-field>
+      <v-btn @click="addSetting('settingObj')">SAVE</v-btn>
+      {{ settingObj }}
     </v-col>
     <ChatRanking
       :title="settingObj.title"
@@ -27,11 +29,14 @@
         label="ItemPerPage"
         type="Number"
       ></v-text-field>
+      <v-btn>SAVE</v-btn>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import firebase from 'firebase/app'
+import 'firebase/database'
 import ChatRanking from '~/components/chatRanking.vue'
 export default {
   components: {
@@ -49,6 +54,7 @@ export default {
         sortBy: 'time',
         page: 2,
       },
+      now: '',
     }
   },
   computed: {
@@ -57,6 +63,30 @@ export default {
     },
     comparePerPage() {
       return Number(this.compareObj.page)
+    },
+  },
+  methods: {
+    addSetting(fieldName) {
+      const time = new Date()
+      this.now =
+        time.getFullYear() +
+        '-' +
+        time.getMonth() +
+        '-' +
+        time.getDate() +
+        ' ' +
+        time.getHours() +
+        ':' +
+        time.getMinutes() +
+        ':' +
+        time.getSeconds()
+      const cardKey = firebase.database().ref('setting').push().key
+      firebase.database().ref('setting').child(cardKey).set({
+        key: cardKey,
+        createdAt: firebase.database.ServerValue.TIMESTAMP,
+        time: this.now,
+        title: this[fieldName].title,
+      })
     },
   },
 }

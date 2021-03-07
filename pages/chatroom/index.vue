@@ -113,7 +113,8 @@ export default {
       firebase
         .database()
         .ref('chats')
-        .push({
+        .child(cardKey)
+        .set({
           chat: this.chat,
           time: this.now,
           createdAt: firebase.database.ServerValue.TIMESTAMP,

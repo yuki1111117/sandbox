@@ -1,37 +1,39 @@
 {
-  "rules": {
-    "scenes": {
-      "$uid": {
-        ".read": true,
-        ".write": "$uid === auth.uid"
-      }
-    },
-    "chats": {
-      ".read": true,
-      ".write": true,
-      "$uid": {
-        ".read": true,
-        ".write": "$uid === auth.uid"
-      }
-    },
-    "memo": {
-      "$uid": {
-        ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
-      }
-    },
-    "cookie": {
-      "$uid": {
-        ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
-      }
-    },
+    "rules": {
+        "chats": {
+            ".read": true,
+            ".write": true,
+            "$uid": {
+                ".read": true,
+                ".write": "$uid === auth.uid"
+            }
+        },
+        "memo": {
+            "$uid": {
+                ".read": "$uid === auth.uid",
+                ".write": "$uid === auth.uid"
+            }
+        },
+        "cookie": {
+            "$uid": {
+                ".read": "$uid === auth.uid",
+                ".write": "$uid === auth.uid"
+            }
+        },
 
-    "publicR": {
-      "$uid": {
-        ".read": true,
-        ".write": "$uid === auth.uid"
-      }
+        "publicR": {
+            "$uid": {
+                ".read": true,
+                ".write": "$uid === auth.uid"
+            }
+        },
+        "setting": {
+            ".read": true,
+            ".write": true,
+            "$uid": {
+                ".read": true,
+                ".write": "$uid === auth.uid"
+            }
+        }
     }
-  }
 }
