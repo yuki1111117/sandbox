@@ -4,7 +4,7 @@ v-col(cols='12' sm='6' md='6' lg='4' xl='3')
     h2 {{ title }}
     | {{chatsValues}}
   v-card(color='chat' width='100%')
-    v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='itemPerPage' :hide-default-footer='true')
+    v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page.sync='itemPerPage' :hide-default-footer='true')
       template(#default='{ items }')
         v-list-item.itemPadding(v-for='(value, i) in items' :key='value.key')
           ChatCard( :item='value' :index='i')

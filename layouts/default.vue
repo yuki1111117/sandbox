@@ -80,6 +80,11 @@ export default {
           to: '/ranking',
         },
         {
+          icon: 'mdi-egg-easter',
+          title: 'Setting',
+          to: '/setting',
+        },
+        {
           icon: 'mdi-chat-processing',
           title: 'Chatroom',
           to: '/chatroom',
