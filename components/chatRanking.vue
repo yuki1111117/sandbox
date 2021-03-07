@@ -2,6 +2,7 @@
 v-col(cols='12' sm='6' md='6' lg='4' xl='3')
   nuxt-link(to='/category/test')
     h2 {{ title }}
+    | {{chatsValues}}
   v-card(color='chat' width='100%')
     v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page='itemPerPage' :hide-default-footer='true')
       template(#default='{ items }')
@@ -40,15 +41,24 @@ export default {
       props: ['testmsg'],
       chatsRemoteData: {},
       sortDesc: true,
-      headers: [
-        { text: 'Chat', value: 'chat' },
-        { text: 'NickName', value: 'nickName' },
-        { text: 'Good', value: 'good' },
-        { text: 'Time', value: 'time' },
-      ],
     }
   },
   computed: {
+    headers() {
+      const s = new Set()
+      let f = null
+      this.chatsValues.forEach((item) => {
+        for (f in item) {
+          s.add(f)
+        }
+      })
+      return Array.from(s).map((a) => {
+        return {
+          text: a.toUpperCase(),
+          value: a,
+        }
+      })
+    },
     chatsValues() {
       return Object.values(this.chatsRemoteData)
     },
