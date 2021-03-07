@@ -1,12 +1,17 @@
 <template>
-  <div>
-    <v-btn></v-btn>
+  <v-row>
+    <v-col cols="12" sm="3" md="3" lg="4" xl="5">
+      <v-btn></v-btn>
+    </v-col>
     <ChatRanking
       title="チャットするとこ"
       sortBy="time"
       itemPerPage="3"
     ></ChatRanking>
-  </div>
+    <v-col cols="12" sm="3" md="3" lg="4" xl="4">
+      <v-btn></v-btn>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

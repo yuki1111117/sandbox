@@ -1,13 +1,29 @@
-<template lang="pug">
-v-col(cols='12' sm='6' md='6' lg='4' xl='3')
-  nuxt-link(to='/category/test')
-    h2 {{ title }}
-    | {{chatsValues}}
-  v-card(color='chat' width='100%')
-    v-data-iterator(:items='chatsValuesWithKeys' :sort-by='sortBy.toLowerCase()' :sort-desc='sortDesc' :items-per-page.sync='itemPerPage' :hide-default-footer='true')
-      template(#default='{ items }')
-        v-list-item.itemPadding(v-for='(value, i) in items' :key='value.key')
-          ChatCard( :item='value' :index='i')
+<template>
+  <v-col cols="12" sm="6" md="6" lg="4" xl="3">
+    <nuxt-link to="/category/test">
+      <h2>{{ title }}</h2>
+      {{ chatsValues }}
+    </nuxt-link>
+    <v-card color="chat" width="100%">
+      <v-data-iterator
+        :items="chatsValuesWithKeys"
+        :sort-by="sortBy.toLowerCase()"
+        :sort-desc="sortDesc"
+        :items-per-page.sync="itemPerPage"
+        :hide-default-footer="true"
+      >
+        <template #default="{ items }">
+          <v-list-item
+            v-for="(value, i) in items"
+            :key="value.key"
+            class="itemPadding"
+          >
+            <ChatCard :item="value" :index="i"></ChatCard>
+          </v-list-item>
+        </template>
+      </v-data-iterator>
+    </v-card>
+  </v-col>
 </template>
 
 <script>
