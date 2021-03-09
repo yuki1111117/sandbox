@@ -85,6 +85,11 @@ export default {
           to: '/setting',
         },
         {
+          icon: 'mdi-magnify',
+          title: 'Search',
+          to: '/search',
+        },
+        {
           icon: 'mdi-chat-processing',
           title: 'Chatroom',
           to: '/chatroom',

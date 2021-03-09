@@ -81,12 +81,20 @@ export default {
         ':' +
         time.getSeconds()
       const cardKey = firebase.database().ref('setting').push().key
-      firebase.database().ref('setting').child(cardKey).set({
-        key: cardKey,
-        createdAt: firebase.database.ServerValue.TIMESTAMP,
-        time: this.now,
-        title: this[fieldName].title,
-      })
+      firebase
+        .database()
+        .ref('setting')
+        .child(cardKey)
+        .set({
+          key: cardKey,
+          title: this[fieldName].title,
+          createdAt: firebase.database.ServerValue.TIMESTAMP,
+          time: this.now,
+          value: 0,
+          usage: { count: 0 },
+          parentSetting: { key: '', usage: { count: 0 } },
+          childSetting: { key: '', usage: { count: 0 } },
+        })
     },
   },
 }
