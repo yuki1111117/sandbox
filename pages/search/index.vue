@@ -16,24 +16,14 @@
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title>
-                No results matching "<strong>{{ search }}</strong> ". Press
-                <kbd>enter</kbd> to create a new one
+                No results matching "<strong>{{ search }}</strong
+                >". Press <kbd>enter</kbd> to create a new one
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </template>
       </v-combobox>
     </v-container>
-    <v-spacer></v-spacer>
-    <v-btn
-      :disabled="!selected.length"
-      :loading="loading"
-      color="purple"
-      text
-      @click="next"
-    >
-      Next
-    </v-btn>
   </v-app>
 </template>
 
@@ -41,12 +31,17 @@
 export default {
   data() {
     return {
-      select: ['Vuetify', 'Programming'],
-      items: ['Programming', 'Design', 'Vue', 'Vuetify'],
-      loading: false,
-      search: '',
-      selected: [],
+      items: ['Gaming', 'Programming', 'Vue', 'Vuetify'],
+      model: ['Vuetify'],
+      search: null,
     }
+  },
+  watch: {
+    model(val) {
+      if (val.length > 5) {
+        this.$nextTick(() => this.model.pop())
+      }
+    },
   },
 }
 </script>
