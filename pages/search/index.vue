@@ -23,6 +23,7 @@
           </v-list-item>
         </template>
       </v-combobox>
+      {{ model }}
     </v-container>
   </v-app>
 </template>
@@ -32,7 +33,7 @@ export default {
   data() {
     return {
       items: ['Gaming', 'Programming', 'Vue', 'Vuetify'],
-      model: ['Vuetify'],
+      model: [],
       search: null,
     }
   },
