@@ -8,7 +8,7 @@
         label="ItemPerPage"
         type="Number"
       ></v-text-field>
-      <v-btn @click="addSetting('settingObj')">SAVE</v-btn>
+      <v-btn @click="addSetting('settingObj')"> SAVE </v-btn>
       {{ settingObj }}
     </v-col>
     <ChatRanking

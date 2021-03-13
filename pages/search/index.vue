@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container fluid>
-      <v-btn @click="jump">search</v-btn>
+      <v-btn @click="jump"> search </v-btn>
       <v-combobox
         v-model="model"
         :items="items"
@@ -56,7 +56,6 @@ export default {
       })
       let link = this.engine.concat('?').concat('q=').concat(queries.q)
       link = decodeURIComponent(link)
-
       const cardKey = firebase.database().ref('search').push().key
       firebase.database().ref('search').child(cardKey).set({
         keyword: queries.q,
@@ -66,6 +65,7 @@ export default {
       return queries
     },
   },
+
   methods: {
     jump() {
       let q = 'q='
