@@ -22,6 +22,7 @@
         </template>
       </v-combobox>
       {{ model }}
+      {{ query }}
     </v-container>
   </v-app>
 </template>
@@ -34,6 +35,24 @@ export default {
       model: [],
       engine: 'https://duckduckgo.com/',
     }
+  },
+  computed: {
+    query() {
+      const queryStr = window.location.search.slice(1) // 文頭?を除外
+      const queries = {}
+      let q = ''
+      if (!queryStr) {
+        return queries
+      }
+      queryStr.split('&').forEach(function (queryStr) {
+        const queryArr = queryStr.split('=')
+        queryArr[1].split('%20').forEach(function (e) {
+          q = q.concat(e).concat(' ')
+        })
+        queries[queryArr[0]] = q
+      })
+      return queries
+    },
   },
   methods: {
     jump() {
