@@ -49,8 +49,11 @@ export default {
         queryArr[1].split('%20').forEach(function (e) {
           q = q.concat(e).concat(' ')
         })
+        q = q.slice(0, -1)
         queries[queryArr[0]] = q
       })
+      const link = this.engine.concat('?').concat('q=').concat(queries.q)
+      location.assign(link)
       return queries
     },
   },
