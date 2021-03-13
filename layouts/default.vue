@@ -85,6 +85,11 @@ export default {
           to: '/setting',
         },
         {
+          icon: 'mdi-movie-open',
+          title: 'Scene',
+          to: '/scene',
+        },
+        {
           icon: 'mdi-magnify',
           title: 'Search',
           to: '/search',

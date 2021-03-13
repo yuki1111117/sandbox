@@ -2,7 +2,6 @@
   <v-col cols="12" sm="6" md="6" lg="4" xl="3">
     <nuxt-link to="/category/test">
       <h2>{{ title }}</h2>
-      {{ chatsValues }}
     </nuxt-link>
     <v-card color="chat" width="100%">
       <v-data-iterator
@@ -49,7 +48,7 @@ export default {
     itemPerPage: {
       type: Number,
       required: false,
-      default: 2,
+      default: 1,
     },
   },
   data() {

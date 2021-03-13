@@ -1,15 +1,13 @@
 <template>
   <v-app>
     <v-container fluid>
+      <v-btn @click="jump">search</v-btn>
       <v-combobox
         v-model="model"
         :items="items"
-        :search-input.sync="search"
         hide-selected
-        hint="Maximum of 5 tags"
         label="Add some tags"
         multiple
-        persistent-hint
         small-chips
       >
         <template #no-data>
@@ -34,14 +32,18 @@ export default {
     return {
       items: ['Gaming', 'Programming', 'Vue', 'Vuetify'],
       model: [],
-      search: null,
+      engine: 'https://duckduckgo.com/',
     }
   },
-  watch: {
-    model(val) {
-      if (val.length > 5) {
-        this.$nextTick(() => this.model.pop())
-      }
+  methods: {
+    jump() {
+      let q = 'q='
+      this.model.forEach((e) => {
+        q = q.concat(e).concat('+')
+      })
+      q = q.slice(0, -1)
+      const link = this.engine.concat('?').concat(q)
+      location.assign(link)
     },
   },
 }

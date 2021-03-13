@@ -8,66 +8,18 @@
     ></v-text-field>
     <v-btn @click="addMessage"> 書き込む </v-btn>
     <v-row class="fill-height bg">
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="3"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="5"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
-      <ChatRanking
-        title="チャットするとこ"
-        sortBy="time"
-        itemPerPage="2"
-      ></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
+      <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
     </v-row>
   </v-app>
 </template>
