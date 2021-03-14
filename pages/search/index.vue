@@ -40,12 +40,10 @@ export default {
   },
 
   mounted() {
-    const queryStr = window.location.search.slice(1) // 文頭?を除外
+    const queryStr = decodeURI(window.location.search.slice(1)) // 文頭?を除外
+    if (!queryStr) return
     const queries = {}
     let q = ''
-    if (!queryStr) {
-      return queries
-    }
     queryStr.split('&').forEach(function (queryStr) {
       const queryArr = queryStr.split('=')
       queryArr[1].split('%20').forEach(function (e) {
@@ -54,22 +52,32 @@ export default {
       q = q.slice(0, -1)
       queries[queryArr[0]] = q
     })
-    let link = this.engine.concat('?').concat('q=').concat(queries.q)
-    link = decodeURIComponent(link)
-    const cardKey = firebase.database().ref('search').push().key
+    const link = this.engine.concat('?').concat('q=').concat(queries.q)
     firebase
       .database()
-      .ref('search')
-      .child(cardKey)
-      .set({
-        keyword: queries.q,
-        key: cardKey,
+      .ref('title')
+      .child(queries.q)
+      .update({
+        title: queries.q,
       })
-      .then(() => location.assign(link))
+      .then(
+        firebase
+          .database()
+          .ref('search')
+          .child(queries.q)
+          .update({
+            query: queries.q,
+            keywords: queries.q.split(' '),
+          })
+          .then(() => location.assign(link))
+      )
   },
 
   methods: {
     jump() {
+      if (this.model === []) {
+        return
+      }
       let q = 'q='
       this.model.forEach((e) => {
         q = q.concat(e).concat('+')
