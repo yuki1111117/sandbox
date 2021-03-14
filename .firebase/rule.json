@@ -42,6 +42,14 @@
                 ".read": true,
                 ".write": "$uid === auth.uid"
             }
+        },
+        "title": {
+            ".read": true,
+            ".write": true,
+            "$uid": {
+                ".read": true,
+                ".write": "$uid === auth.uid"
+            }
         }
     }
 }
