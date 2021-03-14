@@ -36,6 +36,7 @@ export default {
       items: ['Gaming', 'Programming', 'Vue', 'Vuetify'],
       model: [],
       engine: 'https://duckduckgo.com/',
+      symbol: [],
     }
   },
 
@@ -52,13 +53,15 @@ export default {
       q = q.slice(0, -1)
       queries[queryArr[0]] = q
     })
+    // For Error: Reference.child failed
+
     const link = this.engine.concat('?').concat('q=').concat(queries.q)
     firebase
       .database()
       .ref('title')
       .child(queries.q)
       .update({
-        title: queries.q,
+        searchKey: { key: queries.q },
       })
       .then(
         firebase
@@ -66,7 +69,7 @@ export default {
           .ref('search')
           .child(queries.q)
           .update({
-            query: queries.q,
+            title: { key: queries.q },
             keywords: queries.q.split(' '),
           })
           .then(() => location.assign(link))
