@@ -36,7 +36,7 @@ export default {
       items: ['Gaming', 'Programming', 'Vue', 'Vuetify'],
       model: [],
       engine: 'https://duckduckgo.com/',
-      symbol: [],
+      symbol: '.', // For Error: Reference.child failed
     }
   },
 
@@ -54,6 +54,9 @@ export default {
       queries[queryArr[0]] = q
     })
     // For Error: Reference.child failed
+    if (queries.q.match(/\./)) {
+      queries.q = queries.q.replace(/\./g, '%2E')
+    }
 
     const link = this.engine.concat('?').concat('q=').concat(queries.q)
     firebase
