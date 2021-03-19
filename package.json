@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
     "@nuxtjs/eslint-config": "^5.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/style-resources": "^1.0.0",
@@ -30,6 +31,7 @@
     "@storybook/addon-links": "^6.1.21",
     "@storybook/cli": "^6.1.21",
     "@storybook/vue": "^6.1.21",
+    "@types/storybook__vue": "^5.2.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "eslint": "^7.18.0",
@@ -40,6 +42,7 @@
     "eslint-plugin-vue": "^7.5.0",
     "prettier": "^2.2.1",
     "pug": "^3.0.0",
-    "pug-plain-loader": "^1.1.0"
+    "pug-plain-loader": "^1.1.0",
+    "storybook-addon-vue-info": "^1.4.2"
   }
 }
