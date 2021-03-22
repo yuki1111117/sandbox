@@ -24,18 +24,18 @@
       {{ model }}
       {{ query }}
     </v-container>
-    <SearchCard></SearchCard>
+    <SearchRanking></SearchRanking>
   </v-app>
 </template>
 
 <script>
 import firebase from 'firebase/app'
 import 'firebase/database'
-import SearchCard from '~/components/SearchCard.vue'
+import SearchRanking from '~/components/SearchRanking.vue'
 
 export default {
   components: {
-    SearchCard,
+    SearchRanking,
   },
   data() {
     return {
@@ -78,8 +78,10 @@ export default {
           .ref('search')
           .child(queries.q)
           .update({
+            key: queries.q,
             title: { key: queries.q },
             keywords: queries.q.split(' '),
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
           })
           .then(() => location.assign(link))
       )
