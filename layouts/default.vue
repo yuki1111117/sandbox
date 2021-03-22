@@ -48,7 +48,7 @@
       </router-link>
     </v-app-bar>
     <v-main>
-      <v-container fluid pa-0>
+      <v-container fluid>
         <nuxt />
       </v-container>
     </v-main>
