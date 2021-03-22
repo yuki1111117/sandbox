@@ -3,25 +3,23 @@
     <nuxt-link to="/category/test">
       <h2>{{ title }}</h2>
     </nuxt-link>
-    <v-card color="chat" width="100%">
-      <v-data-iterator
-        :items="chatsValuesWithKeys"
-        :sort-by="sortBy.toLowerCase()"
-        :sort-desc="sortDesc"
-        :items-per-page.sync="itemPerPage"
-        :hide-default-footer="true"
-      >
-        <template #default="{ items }">
-          <v-list-item
-            v-for="(value, i) in items"
-            :key="value.key"
-            class="itemPadding"
-          >
-            <ChatCard :item="value" :index="i"></ChatCard>
-          </v-list-item>
-        </template>
-      </v-data-iterator>
-    </v-card>
+    <v-data-iterator
+      :items="chatsValuesWithKeys"
+      :sort-by="sortBy.toLowerCase()"
+      :sort-desc="sortDesc"
+      :items-per-page.sync="itemPerPage"
+      :hide-default-footer="true"
+    >
+      <template #default="{ items }">
+        <v-list-item
+          v-for="(value, i) in items"
+          :key="value.key"
+          class="itemPadding"
+        >
+          <ChatCard :item="value" :index="i"></ChatCard>
+        </v-list-item>
+      </template>
+    </v-data-iterator>
   </v-col>
 </template>
 

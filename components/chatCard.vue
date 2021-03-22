@@ -1,43 +1,34 @@
 <template>
-  <v-card class="cardContainer" color="chatbox">
+  <v-card elevation="0" class="cardContainer" color="background">
     <v-dialog v-model="dialog" max-width="500px">
-      <v-card>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field v-model="editedItem.nickName" label="NickName">
-                </v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  v-model="editedItem.good"
-                  type="number"
-                  label="Good"
-                >
-                </v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field v-model="editedItem.chat" label="Chat">
-                </v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field v-model="editedItem.time" label="Time">
-                </v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field v-model="editedItem.key" label="Key">
-                </v-text-field>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="close"> Cancel </v-btn>
-          <v-btn color="blue darken-1" text @click="save(item)"> Save </v-btn>
-        </v-card-actions>
-      </v-card>
+      <v-container>
+        <v-row>
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field v-model="editedItem.nickName" label="NickName">
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field v-model="editedItem.good" type="number" label="Good">
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field v-model="editedItem.chat" label="Chat">
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field v-model="editedItem.time" label="Time">
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field v-model="editedItem.key" label="Key"> </v-text-field>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="blue darken-1" text @click="close"> Cancel </v-btn>
+        <v-btn color="blue darken-1" text @click="save(item)"> Save </v-btn>
+      </v-card-actions>
     </v-dialog>
 
     <div class="cardAvator">
@@ -46,7 +37,7 @@
         <v-checkbox v-model="editedItem.done" @click="check(item)">
         </v-checkbox>
       </v-card-text>
-      <v-avatar size="40px" rounded="rounded">
+      <v-avatar size="24px">
         <v-img src="/hamu.jpg"></v-img>
       </v-avatar>
     </div>
@@ -186,53 +177,6 @@ export default {
   display: flex
   width: 100%
 
-  /* 以下第０版さんより拝借ものを少し改変
-  /* ダークとライトで分けてバックカラーは設定 */
-
-  /* 背景色
-  border: 1px solid #ccc
-
-  /* 線の太さ・種類・色
-  box-shadow: 1px 1px 6px 0px #ccc
-  -moz-box-shadow: 1px 1px 6px 0px #ccc
-  -webkit-box-shadow: 1px 1px 6px 0px #ccc
-  -o-box-shadow: 1px 1px 6px 0px #ccc
-  margin: 10px 5px
-
-  /* 外側の余白 上下・左右
-  padding: 30px 20px 20px 20px
-
-  /* 内側の余白 上・右・下・左
-  position: relative
-  z-index: 0
-
-  &:after
-    /* 以下第０版さんより拝借ものを若干変更
-    background-color: #dfd4be
-    /* マステ部分の色1
-    background-image: linear-gradient(45deg, #dfd4be 25%, transparent 25%, transparent 75%, #dfd4be 75%, #dfd4be), linear-gradient(45deg, #dfd4be 25%, transparent 25%, transparent 75%, #dfd4be 75%, #dfd4be)
-
-    /* マステ部分の色2
-    background-position: 0 0, 12px 12px
-    background-size: 24px 24px
-    border-left: 2px dotted rgba(255, 255, 255, 0.9)
-    border-right: 2px dotted rgba(255, 255, 255, 0.9)
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5)
-    content: 'hamu'
-    display: block
-    margin: 0 0 10px 0
-    padding: 5px 20px
-    color: #fff
-
-    /* マステ部分文字色
-    text-align: center
-    position: absolute
-    top: -10px
-    left: 20px
-    transform: rotate(-3deg)
-    -moz-transform: rotate(-3deg)
-    -webkit-transform: rotate(-3deg)
-    -o-transform: rotate(-3deg)
 
 .cardAvator
   display: flex

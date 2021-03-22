@@ -7,7 +7,7 @@
       label="はむが書き込むところだからよ"
     ></v-text-field>
     <v-btn @click="addMessage"> 書き込む </v-btn>
-    <v-row class="fill-height bg">
+    <v-row class="fill-height">
       <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
       <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
       <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
@@ -81,11 +81,4 @@ export default {
 }
 </script>
 
-<style>
-.bg {
-  background-image: url('~assets/img/057-23.jpg');
-  background-repeat: repeat;
-  background-size: 500px;
-  height: auto;
-}
-</style>
+<style></style>
