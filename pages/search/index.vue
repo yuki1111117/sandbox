@@ -24,13 +24,19 @@
       {{ model }}
       {{ query }}
     </v-container>
+    <SearchCard></SearchCard>
   </v-app>
 </template>
 
 <script>
 import firebase from 'firebase/app'
 import 'firebase/database'
+import SearchCard from '~/components/SearchCard.vue'
+
 export default {
+  components: {
+    SearchCard,
+  },
   data() {
     return {
       items: ['Gaming', 'Programming', 'Vue', 'Vuetify'],
