@@ -1,6 +1,8 @@
 <template>
   <v-card elevation="0">
-    <p>Link:{{ item.key }}</p>
+    <a :href="searchLink">
+      <p>{{ item.key }}</p>
+    </a>
   </v-card>
 </template>
 
@@ -18,7 +20,15 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      engine: 'https://duckduckgo.com/',
+    }
+  },
+  computed: {
+    searchLink() {
+      const link = this.engine + this.item.key
+      return link
+    },
   },
 }
 </script>
