@@ -24,7 +24,7 @@
       {{ model }}
       {{ query }}
     </v-container>
-    <SearchRanking></SearchRanking>
+    <SearchRanking itemPerPage="10"></SearchRanking>
   </v-app>
 </template>
 
@@ -42,7 +42,6 @@ export default {
       items: ['Gaming', 'Programming', 'Vue', 'Vuetify'],
       model: [],
       engine: 'https://duckduckgo.com/',
-      symbol: '.', // For Error: Reference.child failed
     }
   },
 

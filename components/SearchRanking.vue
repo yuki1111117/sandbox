@@ -4,7 +4,7 @@
       <h2>{{ title }}</h2>
     </nuxt-link>
     <v-data-iterator
-      :items="chatsValuesWithKeys"
+      :items="valuesWithKeys"
       :sort-by="sortBy.toLowerCase()"
       :sort-desc="sortDesc"
       :items-per-page.sync="itemPerPage"
@@ -16,7 +16,7 @@
           :key="value.key"
           class="itemPadding"
         >
-          <ChatCard :item="value" :index="i"></ChatCard>
+          <SearchCard :item="value" :index="i"></SearchCard>
         </v-list-item>
       </template>
     </v-data-iterator>
@@ -26,22 +26,22 @@
 <script>
 import firebase from 'firebase/app'
 import 'firebase/database'
-import ChatCard from '~/components/chatCard.vue'
+import SearchCard from '~/components/SearchCard.vue'
 
 export default {
   components: {
-    ChatCard,
+    SearchCard,
   },
   props: {
     title: {
       type: String,
       required: false,
-      default: 'ChatRanking',
+      default: 'SearchRanking',
     },
     sortBy: {
       type: String,
       required: false,
-      default: 'good',
+      default: 'createdAt',
     },
     itemPerPage: {
       type: Number,
@@ -52,43 +52,29 @@ export default {
   data() {
     return {
       props: ['testmsg'],
-      chatsRemoteData: {},
+      remoteData: {},
       sortDesc: true,
     }
   },
   computed: {
-    headers() {
-      const s = new Set()
-      let f = null
-      this.chatsValues.forEach((item) => {
-        for (f in item) {
-          s.add(f)
-        }
-      })
-      return Array.from(s).map((a) => {
-        return {
-          value: a,
-        }
-      })
-    },
-    chatsValues() {
-      return Object.values(this.chatsRemoteData)
+    rankingValues() {
+      return Object.values(this.remoteData)
     },
     chatsKeys() {
-      return Object.keys(this.chatsRemoteData)
+      return Object.keys(this.remoteData)
     },
-    chatsValuesWithKeys() {
-      this.chatsValues.map(
+    valuesWithKeys() {
+      this.rankingValues.map(
         (value, index) => (value.key = this.chatsKeys[index])
       )
-      return this.chatsValues
+      return this.rankingValues
     },
   },
   mounted() {
     firebase
       .database()
-      .ref('chats')
-      .on('value', (snapshot) => (this.chatsRemoteData = snapshot.val()))
+      .ref('search')
+      .on('value', (snapshot) => (this.remoteData = snapshot.val()))
   },
 }
 </script>
