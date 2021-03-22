@@ -169,55 +169,63 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
-.infoText
-  font-size: 12px
+<style scoped>
+.infoText {
+  font-size: 12px;
+}
 
-.cardContainer
-  display: flex
-  width: 100%
+.cardContainer {
+  display: flex;
+  width: 100%;
+}
 
+.cardAvator {
+  display: flex;
+  padding-top: 4px;
+}
 
-.cardAvator
-  display: flex
-  padding-top: 4px
+.cardText {
+  display: block;
+  width: 100%;
+}
 
-.cardText
-  display: block
-  width: 100%
+.cardInfo {
+  display: flex;
+  font-size: 12px;
+  padding-top: 0px;
+  padding-left: 5px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+}
 
-.cardInfo
-  display: flex
-  font-size: 12px
-  padding-top: 0px
-  padding-left: 5px
-  padding-bottom: 0px
-  padding-right: 0px
+.cardRankingInfo {
+  display: flex;
+  font-size: 12px;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-right: 5px;
+}
 
-.cardRankingInfo
-  display: flex
-  font-size: 12px
-  padding-top: 0px
-  padding-left: 0px
-  padding-bottom: 0px
-  padding-right: 5px
+.cardInfoTop {
+  display: flex;
+}
 
-.cardInfoTop
-  display: flex
+.cardTitleText {
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  line-height: 1.3125;
+  word-break: break-all;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+  padding-left: 5px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
 
-.cardTitleText
-  font-size: 15px
-  letter-spacing: 0.05em
-  line-height: 1.3125
-  word-break: break-all
-  overflow: hidden
-  overflow-wrap: break-word
-  text-overflow: ellipsis
-  padding-left: 5px
-  padding-right: 0px
-  padding-bottom: 0px
-  padding-top: 0px
-
-.iconBtn
-  margin-right: 12px
+.iconBtn {
+  margin-right: 12px;
+}
 </style>
