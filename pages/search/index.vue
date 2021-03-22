@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container fluid>
-      <v-btn @click="jump"> search </v-btn>
+      <v-btn @click="jump" color="primary"> search </v-btn>
       <v-combobox
         v-model="model"
         :items="items"

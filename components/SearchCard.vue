@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="0">
+  <v-card elevation="0" color="background">
     <a :href="searchLink">
       <p>{{ item.key }}</p>
     </a>
