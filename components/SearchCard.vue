@@ -13,7 +13,7 @@
         {{ item.chat }}
       </v-card-text>
       <v-row justify="start">
-        <v-card-actions class="text--disabled">
+        <v-card-actions class="text--disabled searchActions">
           <v-icon class="iconBtn" size="12px" color="fontcolor">
             mdi mdi-pencil
           </v-icon>
@@ -119,6 +119,10 @@ export default {
 
 .iconBtn {
   margin-right: 12px;
+}
+
+.searchActions {
+  padding-left: 11px;
 }
 
 .searchKey {

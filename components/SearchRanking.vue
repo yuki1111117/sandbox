@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12" sm="6" md="6" lg="4" xl="3">
     <nuxt-link to="/category/test">
-      <h2>{{ title }}</h2>
+      <h2 class="title">{{ title }}</h2>
     </nuxt-link>
     <v-data-iterator
       :items="valuesWithKeys"
@@ -79,9 +79,15 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
-.itemPadding
-  padding-top: 8px
-  padding-bottom: 10px
-  padding-left: 8px
+<style scoped>
+.itemPadding {
+  padding-top: 8px;
+  padding-bottom: 10px;
+  padding-left: 8px;
+}
+
+.title {
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
 </style>
