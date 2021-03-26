@@ -84,11 +84,6 @@ export default {
           to: '/setting',
         },
         {
-          icon: 'mdi-movie-open',
-          title: 'Scene',
-          to: '/scene',
-        },
-        {
           icon: 'mdi-magnify',
           title: 'Search',
           to: '/search',
@@ -114,19 +109,9 @@ export default {
           to: '/posts',
         },
         {
-          icon: 'mdi-ninja',
-          title: 'CloneSites',
-          to: '/clonesites',
-        },
-        {
           icon: 'mdi-cookie',
           title: 'Counter',
           to: '/counter',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
         },
       ],
       miniVariant: true,
