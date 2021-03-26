@@ -24,7 +24,7 @@
             <v-icon size="12px" color="fontcolor"> mdi-heart </v-icon>
             <span class="infoText">-1</span>
           </div>
-          <nuxt-link :to="'/chatroom/' + item.key">
+          <nuxt-link :to="'/search/' + item.key">
             <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
           </nuxt-link>
           <span class="infoText">-1</span>

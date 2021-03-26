@@ -6,7 +6,7 @@
       v-model="chat"
       label="はむが書き込むところだからよ"
     ></v-text-field>
-    <v-btn @click="addMessage"> 書き込む </v-btn>
+    <v-btn color="primary" @click="addMessage"> 書き込む </v-btn>
     <v-row class="fill-height">
       <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
       <ChatRanking title="チャットするとこ" sortBy="time"></ChatRanking>
