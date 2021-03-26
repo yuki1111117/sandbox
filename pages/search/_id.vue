@@ -1,8 +1,30 @@
 <template>
   <v-app>
-    <h1>チャット個別ページ{{ this.$route.params.id }}</h1>
-    {{ remoteData }}
+    <h1>{{ this.$route.params.id }}</h1>
     <SearchCard :item="remoteData"></SearchCard>
+    <v-container fluid>
+      <v-btn color="primary" @click="jump"> search </v-btn>
+      <v-combobox
+        v-model="model"
+        :items="items"
+        hide-selected
+        label="Add some tags"
+        multiple
+        small-chips
+      >
+        <template #no-data>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>
+                No results matching "<strong>{{ search }}</strong
+                >". Press <kbd>enter</kbd> to create a new one
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </v-combobox>
+      {{ model }}
+    </v-container>
   </v-app>
 </template>
 

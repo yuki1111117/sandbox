@@ -1,7 +1,8 @@
 <template>
   <v-app>
+    <h1>Keyword Search</h1>
     <v-container fluid>
-      <v-btn @click="jump" color="primary"> search </v-btn>
+      <v-btn color="primary" @click="jump"> search </v-btn>
       <v-combobox
         v-model="model"
         :items="items"
@@ -22,7 +23,6 @@
         </template>
       </v-combobox>
       {{ model }}
-      {{ query }}
     </v-container>
     <SearchRanking itemPerPage="10"></SearchRanking>
   </v-app>

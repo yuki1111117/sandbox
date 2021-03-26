@@ -13,6 +13,8 @@ const appStore = () => {
       isLogin: false,
       userData: null,
       nickName: 'はむちん',
+      // search
+      search: {},
     },
     mutations: {
       increment(state) {
@@ -47,6 +49,7 @@ const appStore = () => {
           .child('cookie')
           .set({ count: context.state.count })
       },
+      // default.vue
       getUserData(context) {
         firebase.auth().onAuthStateChanged((user) => {
           if (user) {
@@ -67,6 +70,7 @@ const appStore = () => {
           }
         })
       },
+      // default.vue END
       getIsLogin(context) {
         firebase.auth().onAuthStateChanged((user) => {
           if (user) {
