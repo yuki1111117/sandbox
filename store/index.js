@@ -6,37 +6,43 @@ import 'firebase/database'
 const appStore = () => {
   return new Vuex.Store({
     state: {
-      message: 'Hello Vuex',
+      // tutorial
       users: [],
-      user: {},
+      // tutorial END
       count: 0,
+      // default.vue
       isLogin: false,
       userData: null,
-      nickName: 'はむちん',
+      // default.vue END
       // search
       search: {},
+      // search END
     },
     mutations: {
+      // cookie
       increment(state) {
         state.count++
       },
       setCookie(state, value) {
         state.count = value
       },
+      // cookie END
+      // tutorial
       setUsers(state, users) {
         state.users = users
       },
-      setUser(state, user) {
-        state.user = user
-      },
+      // tutorial END
+      // default.vue
       isLoginChange(state, bool) {
         state.isLogin = bool
       },
       setUserData(state, value) {
         state.userData = value
       },
+      // defualt.vue END
     },
     actions: {
+      // cookie
       incrementOne(context) {
         context.commit('increment')
       },
@@ -49,6 +55,7 @@ const appStore = () => {
           .child('cookie')
           .set({ count: context.state.count })
       },
+      // cookie END
       // default.vue
       getUserData(context) {
         firebase.auth().onAuthStateChanged((user) => {
@@ -80,6 +87,7 @@ const appStore = () => {
           }
         })
       },
+      // tutorial
       getUsers({ commit }) {
         return axios
           .get('https://jsonplaceholder.typicode.com/users')
@@ -94,6 +102,7 @@ const appStore = () => {
             commit('setUsers', response.data)
           })
       },
+      // tutorial END
     },
   })
 }

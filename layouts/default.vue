@@ -63,7 +63,6 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
 import { mapState } from 'vuex'
 export default {
   data() {
@@ -143,12 +142,6 @@ export default {
   methods: {
     soundPlay: function ring() {
       document.getElementById('HamuAudio').play()
-    },
-    googleLogin() {
-      firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-    },
-    registerUser() {
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
     },
   },
 }

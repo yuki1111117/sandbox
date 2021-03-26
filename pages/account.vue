@@ -1,6 +1,5 @@
 <template>
   <v-app dark>
-    <marquee>ログインのテストだからよ・・・ログインしてくれよな</marquee>
     <v-row justify="center" align="center">
       <v-col cols="12" sm="8" md="6">
         <div class="text-center">
@@ -21,6 +20,7 @@ import { mapState } from 'vuex'
 import HamuLogo from '~/components/HamuLogo.vue'
 import Login from '~/components/Login.vue'
 import UserSetting from '~/components/UserSetting.vue'
+
 export default {
   components: {
     HamuLogo,
@@ -29,9 +29,6 @@ export default {
   },
   computed: {
     ...mapState(['count', 'isLogin', 'userData']),
-  },
-  mounted() {
-    this.$store.dispatch('getUserData')
   },
 }
 </script>
