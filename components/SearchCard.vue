@@ -24,6 +24,12 @@
             <v-icon size="12px" color="fontcolor"> mdi-heart </v-icon>
             <span class="infoText">-1</span>
           </div>
+          <div class="iconBtn">
+            <v-icon size="12px" color="fontcolor">
+              mdi-hand-pointing-up
+            </v-icon>
+            <span class="infoText">{{ itemCount }}</span>
+          </div>
           <nuxt-link :to="'/search/' + item.key">
             <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
           </nuxt-link>
@@ -62,6 +68,13 @@ export default {
       return link
     },
     ...mapState(['userData']),
+    itemCount() {
+      if (this.item.count) {
+        return Object.keys(this.item.count).length
+      } else {
+        return 0
+      }
+    },
   },
   methods: {
     addCount() {
