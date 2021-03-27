@@ -90,8 +90,14 @@ export default {
           key: cardKey,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
           uid: this.userData.uid,
+          counter: this.itemCount,
         })
       // ADD count END
+      // SET count of count object
+      firebase.database().ref('search').child(this.item.key).update({
+        counter: this.itemCount,
+      })
+      // SET count of count object END
       // SET link
       window.open(this.searchLink)
       // SET link END
