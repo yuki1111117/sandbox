@@ -15,6 +15,7 @@
       </v-combobox>
       {{ model }}
     </v-container>
+    <SearchRanking :nestKey="urlId"></SearchRanking>
   </v-app>
 </template>
 
@@ -22,16 +23,19 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import SearchCard from '~/components/SearchCard.vue'
+import SearchRanking from '~/components/SearchRanking.vue'
 
 export default {
   components: {
     SearchCard,
+    SearchRanking,
   },
   asyncData() {
     return {
       remoteData: {},
     }
   },
+
   data() {
     return {
       urlId: this.$route.params.id,
@@ -42,6 +46,12 @@ export default {
       // combobox END
     }
   },
+  computed: {
+    decoded() {
+      const url = decodeURIComponent(this.urlId)
+      return url
+    },
+  },
   mounted() {
     if (this.urlId) {
       firebase
@@ -50,6 +60,7 @@ export default {
         .child(this.urlId)
         .on('value', (snapshot) => (this.remoteData = snapshot.val()))
     }
+    this.initilize()
   },
 
   updated() {
@@ -72,12 +83,6 @@ export default {
       url = head.concat(q)
       const link = this.engine.concat('?').concat(url)
       // create url END
-      const cardKey = firebase
-        .database()
-        .ref('search')
-        .child(this.urlId)
-        .child('then')
-        .push().key
       firebase
         .database()
         .ref('search')
@@ -85,11 +90,20 @@ export default {
         .child('then')
         .child(q)
         .set({
-          keyword: q,
-          key: cardKey,
+          key: q,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
         })
       location.assign(link)
+    },
+    initilize() {
+      // initialize
+      firebase
+        .database()
+        .ref('search')
+        .child(this.urlId)
+        .child('then')
+        .update({})
+      // initialize END
     },
   },
 }

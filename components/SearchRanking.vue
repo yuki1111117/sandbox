@@ -4,7 +4,7 @@
       <h2 class="title">{{ title }}</h2>
     </nuxt-link>
     <v-data-iterator
-      :items="valuesWithKeys"
+      :items="rankingValues"
       :sort-by="sortBy.toLowerCase()"
       :sort-desc="sortDesc"
       :items-per-page.sync="itemPerPage"
@@ -20,6 +20,7 @@
         </v-list-item>
       </template>
     </v-data-iterator>
+    {{ rankingValue }}
   </v-col>
 </template>
 
@@ -48,26 +49,28 @@ export default {
       required: false,
       default: 3,
     },
+    // nested item 'then'
+    nestKey: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    // nested item 'then' END
   },
   data() {
     return {
       props: ['testmsg'],
       remoteData: {},
       sortDesc: true,
+      urlId: this.$route.params.id,
     }
   },
   computed: {
     rankingValues() {
       return Object.values(this.remoteData)
     },
-    chatsKeys() {
-      return Object.keys(this.remoteData)
-    },
-    valuesWithKeys() {
-      this.rankingValues.map(
-        (value, index) => (value.key = this.chatsKeys[index])
-      )
-      return this.rankingValues
+    decodedUrl() {
+      return this.urlId
     },
   },
   mounted() {
@@ -75,6 +78,16 @@ export default {
       .database()
       .ref('search')
       .on('value', (snapshot) => (this.remoteData = snapshot.val()))
+
+    if (
+      this.nestKey &&
+      Object.prototype.hasOwnProperty.call(
+        this.remoteData[this.nestKey],
+        'thenData'
+      )
+    ) {
+      this.rankingValue = Object.values(this.remoteData[this.nestKey].thenData)
+    }
   },
 }
 </script>

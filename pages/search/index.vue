@@ -56,10 +56,12 @@ export default {
     const link = this.engine.concat('?').concat('q=').concat(queries.q)
     firebase
       .database()
-      .ref('title')
+      .ref('search')
       .child(queries.q)
-      .update({
-        searchKey: { key: queries.q },
+      .child('thenData')
+      .set({
+        createdAt: -1,
+        key: queries.q,
       })
       .then(
         firebase
