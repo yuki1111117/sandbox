@@ -41,7 +41,7 @@ export default {
     sortBy: {
       type: String,
       required: false,
-      default: 'createdAt',
+      default: 'counter',
     },
     itemPerPage: {
       type: Number,
