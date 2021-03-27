@@ -3,11 +3,7 @@
     <v-card-text class="cardRankingInfo text--disabled">
       {{ index + 1 }}
     </v-card-text>
-    <a :href="searchLink">
-      <v-list-item-title class="searchKey">
-        {{ item.key }}
-      </v-list-item-title>
-    </a>
+    <v-btn @click="addCount"> {{ item.key }}</v-btn>
     <div class="cardText">
       <v-card-text class="cardTitleText font-weight-normal">
         {{ item.chat }}
@@ -35,6 +31,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import firebase from 'firebase/app'
+import 'firebase/database'
+
 export default {
   props: {
     item: {
@@ -56,6 +56,28 @@ export default {
     searchLink() {
       const link = this.engine + this.item.key
       return link
+    },
+    ...mapState(['userData']),
+  },
+  methods: {
+    addCount() {
+      // ADD Count
+      const cardKey = firebase.database().ref('chats').push().key
+      firebase
+        .database()
+        .ref('search')
+        .child(this.item.key)
+        .child('count')
+        .child(cardKey)
+        .set({
+          key: cardKey,
+          createdAt: firebase.database.ServerValue.TIMESTAMP,
+          uid: this.userData.uid,
+        })
+      // ADD count END
+      // SET link
+      location.assign(this.searchLink)
+      // SET link END
     },
   },
 }
