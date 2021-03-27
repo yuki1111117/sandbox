@@ -63,11 +63,18 @@ export default {
     }
   },
   computed: {
+    ...mapState(['userData']),
+    userDataChecked() {
+      if (this.userData) {
+        return this.userData
+      } else {
+        return { uid: null }
+      }
+    },
     searchLink() {
       const link = this.engine + this.item.key
       return link
     },
-    ...mapState(['userData']),
     itemCount() {
       if (this.item.count) {
         return Object.keys(this.item.count).length
@@ -89,7 +96,7 @@ export default {
         .set({
           key: cardKey,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
-          uid: this.userData.uid,
+          uid: this.userDataChecked.uid,
           counter: this.itemCount,
         })
       // ADD count END
