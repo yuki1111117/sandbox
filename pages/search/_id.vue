@@ -46,12 +46,7 @@ export default {
       // combobox END
     }
   },
-  computed: {
-    decoded() {
-      const url = decodeURIComponent(this.urlId)
-      return url
-    },
-  },
+
   mounted() {
     // For Error: Reference.child failed
     if (this.urlId.match(/\./)) {
@@ -87,11 +82,11 @@ export default {
         .database()
         .ref('search')
         .child(this.urlId)
-        .child('then')
+        .child('thenData')
         .child(q)
         .set({
-          key: q,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
+          key: q,
         })
       location.assign(link)
     },

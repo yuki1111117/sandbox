@@ -61,6 +61,7 @@ export default {
     return {
       props: ['testmsg'],
       remoteData: {},
+      thenData: {},
       sortDesc: true,
       urlId: this.$route.params.id,
     }
@@ -69,16 +70,23 @@ export default {
     rankingValues() {
       return Object.values(this.remoteData)
     },
-    decodedUrl() {
-      return this.urlId
-    },
   },
   mounted() {
-    firebase
-      .database()
-      .ref('search')
-      .on('value', (snapshot) => (this.remoteData = snapshot.val()))
-
+    // thenData
+    if (this.nestKey) {
+      firebase
+        .database()
+        .ref('search')
+        .child(this.urlId)
+        .child('thenData')
+        .on('value', (snapshot) => (this.remoteData = snapshot.val()))
+      // thenData END
+    } else {
+      firebase
+        .database()
+        .ref('search')
+        .on('value', (snapshot) => (this.remoteData = snapshot.val()))
+    }
     if (
       this.nestKey &&
       Object.prototype.hasOwnProperty.call(
