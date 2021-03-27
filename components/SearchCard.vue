@@ -4,7 +4,13 @@
       {{ index + 1 }}
     </v-card-text>
 
-    <v-btn elevation="0" color="primary" @click.prevent="addCount">
+    <v-btn
+      elevation="0"
+      color="primary"
+      outlined
+      block
+      @click.prevent="addCount"
+    >
       <b> {{ item.key }} </b>
     </v-btn>
 
