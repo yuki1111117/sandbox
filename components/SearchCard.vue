@@ -15,9 +15,6 @@
     </v-btn>
 
     <div class="cardText">
-      <v-card-text class="cardTitleText font-weight-normal">
-        {{ item.chat }}
-      </v-card-text>
       <v-row justify="start">
         <v-card-actions class="text--disabled searchActions">
           <v-icon class="iconBtn" size="12px" color="fontcolor">

@@ -53,6 +53,11 @@ export default {
     },
   },
   mounted() {
+    // For Error: Reference.child failed
+    if (this.urlId.match(/\./)) {
+      this.urlId = this.urlId.replace(/\./g, '%2E')
+    }
+    // For Error: Reference.child failed END
     if (this.urlId) {
       firebase
         .database()
@@ -60,11 +65,6 @@ export default {
         .child(this.urlId)
         .on('value', (snapshot) => (this.remoteData = snapshot.val()))
     }
-    this.initilize()
-  },
-
-  updated() {
-    this.remoteData.key = this.urlId
   },
 
   methods: {
@@ -94,16 +94,6 @@ export default {
           createdAt: firebase.database.ServerValue.TIMESTAMP,
         })
       location.assign(link)
-    },
-    initilize() {
-      // initialize
-      firebase
-        .database()
-        .ref('search')
-        .child(this.urlId)
-        .child('then')
-        .update({})
-      // initialize END
     },
   },
 }

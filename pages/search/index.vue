@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      items: ['Gaming', 'Programming', 'Vue', 'Vuetify'],
+      items: [],
       model: [],
       engine: 'https://duckduckgo.com/',
     }
@@ -54,28 +54,22 @@ export default {
     }
 
     const link = this.engine.concat('?').concat('q=').concat(queries.q)
+
+    firebase.database().ref('search').child(queries.q).child('thenData').set({
+      createdAt: -1,
+      key: queries.q,
+    })
     firebase
       .database()
       .ref('search')
       .child(queries.q)
-      .child('thenData')
-      .set({
-        createdAt: -1,
+      .update({
         key: queries.q,
+        title: { key: queries.q },
+        keywords: queries.q.split(' '),
+        createdAt: firebase.database.ServerValue.TIMESTAMP,
       })
-      .then(
-        firebase
-          .database()
-          .ref('search')
-          .child(queries.q)
-          .update({
-            key: queries.q,
-            title: { key: queries.q },
-            keywords: queries.q.split(' '),
-            createdAt: firebase.database.ServerValue.TIMESTAMP,
-          })
-          .then(() => location.assign(link))
-      )
+      .then(() => location.assign(link))
   },
 
   methods: {
