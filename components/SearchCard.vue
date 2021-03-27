@@ -3,7 +3,11 @@
     <v-card-text class="cardRankingInfo text--disabled">
       {{ index + 1 }}
     </v-card-text>
-    <v-btn @click="addCount"> {{ item.key }}</v-btn>
+
+    <v-btn elevation="0" color="primary" @click.prevent="addCount">
+      <b> {{ item.key }} </b>
+    </v-btn>
+
     <div class="cardText">
       <v-card-text class="cardTitleText font-weight-normal">
         {{ item.chat }}
@@ -76,7 +80,7 @@ export default {
         })
       // ADD count END
       // SET link
-      location.assign(this.searchLink)
+      window.open(this.searchLink)
       // SET link END
     },
   },
