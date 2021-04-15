@@ -35,9 +35,10 @@ export default {
     }
   },
 
+  // URL Search
   mounted() {
+    if (!location.search) return
     const queryStr = decodeURI(window.location.search.slice(1)) // 文頭?を除外
-    if (!queryStr) return
     const queries = {}
     let q = ''
     queryStr.split('&').forEach(function (queryStr) {
@@ -71,6 +72,7 @@ export default {
       })
       .then(() => location.assign(link))
   },
+  // URL Search END
 
   methods: {
     jump() {
