@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <h1>{{ this.$route.params.id }}</h1>
+    <h1>{{ urlId }}</h1>
     <SearchCard :item="remoteData"></SearchCard>
     <v-container fluid>
       <v-btn color="primary" @click="jump"> search </v-btn>
@@ -13,9 +13,14 @@
         small-chips
       >
       </v-combobox>
-      {{ model }}
+      <p>model:{{ model }}</p>
+      <p>urlId:{{ urlId }}</p>
+      <p>urlQ:{{ urlQ }}</p>
     </v-container>
+    urlId Ranking
     <SearchRanking :nestKey="urlId"></SearchRanking>
+    urlQ Ranking
+    <SearchRanking :nestKey="'vue%2Ejs'"></SearchRanking>
   </v-app>
 </template>
 
@@ -38,7 +43,6 @@ export default {
 
   data() {
     return {
-      urlId: this.$route.params.id,
       // combobox
       model: [],
       engine: 'https://duckduckgo.com/',
@@ -47,12 +51,24 @@ export default {
     }
   },
 
+  computed: {
+    urlId() {
+      const value = this.$route.params.id.replace(/\./g, '%2E')
+      return value
+    },
+    urlQ() {
+      const value = this.getParam('q').replace(/\./g, '%2E')
+      return value
+    },
+  },
+
   mounted() {
     // For Error: Reference.child failed
     if (this.urlId.match(/\./)) {
       this.urlId = this.urlId.replace(/\./g, '%2E')
     }
     // For Error: Reference.child failed END
+
     if (this.urlId) {
       firebase
         .database()
@@ -90,6 +106,23 @@ export default {
         })
       location.assign(link)
     },
+    /* eslint-disable */
+    /**
+     * Get the URL parameter value
+     *
+     * @param  name {string} パラメータのキー文字列
+     * @return  url {url} 対象のURL文字列（任意）
+     */
+    getParam(name, url) {
+      if (!url) url = window.location.href
+      name = name.replace(/[\[\]]/g, '\\$&')
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url)
+      if (!results) return null
+      if (!results[2]) return ''
+      return decodeURIComponent(results[2].replace(/\+/g, ' '))
+    },
+    /* eslint-enable */
   },
 }
 </script>

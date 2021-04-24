@@ -33,7 +33,7 @@
             </v-icon>
             <span class="infoText">{{ itemCount }}</span>
           </div>
-          <nuxt-link :to="'/search/' + item.key">
+          <nuxt-link :to="'/search/' + item.key + '?q=' + item.key">
             <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
           </nuxt-link>
           <span class="infoText">-1</span>
@@ -85,6 +85,15 @@ export default {
         return 0
       }
     },
+  },
+  mounted() {
+    // For Error: Reference.child failed: First argument was an invalid path = "vue.js". Paths must be non-empty strings and can't contain ".", "#", "$", "[", or "]"d failed
+    if (this.item.key.match(/\./)) {
+      /* eslint-disable */
+      this.item.key = this.item.key.replace(/\./g, '%2E')
+      /* eslint-enable */
+    }
+    // For Error: Reference.child failed END
   },
   methods: {
     addCount() {

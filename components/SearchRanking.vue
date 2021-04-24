@@ -20,7 +20,7 @@
         </v-list-item>
       </template>
     </v-data-iterator>
-    {{ rankingValue }}
+    {{ rankingValues }}
   </v-col>
 </template>
 
@@ -63,17 +63,21 @@ export default {
       remoteData: {},
       thenData: {},
       sortDesc: true,
-      urlId: this.$route.params.id,
     }
   },
   computed: {
     rankingValues() {
       return Object.values(this.remoteData)
     },
+    urlId() {
+      const value = this.$route.params.id.replace(/\./g, '%2E')
+      return value
+    },
   },
   mounted() {
-    // thenData
+    // nestKeyが渡されたら
     if (this.nestKey) {
+      // thenDataを使用する
       firebase
         .database()
         .ref('search')
