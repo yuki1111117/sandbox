@@ -20,7 +20,12 @@
           <v-icon class="iconBtn" size="12px" color="fontcolor">
             mdi mdi-pencil
           </v-icon>
-          <v-icon class="iconBtn" size="12px" color="fontcolor">
+          <v-icon
+            class="iconBtn"
+            size="12px"
+            color="fontcolor"
+            @click="deleteMessage(item)"
+          >
             mdi mdi-eraser
           </v-icon>
           <div class="iconBtn">
@@ -98,7 +103,12 @@ export default {
   methods: {
     addCount() {
       // ADD Count
-      const cardKey = firebase.database().ref('chats').push().key
+      const cardKey = firebase
+        .database()
+        .ref('search')
+        .child(this.item.key)
+        .child('count')
+        .push().key
       firebase
         .database()
         .ref('search')
@@ -120,6 +130,9 @@ export default {
       // SET link
       window.open(this.searchLink)
       // SET link END
+    },
+    deleteMessage(item) {
+      firebase.database().ref('search').child(item.key).remove()
     },
   },
 }
