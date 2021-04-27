@@ -4,7 +4,7 @@
       <div class="text-center">
         <hamu-logo />
       </div>
-      <SearchRanking></SearchRanking>
+      <SearchRanking :itemPerPage="10"></SearchRanking>
     </v-col>
   </v-row>
 </template>
@@ -25,16 +25,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-#cars {
-  background-repeat: repeat;
-  z-index: -1;
-}
-.car {
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 20px;
-  z-index: 1;
-}
-</style>

@@ -2,26 +2,28 @@
   <v-app>
     <v-navigation-drawer
       v-model="drawer"
-      :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
       app
+      src="/skylarJean.jpg"
     >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
+      <v-list dense nav>
+        <v-list-item-group color="primary">
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+            :to="item.to"
+            router
+            exact
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app color="appbar" dense>
@@ -45,7 +47,7 @@
       </v-container>
     </v-main>
 
-    <v-footer :absolute="!fixed" app>
+    <v-footer :absolute="!fixed" padless>
       <span>isLogin: {{ isLogin }}</span>
 
       <v-spacer />
@@ -87,28 +89,7 @@ export default {
           title: 'Chatroom',
           to: '/chatroom',
         },
-        {
-          icon: 'mdi-human',
-          title: 'Users',
-          to: '/users/list',
-        },
-        {
-          icon: 'mdi-notebook-outline',
-          title: 'Category',
-          to: '/category/index',
-        },
-        {
-          icon: 'mdi-format-list-bulleted',
-          title: 'Posts',
-          to: '/posts',
-        },
-        {
-          icon: 'mdi-cookie',
-          title: 'Counter',
-          to: '/counter',
-        },
       ],
-      miniVariant: true,
       right: true,
       rightDrawer: null,
       title: 'はむちんのハウス',

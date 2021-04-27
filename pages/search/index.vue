@@ -14,7 +14,7 @@
       </v-combobox>
       {{ model }}
     </v-container>
-    <SearchRanking itemPerPage="10"></SearchRanking>
+    <search-ranking itemPerPage="10"></search-ranking>
   </v-app>
 </template>
 

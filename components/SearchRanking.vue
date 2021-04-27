@@ -20,7 +20,6 @@
         </v-list-item>
       </template>
     </v-data-iterator>
-    {{ rankingValues }}
   </v-col>
 </template>
 
@@ -50,6 +49,7 @@ export default {
       default: 3,
     },
     // nested item 'then'
+    // thenのランキング出すときに使用する
     nestKey: {
       type: String,
       required: false,
@@ -86,6 +86,8 @@ export default {
         .on('value', (snapshot) => (this.remoteData = snapshot.val()))
       // thenData END
     } else {
+      // nestKeyが渡されなかったら
+      // search以下のデータをそのまま使う
       firebase
         .database()
         .ref('search')
