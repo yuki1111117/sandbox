@@ -11,7 +11,7 @@
       block
       @click.prevent="addCount"
     >
-      <b> {{ item.key }} </b>
+      <b> {{ title }} </b>
     </v-btn>
 
     <div class="cardText">
@@ -89,6 +89,11 @@ export default {
       } else {
         return 0
       }
+    },
+    title() {
+      let value = this.item.key.replace('%2E', '.')
+      value = value.replace('%3A', ':')
+      return value
     },
   },
   mounted() {
