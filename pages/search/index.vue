@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <v-parallax src="/assets/img/tamara-malaniy.jpg"></v-parallax>
     <h1>Keyword Search</h1>
     <v-container fluid>
       <v-btn color="primary" @click="jump"> search </v-btn>
@@ -14,7 +15,7 @@
       </v-combobox>
       {{ model }}
     </v-container>
-    <search-ranking itemPerPage="10"></search-ranking>
+    <search-ranking itemPerPage="13"></search-ranking>
   </v-app>
 </template>
 

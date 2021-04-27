@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-parallax dark src="/tamara-malaniy.jpg"> </v-parallax>
+    <v-parallax src="/assets/img/tamara-malaniy.jpg"> </v-parallax>
     <h1>チャットルームだからよ</h1>
     <v-text-field
       v-model="chat"

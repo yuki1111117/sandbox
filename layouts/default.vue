@@ -5,7 +5,7 @@
       :clipped="clipped"
       fixed
       app
-      src="/skylarJean.jpg"
+      src="/assets/img/skylarJean.jpg"
     >
       <v-list dense nav>
         <v-list-item-group color="primary">
@@ -24,6 +24,11 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
+        <v-list-group :value="true" prepend-icon="mdi-account-circle">
+          <template v-slot:activator>
+            <v-list-item-title>Users</v-list-item-title>
+          </template>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app color="appbar" dense>
@@ -46,14 +51,12 @@
         <nuxt />
       </v-container>
     </v-main>
-
     <v-footer :absolute="!fixed" padless>
       <span>isLogin: {{ isLogin }}</span>
 
       <v-spacer />
       <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
       <v-spacer />
-      <span>クッキーの数: {{ count }} </span>
     </v-footer>
   </v-app>
 </template>
