@@ -24,10 +24,24 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
-        <v-list-group :value="true" prepend-icon="mdi-account-circle">
+        <v-list-group :value="false" prepend-icon="mdi-magnify">
           <template v-slot:activator>
-            <v-list-item-title>Users</v-list-item-title>
+            <v-list-item-title>Search</v-list-item-title>
           </template>
+          <v-list-item
+            v-for="(item, i) in searchItems"
+            :key="i"
+            :to="item.to"
+            router
+            exact
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+          </v-list-item>
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
@@ -91,6 +105,28 @@ export default {
           icon: 'mdi-chat-processing',
           title: 'Chatroom',
           to: '/chatroom',
+        },
+      ],
+      searchItems: [
+        {
+          icon: 'mdi-magnify',
+          title: 'vue.js',
+          to: '/search/vue.js',
+        },
+        {
+          icon: 'mdi-magnify',
+          title: 'Search',
+          to: '/search',
+        },
+        {
+          icon: 'mdi-magnify',
+          title: 'Search',
+          to: '/search',
+        },
+        {
+          icon: 'mdi-magnify',
+          title: 'Search',
+          to: '/search',
         },
       ],
       right: true,
