@@ -1,9 +1,17 @@
 <template>
   <v-app>
-    <h1>{{ urlId }}</h1>
+    <v-img src="/assets/img/tamara-malaniy.jpg" max-height="30vh"></v-img>
+    <template v-slot:placeholder>
+      <v-row class="fill-height ma-0" align="center" justify="center">
+        <v-progress-circular
+          indeterminate
+          color="grey lighten-5"
+        ></v-progress-circular>
+      </v-row>
+    </template>
     <SearchCard :item="remoteData"></SearchCard>
-    <v-container fluid>
-      <v-btn color="primary" @click="jump"> search </v-btn>
+    <v-card>
+      <v-btn color="primary" @click="addKeyword"> ADD </v-btn>
       <v-combobox
         v-model="model"
         :items="items"
@@ -13,14 +21,8 @@
         small-chips
       >
       </v-combobox>
-      <p>model:{{ model }}</p>
-      <p>urlId:{{ urlId }}</p>
-      <p>urlQ:{{ urlQ }}</p>
-    </v-container>
-    urlId Ranking
+    </v-card>
     <SearchRanking :nestKey="urlId"></SearchRanking>
-    urlQ Ranking
-    <SearchRanking :nestKey="'vue%2Ejs'"></SearchRanking>
   </v-app>
 </template>
 
@@ -79,20 +81,16 @@ export default {
   },
 
   methods: {
-    jump() {
+    addKeyword() {
       if (this.model === []) {
         return
       }
       // creat url
-      const head = 'q='
       let q = ''
-      let url = ''
       this.model.forEach((e) => {
         q = q.concat(e).concat('+')
       })
       q = q.slice(0, -1)
-      url = head.concat(q)
-      const link = this.engine.concat('?').concat(url)
       // create url END
       firebase
         .database()
@@ -104,7 +102,6 @@ export default {
           createdAt: firebase.database.ServerValue.TIMESTAMP,
           key: q,
         })
-      location.assign(link)
     },
     /* eslint-disable */
     /**
