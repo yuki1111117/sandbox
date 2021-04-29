@@ -1,18 +1,13 @@
 <template>
   <v-card elevation="0" color="background">
-    <v-card-text class="cardRankingInfo text--disabled">
-      {{ index + 1 }}
-    </v-card-text>
-
-    <v-btn
-      elevation="0"
-      color="primary"
-      outlined
-      block
-      @click.prevent="addCount"
-    >
-      <b> {{ title }} </b>
-    </v-btn>
+    <a :href="searchLink">
+      <div>
+        <v-card-text class="cardRankingInfo">
+          {{ index + 1 }}
+        </v-card-text>
+        <b @click.prevent="addCount"> {{ title }} </b>
+      </div>
+    </a>
 
     <div class="cardText">
       <v-row justify="start">
@@ -38,7 +33,7 @@
             </v-icon>
             <span class="infoText">{{ itemCount }}</span>
           </div>
-          <nuxt-link :to="'/search/' + item.key + '?q=' + item.key">
+          <nuxt-link :to="'/search/' + item.key">
             <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
           </nuxt-link>
           <span class="infoText">-1</span>
@@ -173,7 +168,7 @@ export default {
 }
 
 .cardRankingInfo {
-  display: flex;
+  display: inline;
   font-size: 12px;
   padding-top: 0px;
   padding-left: 0px;
