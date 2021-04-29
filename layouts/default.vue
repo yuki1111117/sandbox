@@ -110,23 +110,8 @@ export default {
       searchItems: [
         {
           icon: 'mdi-magnify',
-          title: 'vue.js',
-          to: '/search/vue.js',
-        },
-        {
-          icon: 'mdi-magnify',
-          title: 'Search',
-          to: '/search',
-        },
-        {
-          icon: 'mdi-magnify',
-          title: 'Search',
-          to: '/search',
-        },
-        {
-          icon: 'mdi-magnify',
-          title: 'Search',
-          to: '/search',
+          title: 'vuejs',
+          to: '/search/vuejs',
         },
       ],
       right: true,
