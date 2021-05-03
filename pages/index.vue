@@ -16,10 +16,5 @@ export default {
   components: {
     SearchRanking,
   },
-  computed: {
-    message() {
-      return this.$store.state.message
-    },
-  },
 }
 </script>

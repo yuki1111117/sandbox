@@ -1,14 +1,6 @@
 <template>
   <v-app>
     <v-img src="/assets/img/tamara-malaniy.jpg" max-height="30vh"></v-img>
-    <template v-slot:placeholder>
-      <v-row class="fill-height ma-0" align="center" justify="center">
-        <v-progress-circular
-          indeterminate
-          color="grey lighten-5"
-        ></v-progress-circular>
-      </v-row>
-    </template>
     <SearchCard :item="remoteData"></SearchCard>
     <v-card>
       <v-btn color="primary" @click="addKeyword"> ADD </v-btn>
@@ -16,7 +8,7 @@
         v-model="model"
         :items="items"
         hide-selected
-        label="Add some tags"
+        label="検索するキーワードを入れてください"
         multiple
         small-chips
       >

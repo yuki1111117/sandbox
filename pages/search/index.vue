@@ -1,15 +1,6 @@
 <template>
   <v-app>
     <v-img src="/assets/img/tamara-malaniy.jpg" max-height="30vh"></v-img>
-    <template v-slot:placeholder>
-      <v-row class="fill-height ma-0" align="center" justify="center">
-        <v-progress-circular
-          indeterminate
-          color="grey lighten-5"
-        ></v-progress-circular>
-      </v-row>
-    </template>
-    <h1>KEYWORD SEARCH</h1>
     <v-container fluid>
       <v-btn color="primary" @click="jump"> search </v-btn>
       <v-combobox

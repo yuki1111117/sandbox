@@ -2,9 +2,7 @@
   <v-app dark>
     <v-row justify="center" align="center">
       <v-col cols="12" sm="8" md="6">
-        <div class="text-center">
-          <hamu-logo />
-        </div>
+        <div class="text-center"></div>
         <Login v-if="!isLogin"></Login>
         <UserSetting v-if="isLogin"></UserSetting>
         <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
@@ -17,13 +15,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import HamuLogo from '~/components/HamuLogo.vue'
 import Login from '~/components/Login.vue'
 import UserSetting from '~/components/UserSetting.vue'
 
 export default {
   components: {
-    HamuLogo,
     Login,
     UserSetting,
   },
