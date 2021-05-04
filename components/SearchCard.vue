@@ -103,23 +103,20 @@ export default {
     },
   },
   mounted() {
-    // For Error: Reference.child failed: First argument was an invalid path = "vue.js". Paths must be non-empty strings and can't contain ".", "#", "$", "[", or "]"d failed
-    if (this.item.key.match(/\./)) {
-      /* eslint-disable */
-      this.item.key = this.item.key.replace(/\./g, '%2E')
-      /* eslint-enable */
-    }
-    // For Error: Reference.child failed END
+    /* eslint-disable */
+    this.item.key = this.item.key.replace(/\./g, '%2E')
+    /* eslint-enable */
   },
   methods: {
     addCount() {
-      // ADD Count
+      //  カウント用のIDを作成する
       const cardKey = firebase
         .database()
         .ref('search')
         .child(this.item.key)
         .child('count')
         .push().key
+      //
       firebase
         .database()
         .ref('search')
@@ -138,9 +135,8 @@ export default {
         counter: this.itemCount,
       })
       // SET count of count object END
-      // SET link
+      //  検索リンクに飛ばす
       window.open(this.searchLink)
-      // SET link END
     },
     deleteMessage() {
       //  引数idがあるなら

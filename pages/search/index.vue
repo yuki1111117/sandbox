@@ -83,13 +83,11 @@ export default {
         q = q.concat(e).concat('+')
       })
       q = q.slice(0, -1)
-      const link = this.engine.concat('?').concat(q)
       const cardKey = firebase.database().ref('search').push().key
       firebase.database().ref('search').child(q).set({
         keyword: q,
         key: cardKey,
       })
-      location.assign(link)
     },
   },
 }
