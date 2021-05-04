@@ -2,11 +2,10 @@
   <v-app>
     <v-img src="/assets/img/tamara-malaniy.jpg" max-height="30vh"></v-img>
     <search-card :item="remoteData"></search-card>
-    <v-card>
-      <v-btn color="primary" @click="addKeyword"> ADD </v-btn>
+    <v-card color="background">
+      <v-btn color="primary" @click="addKeyword"> 追加 </v-btn>
       <v-combobox
         v-model="model"
-        :items="items"
         hide-selected
         label="検索するキーワードを入れてください"
         multiple
@@ -14,7 +13,8 @@
       >
       </v-combobox>
     </v-card>
-    <search-ranking :nestKey="urlId"></search-ranking>
+    urlId:{{ urlId }}
+    <search-ranking :id="urlId"></search-ranking>
   </v-app>
 </template>
 
@@ -40,13 +40,13 @@ export default {
       // combobox
       model: [],
       engine: 'https://duckduckgo.com/',
-      items: [],
       // combobox END
     }
   },
 
   computed: {
     urlId() {
+      //  ピリオドがfirebaseで使えないので変換する
       const value = this.$route.params.id.replace(/\./g, '%2E')
       return value
     },
@@ -54,6 +54,7 @@ export default {
 
   mounted() {
     if (this.urlId) {
+      //  URLをidとする。取得するデータをidで指定してremoteDataにセットする
       firebase
         .database()
         .ref('search')
@@ -65,9 +66,10 @@ export default {
   methods: {
     addKeyword() {
       if (this.model === []) {
+        //  入力してないなら無効にする
         return
       }
-      // create url
+      // qに入力したデータmodelを詰め込んでいく
       let q = ''
       this.model.forEach((e) => {
         q = q.concat(e).concat('+')

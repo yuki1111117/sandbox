@@ -16,7 +16,8 @@
           :key="value.key"
           class="itemPadding"
         >
-          <SearchCard :item="value" :index="i"></SearchCard>
+          ranking/id:{{ id }}
+          <search-card :id="idTest" :item="value" :index="i"></search-card>
         </v-list-item>
       </template>
     </v-data-iterator>
@@ -48,14 +49,12 @@ export default {
       required: false,
       default: 3,
     },
-    // nested item 'then'
     // thenのランキング出すときに使用する
-    nestKey: {
+    id: {
       type: String,
       required: false,
       default: null,
     },
-    // nested item 'then' END
   },
   data() {
     return {
@@ -75,8 +74,8 @@ export default {
     },
   },
   mounted() {
-    // nestKeyが渡されたら
-    if (this.nestKey) {
+    // idが渡されたら
+    if (this.id) {
       // thenDataを使用する
       firebase
         .database()
@@ -86,7 +85,7 @@ export default {
         .on('value', (snapshot) => (this.remoteData = snapshot.val()))
       // thenData END
     } else {
-      // nestKeyが渡されなかったら
+      // idが渡されなかったら
       // search以下のデータをそのまま使う
       firebase
         .database()
@@ -94,13 +93,12 @@ export default {
         .on('value', (snapshot) => (this.remoteData = snapshot.val()))
     }
     if (
-      this.nestKey &&
-      Object.prototype.hasOwnProperty.call(
-        this.remoteData[this.nestKey],
-        'thenData'
-      )
+      //  idとthenDataにデータがある場合
+      this.id &&
+      Object.prototype.hasOwnProperty.call(this.remoteData[this.id], 'thenData')
     ) {
-      this.rankingValue = Object.values(this.remoteData[this.nestKey].thenData)
+      //  rankingValueにデータを入れる
+      this.rankingValue = Object.values(this.remoteData[this.id].thenData)
     }
   },
 }

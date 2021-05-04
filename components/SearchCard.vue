@@ -1,5 +1,6 @@
 <template>
   <v-card elevation="0" color="background">
+    card/id: {{ id }}
     <a :href="searchLink">
       <div>
         <v-card-text class="cardRankingInfo">
@@ -54,14 +55,16 @@ export default {
       required: true,
     },
     index: {
+      //  ランキングの順位を示す
       type: Number,
       required: false,
       default: 0,
     },
-    id: {
+    idTest: {
+      //  使用するデータを指定する
       type: String,
       required: false,
-      default: '',
+      default: null,
     },
   },
   data() {
@@ -72,10 +75,13 @@ export default {
   computed: {
     ...mapState(['userData']),
     userDataChecked() {
+      // ログインしているかチェックする
       if (this.userData) {
+        //  ログインしているならユーザーデータを返す
         return this.userData
       } else {
-        return { uid: null }
+        //  ログインしていないならnullを返す
+        return null
       }
     },
     searchLink() {
@@ -136,7 +142,20 @@ export default {
       // SET link END
     },
     deleteMessage(item) {
-      firebase.database().ref('search').child(item.key).remove()
+      //  引数idがあるなら
+      if (this.id) {
+        //  thenData以下の指定データを削除
+        firebase
+          .database()
+          .ref('search')
+          .ref(this.id)
+          .ref('thenData')
+          .child(item.key)
+          .remove()
+      } else {
+        // ないならsearch直下の指定データを削除する
+        firebase.database().ref('search').child(item.key).remove()
+      }
     },
   },
 }
@@ -147,28 +166,9 @@ export default {
   font-size: 12px;
 }
 
-.cardContainer {
-  display: flex;
-  width: 100%;
-}
-
-.cardAvator {
-  display: flex;
-  padding-top: 4px;
-}
-
 .cardText {
   display: block;
   width: 100%;
-}
-
-.cardInfo {
-  display: flex;
-  font-size: 12px;
-  padding-top: 0px;
-  padding-left: 5px;
-  padding-bottom: 0px;
-  padding-right: 0px;
 }
 
 .cardRankingInfo {
@@ -180,33 +180,11 @@ export default {
   padding-right: 5px;
 }
 
-.cardInfoTop {
-  display: flex;
-}
-
-.cardTitleText {
-  font-size: 15px;
-  letter-spacing: 0.05em;
-  line-height: 1.3125;
-  word-break: break-all;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  text-overflow: ellipsis;
-  padding-left: 5px;
-  padding-right: 0px;
-  padding-bottom: 0px;
-  padding-top: 0px;
-}
-
 .iconBtn {
   margin-right: 12px;
 }
 
 .searchActions {
   padding-left: 11px;
-}
-
-.searchKey {
-  padding-bottom: 5px;
 }
 </style>
