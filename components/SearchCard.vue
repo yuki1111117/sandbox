@@ -8,10 +8,9 @@
         <b @click.prevent="addCount"> {{ title }} </b>
       </div>
     </a>
-
     <div class="cardText">
       <v-row justify="start">
-        <v-card-actions class="text--disabled searchActions">
+        <v-card-actions class="searchActions">
           <v-icon class="iconBtn" size="12px" color="fontcolor">
             mdi mdi-pencil
           </v-icon>
@@ -58,6 +57,11 @@ export default {
       type: Number,
       required: false,
       default: 0,
+    },
+    id: {
+      type: String,
+      required: false,
+      default: '',
     },
   },
   data() {
