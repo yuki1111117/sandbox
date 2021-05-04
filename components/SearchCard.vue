@@ -1,6 +1,5 @@
 <template>
   <v-card elevation="0" color="background">
-    card/id: {{ id }}
     <a :href="searchLink">
       <div>
         <v-card-text class="cardRankingInfo">
@@ -19,7 +18,7 @@
             class="iconBtn"
             size="12px"
             color="fontcolor"
-            @click="deleteMessage(item)"
+            @click="deleteMessage"
           >
             mdi mdi-eraser
           </v-icon>
@@ -60,12 +59,6 @@ export default {
       required: false,
       default: 0,
     },
-    idTest: {
-      //  使用するデータを指定する
-      type: String,
-      required: false,
-      default: null,
-    },
   },
   data() {
     return {
@@ -99,6 +92,14 @@ export default {
       let value = this.item.key.replace('%2E', '.')
       value = value.replace('%3A', ':')
       return value
+    },
+    urlId() {
+      if (this.$route.params.id) {
+        const value = this.$route.params.id.replace(/\./g, '%2E')
+        return value
+      } else {
+        return null
+      }
     },
   },
   mounted() {
@@ -141,20 +142,20 @@ export default {
       window.open(this.searchLink)
       // SET link END
     },
-    deleteMessage(item) {
+    deleteMessage() {
       //  引数idがあるなら
-      if (this.id) {
+      if (this.urlId) {
         //  thenData以下の指定データを削除
         firebase
           .database()
           .ref('search')
-          .ref(this.id)
-          .ref('thenData')
-          .child(item.key)
+          .child(this.urlId)
+          .child('thenData')
+          .child(this.item.key)
           .remove()
       } else {
         // ないならsearch直下の指定データを削除する
-        firebase.database().ref('search').child(item.key).remove()
+        firebase.database().ref('search').child(this.item.key).remove()
       }
     },
   },

@@ -16,8 +16,7 @@
           :key="value.key"
           class="itemPadding"
         >
-          ranking/id:{{ id }}
-          <search-card :id="idTest" :item="value" :index="i"></search-card>
+          <search-card :item="value" :index="i"></search-card>
         </v-list-item>
       </template>
     </v-data-iterator>
