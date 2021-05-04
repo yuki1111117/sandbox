@@ -12,7 +12,6 @@
         small-chips
       >
       </v-combobox>
-      {{ model }}
     </v-container>
     <search-ranking itemPerPage="13"></search-ranking>
   </v-app>
