@@ -5,7 +5,7 @@
         <v-card-text class="cardRankingInfo">
           {{ index + 1 }}
         </v-card-text>
-        <b @click.prevent="addCount"> {{ title }} </b>
+        <b @click.prevent="addUseCount"> {{ title }} </b>
       </div>
     </a>
     <div class="cardText">
@@ -22,15 +22,15 @@
           >
             mdi mdi-eraser
           </v-icon>
-          <div class="iconBtn">
+          <div class="iconBtn" @click="addGoodCount">
             <v-icon size="12px" color="fontcolor"> mdi-heart </v-icon>
-            <span class="infoText">-1</span>
+            <span class="infoText">{{ goodCount }}</span>
           </div>
           <div class="iconBtn">
             <v-icon size="12px" color="fontcolor">
               mdi-hand-pointing-up
             </v-icon>
-            <span class="infoText">{{ itemCount }}</span>
+            <span class="infoText">{{ useCount }}</span>
           </div>
           <nuxt-link :to="'/search/' + item.key">
             <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
@@ -81,13 +81,23 @@ export default {
       const link = this.engine + this.item.key
       return link
     },
-    itemCount() {
-      if (this.item.count) {
-        return Object.keys(this.item.count).length
+    // search>*id*>count以下のオブジェクトの数を検索リンクの使用カウント数とする
+    useCount() {
+      if (this.item.click) {
+        return Object.keys(this.item.click).length
       } else {
         return 0
       }
     },
+    // search>*id*>good以下のオブジェクトの数を検索リンクの使用カウント数とする
+    goodCount() {
+      if (this.item.good) {
+        return Object.keys(this.item.good).length
+      } else {
+        return 0
+      }
+    },
+    // item>keyからタイトルをつける
     title() {
       let value = this.item.key.replace('%2E', '.')
       value = value.replace('%3A', ':')
@@ -108,35 +118,55 @@ export default {
     /* eslint-enable */
   },
   methods: {
-    addCount() {
+    //  検索文字列をクリックしたら一回カウントする
+    addUseCount() {
       //  カウント用のIDを作成する
-      const cardKey = firebase
+      const countKey = firebase
         .database()
         .ref('search')
         .child(this.item.key)
-        .child('count')
+        .child('click')
         .push().key
-      //
+
+      //   作成したIDをもとにクリックした回数と詳細情報をオブジェクトで記録する
       firebase
         .database()
         .ref('search')
         .child(this.item.key)
-        .child('count')
-        .child(cardKey)
+        .child('click')
+        .child(countKey)
         .set({
-          key: cardKey,
+          key: countKey,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
           uid: this.userDataChecked.uid,
-          counter: this.itemCount,
         })
-      // ADD count END
-      // SET count of count object
-      firebase.database().ref('search').child(this.item.key).update({
-        counter: this.itemCount,
-      })
-      // SET count of count object END
+
       //  検索リンクに飛ばす
       window.open(this.searchLink)
+    },
+    //  TODOいいねボタンを追加
+    //  いいねボタンをクリックしたら一回カウントする
+    addGoodCount() {
+      //  カウント用のIDを作成する
+      const countKey = firebase
+        .database()
+        .ref('search')
+        .child(this.item.key)
+        .child('good')
+        .push().key
+
+      //   作成したIDをもとにクリックした回数と詳細情報をオブジェクトで記録する
+      firebase
+        .database()
+        .ref('search')
+        .child(this.item.key)
+        .child('good')
+        .child(countKey)
+        .set({
+          key: countKey,
+          createdAt: firebase.database.ServerValue.TIMESTAMP,
+          uid: this.userDataChecked.uid,
+        })
     },
     deleteMessage() {
       //  引数idがあるなら
