@@ -1,18 +1,8 @@
+// TODO index.vue自体を消す
 <template>
   <v-app>
     <v-img src="/assets/img/tamara-malaniy.jpg" max-height="30vh"></v-img>
-    <v-container fluid>
-      <v-btn color="primary" @click="jump"> search </v-btn>
-      <v-combobox
-        v-model="model"
-        :items="items"
-        hide-selected
-        label="Add some tags"
-        multiple
-        small-chips
-      >
-      </v-combobox>
-    </v-container>
+    <search-key-add></search-key-add>
     <search-ranking itemPerPage="13"></search-ranking>
   </v-app>
 </template>
@@ -21,19 +11,20 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import SearchRanking from '~/components/SearchRanking.vue'
+import SearchKeyAdd from '~/components/SearchKeyAdd.vue'
 
 export default {
   components: {
     SearchRanking,
+    SearchKeyAdd,
   },
   data() {
     return {
-      items: [],
-      model: [],
       engine: 'https://duckduckgo.com/',
     }
   },
 
+  // TODO 削除
   // URL Search
   mounted() {
     if (!location.search) return
@@ -72,23 +63,5 @@ export default {
       .then(() => location.assign(link))
   },
   // URL Search END
-
-  methods: {
-    jump() {
-      if (this.model === []) {
-        return
-      }
-      let q = 'q='
-      this.model.forEach((e) => {
-        q = q.concat(e).concat('+')
-      })
-      q = q.slice(0, -1)
-      const cardKey = firebase.database().ref('search').push().key
-      firebase.database().ref('search').child(q).set({
-        keyword: q,
-        key: cardKey,
-      })
-    },
-  },
 }
 </script>
