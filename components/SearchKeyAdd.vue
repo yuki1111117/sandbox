@@ -38,6 +38,11 @@ export default {
       // qに入力したデータmodelを詰め込んでいく
       let q = ''
       this.model.forEach((e) => {
+        // todo まとめて変換したい
+        // .:を変換する
+        e = e.replace('.', '%2E')
+        e = e.replace(':', '%3A')
+        // ＋で連結して詰め込める
         q = q.concat(e).concat('+')
       })
       q = q.slice(0, -1)

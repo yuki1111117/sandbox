@@ -24,7 +24,7 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
-        <v-list-group :value="false" prepend-icon="mdi-magnify">
+        <v-list-group :value="true" prepend-icon="mdi-magnify">
           <template v-slot:activator>
             <v-list-item-title>Search</v-list-item-title>
           </template>

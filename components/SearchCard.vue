@@ -5,7 +5,9 @@
         <v-card-text class="cardRankingInfo">
           {{ index + 1 }}
         </v-card-text>
-        <b @click.prevent="addUseCount"> {{ linkName }} </b>
+        <h3>
+          <b @click.prevent="addUseCount"> {{ linkNameForTitle }} </b>
+        </h3>
       </div>
     </a>
     <div class="cardText">
@@ -104,6 +106,12 @@ export default {
     },
     // linkNameからタイトルをつけ .:を変換する
     linkNameEdited() {
+      let value = this.linkName.replace('.', '%2E')
+      value = value.replace(':', '%3A')
+      return value
+    },
+    // linkNameからタイトルをつけ %2Eを .:に変換する
+    linkNameForTitle() {
       let value = this.linkName.replace('%2E', '.')
       value = value.replace('%3A', ':')
       return value
