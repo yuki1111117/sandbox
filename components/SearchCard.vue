@@ -5,7 +5,7 @@
         <v-card-text class="cardRankingInfo">
           {{ index + 1 }}
         </v-card-text>
-        <b @click.prevent="addUseCount"> {{ title }} </b>
+        <b @click.prevent="addUseCount"> {{ linkName }} </b>
       </div>
     </a>
     <div class="cardText">
@@ -32,7 +32,7 @@
             </v-icon>
             <span class="infoText">{{ useCount }}</span>
           </div>
-          <nuxt-link :to="'/search/' + item.key">
+          <nuxt-link :to="'/search/' + linkNameEdited">
             <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
           </nuxt-link>
           <span class="infoText">-1</span>
@@ -59,6 +59,11 @@ export default {
       required: false,
       default: 0,
     },
+    linkName: {
+      type: String,
+      required: false,
+      default: 'No linkName',
+    },
   },
   data() {
     return {
@@ -78,7 +83,7 @@ export default {
       }
     },
     searchLink() {
-      const link = this.engine + this.item.key
+      const link = this.engine + this.linkName
       return link
     },
     // search>*id*>count以下のオブジェクトの数を検索リンクの使用カウント数とする
@@ -97,9 +102,9 @@ export default {
         return 0
       }
     },
-    // item>keyからタイトルをつける
-    title() {
-      let value = this.item.key.replace('%2E', '.')
+    // linkNameからタイトルをつけ .:を変換する
+    linkNameEdited() {
+      let value = this.linkName.replace('%2E', '.')
       value = value.replace('%3A', ':')
       return value
     },
@@ -113,6 +118,7 @@ export default {
     },
   },
   mounted() {
+    // todo いらないかも
     /* eslint-disable */
     this.item.key = this.item.key.replace(/\./g, '%2E')
     /* eslint-enable */
@@ -124,7 +130,7 @@ export default {
       const countKey = firebase
         .database()
         .ref('search')
-        .child(this.item.key)
+        .child(this.linkNameEdited)
         .child('click')
         .push().key
 
@@ -132,7 +138,7 @@ export default {
       firebase
         .database()
         .ref('search')
-        .child(this.item.key)
+        .child(this.linkNameEdited)
         .child('click')
         .child(countKey)
         .set({
@@ -151,7 +157,7 @@ export default {
       const countKey = firebase
         .database()
         .ref('search')
-        .child(this.item.key)
+        .child(this.linkNameEdited)
         .child('good')
         .push().key
 
@@ -159,7 +165,7 @@ export default {
       firebase
         .database()
         .ref('search')
-        .child(this.item.key)
+        .child(this.linkNameEdited)
         .child('good')
         .child(countKey)
         .set({
@@ -177,11 +183,11 @@ export default {
           .ref('search')
           .child(this.urlId)
           .child('thenData')
-          .child(this.item.key)
+          .child(this.linkNameEdited)
           .remove()
       } else {
         // ないならsearch直下の指定データを削除する
-        firebase.database().ref('search').child(this.item.key).remove()
+        firebase.database().ref('search').child(this.linkNameEdited).remove()
       }
     },
   },

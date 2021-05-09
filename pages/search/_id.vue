@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-img src="/assets/img/tamara-malaniy.jpg" max-height="30vh"></v-img>
-    <search-card :item="remoteData"></search-card>
+    <search-card :item="remoteData" :linkName="urlId"></search-card>
     <search-key-add :id="urlId"></search-key-add>
     <search-ranking :id="urlId" itemPerPage="10"></search-ranking>
   </v-app>

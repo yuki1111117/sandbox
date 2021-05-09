@@ -16,7 +16,11 @@
           :key="value.key"
           class="itemPadding"
         >
-          <search-card :item="value" :index="i"></search-card>
+          <search-card
+            :item="value"
+            :index="i"
+            :linkName="rankingKeys[i]"
+          ></search-card>
         </v-list-item>
       </template>
     </v-data-iterator>
@@ -67,6 +71,9 @@ export default {
     rankingValues() {
       return Object.values(this.remoteData)
     },
+    rankingKeys() {
+      return Object.keys(this.remoteData)
+    },
     urlId() {
       const value = this.$route.params.id.replace(/\./g, '%2E')
       return value
@@ -96,7 +103,7 @@ export default {
       this.id &&
       Object.prototype.hasOwnProperty.call(this.remoteData[this.id], 'thenData')
     ) {
-      //  rankingValueにデータを入れる
+      //  rankingValueにthenData以下のデータを入れる
       this.rankingValue = Object.values(this.remoteData[this.id].thenData)
     }
   },
