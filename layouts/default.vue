@@ -96,15 +96,16 @@ export default {
           title: 'Setting',
           to: '/setting',
         },
-        {
-          icon: 'mdi-magnify',
-          title: 'Search',
-          to: '/search',
-        },
+
         {
           icon: 'mdi-chat-processing',
           title: 'Chatroom',
           to: '/chatroom',
+        },
+        {
+          icon: 'mdi-magnify',
+          title: 'Search',
+          to: '/search',
         },
       ],
       searchItems: [
@@ -112,6 +113,11 @@ export default {
           icon: 'mdi-magnify',
           title: 'vuejs',
           to: '/search/vuejs',
+        },
+        {
+          icon: 'mdi-magnify',
+          title: 'css',
+          to: '/search/css',
         },
       ],
       right: true,
