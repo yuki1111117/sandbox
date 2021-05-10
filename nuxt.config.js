@@ -58,7 +58,7 @@ export default {
       options: {
         customProperties: true,
       },
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.green.accent4,
