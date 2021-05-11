@@ -9,6 +9,7 @@
       :sort-desc="sortDesc"
       :items-per-page.sync="itemPerPage"
       :hide-default-footer="true"
+      :custom-sort="customSort"
     >
       <template #default="{ items }">
         <v-list-item
@@ -16,6 +17,7 @@
           :key="value.key"
           class="itemPadding"
         >
+          value.key:{{ value.key }}
           <search-card
             :item="value"
             :index="i"
@@ -45,7 +47,7 @@ export default {
     sortBy: {
       type: String,
       required: false,
-      default: 'counter',
+      default: 'good',
     },
     itemPerPage: {
       type: Number,
@@ -61,10 +63,10 @@ export default {
   },
   data() {
     return {
-      props: ['testmsg'],
       remoteData: {},
       thenData: {},
-      sortDesc: true,
+      // true:降順?
+      sortDesc: false,
     }
   },
   computed: {
@@ -78,6 +80,15 @@ export default {
       const value = this.$route.params.id.replace(/\./g, '%2E')
       return value
     },
+    useCount() {
+      //  TODOcount,clickのオブジェクト数を計上する
+      //  click数があるなら
+      if (this.rankingValues.click) {
+        return Object.keys(this.rankingValues.click).length
+      } else {
+        return 0
+      }
+    },
   },
   mounted() {
     // idが渡されたら
@@ -89,7 +100,6 @@ export default {
         .child(this.urlId)
         .child('thenData')
         .on('value', (snapshot) => (this.remoteData = snapshot.val()))
-      // thenData END
     } else {
       // idが渡されなかったら
       // search以下のデータをそのまま使う
@@ -99,13 +109,26 @@ export default {
         .on('value', (snapshot) => (this.remoteData = snapshot.val()))
     }
     if (
-      //  idとthenDataにデータがある場合
+      //  idを渡され、thenDataにデータがある場合
       this.id &&
       Object.prototype.hasOwnProperty.call(this.remoteData[this.id], 'thenData')
     ) {
       //  rankingValueにthenData以下のデータを入れる
       this.rankingValue = Object.values(this.remoteData[this.id].thenData)
     }
+  },
+  methods: {
+    customSort(items) {
+      /* eslint-disable */
+      items.sort((a, b) => {
+        /* eslint-enable */
+        const priceA = Object.keys(a['good']).length
+        const priceB = Object.keys(b['good']).length
+        //  昇順
+        return priceB - priceA
+      })
+      return items
+    },
   },
 }
 </script>

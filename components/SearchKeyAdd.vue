@@ -59,12 +59,8 @@ export default {
           .child(this.id)
           .child('thenData')
           .child(q)
-          .update({
-            key: q,
-          })
-        firebase.database().ref('search').child(q).update({
-          key: q,
-        })
+          .update({})
+        firebase.database().ref('search').child(q).update({})
       }
     },
   },
