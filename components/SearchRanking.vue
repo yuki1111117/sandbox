@@ -80,15 +80,6 @@ export default {
       const value = this.$route.params.id.replace(/\./g, '%2E')
       return value
     },
-    useCount() {
-      //  TODOcount,clickのオブジェクト数を計上する
-      //  click数があるなら
-      if (this.rankingValues.click) {
-        return Object.keys(this.rankingValues.click).length
-      } else {
-        return 0
-      }
-    },
   },
   mounted() {
     // idが渡されたら
