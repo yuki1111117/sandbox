@@ -17,11 +17,10 @@
           :key="value.key"
           class="itemPadding"
         >
-          value.key:{{ value.key }}
           <search-card
             :item="value"
             :index="i"
-            :linkName="rankingKeys[i]"
+            :linkName="rankingValuesWithKeys[i].key"
           ></search-card>
         </v-list-item>
       </template>
@@ -73,6 +72,14 @@ export default {
     rankingValues() {
       return Object.values(this.remoteData)
     },
+    // todo rankingKeysの削除のため作成
+    rankingValuesWithKeys() {
+      return Object.entries(this.remoteData).map(([key, value]) => ({
+        key,
+        value,
+      }))
+    },
+    //  todo削除予定
     rankingKeys() {
       return Object.keys(this.remoteData)
     },

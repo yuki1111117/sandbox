@@ -13,8 +13,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import firebase from 'firebase/app'
 import 'firebase/database'
+
 export default {
   props: {
     id: {
@@ -26,8 +28,21 @@ export default {
   },
   data() {
     return {
+      ...mapState(['userData']),
       model: [],
     }
+  },
+  computed: {
+    userDataChecked() {
+      // ログインしているかチェックする
+      if (this.userData) {
+        //  ログインしているならユーザーデータを返す
+        return this.userData
+      } else {
+        //  ログインしていないならnullを返す
+        return null
+      }
+    },
   },
   methods: {
     addKeyword() {
