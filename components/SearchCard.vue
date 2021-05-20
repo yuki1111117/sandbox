@@ -1,21 +1,35 @@
 <template>
   <v-card elevation="0" color="background">
+    <!-- srSearchLink -->
+    <!-- 役割：クリックした時、検索キーワードで検索したURLに飛ばす。 -->
     <a :href="srSearchLink">
       <div>
+        <!-- cardRankingInfo -->
+        <!-- 役割：検索キーワードのランキングの順位を示す -->
         <v-card-text class="cardRankingInfo">
           {{ nmIndex + 1 }}
         </v-card-text>
         <h3>
+          <!-- srLinkNameForTitle -->
+          <!-- 役割：検索キーワードの名前を示す。 -->
+          <!-- addUseCount -->
+          <!-- 役割：検索キーワードをクリックした時、クリック数をカウントする。 -->
           <b @click.prevent="addUseCount"> {{ srLinkNameForTitle }} </b>
         </h3>
       </div>
     </a>
     <div class="cardText">
       <v-row justify="start">
+        <!-- searchActions -->
+        <!-- 役割：検索キーワードに関する機能一覧を示す。 -->
         <v-card-actions class="searchActions">
+          <!-- mdi-pencil -->
+          <!-- 役割：編集ボタンを示す。 -->
           <v-icon class="iconBtn" size="12px" color="fontcolor">
             mdi mdi-pencil
           </v-icon>
+          <!-- mdi-eraser -->
+          <!-- 役割：削除ボタンを示す。 -->
           <v-icon
             class="iconBtn"
             size="12px"
@@ -24,20 +38,25 @@
           >
             mdi mdi-eraser
           </v-icon>
+          <!-- mdi-heart -->
+          <!-- 役割：いいね数を示す。 -->
           <div class="iconBtn" @click="addGoodCount">
             <v-icon size="12px" color="fontcolor"> mdi-heart </v-icon>
             <span class="infoText">{{ itGoodCount }}</span>
           </div>
+          <!-- mdi-hand-pointing-up -->
+          <!-- 役割：クリック数を示す。 -->
           <div class="iconBtn">
             <v-icon size="12px" color="fontcolor">
               mdi-hand-pointing-up
             </v-icon>
             <span class="infoText">{{ itUseCount }}</span>
           </div>
+          <!-- mdi-message -->
+          <!-- 役割：検索キーワードの詳細ページへ飛ぶボタンを示す。 -->
           <nuxt-link :to="'/search/' + srLinkNameEdited">
             <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
           </nuxt-link>
-          <span class="infoText">-1</span>
         </v-card-actions>
       </v-row>
     </div>
@@ -88,12 +107,18 @@ export default {
   },
   data() {
     return {
-      engine: 'https://duckduckgo.com/',
+      // srEngineLink
+      // 役割：検索キーワードで検索するため、検索エンジンのURLを示す。
+      // 何時：srSearchLink()で、検索キーワードと検索エンジンのリンクを結合するときに使用する。
+      srEngineLink: 'https://duckduckgo.com/',
     }
   },
   computed: {
+    // ojUserData
+    // 役割：ログイン状態を示すため使用する。
+    // 何時：ayUserDataChecked()で、ログインしているかチェックするときに使用する。
     ...mapState(['ojUserData']),
-    isUserDataChecked() {
+    ayUserDataChecked() {
       // ログインしているかチェックする
       if (this.ojUserData) {
         //  ログインしているならユーザーデータを返す
@@ -104,7 +129,7 @@ export default {
       }
     },
     srSearchLink() {
-      const link = this.engine + this.srLinkName
+      const link = this.srEngineLink + this.srLinkName
       return link
     },
     // search>*id*>count以下のオブジェクトの数を検索リンクの使用カウント数とする
@@ -135,7 +160,7 @@ export default {
       value = value.replace('%3A', ':')
       return value
     },
-    urlId() {
+    ayUrlId() {
       if (this.$route.params.id) {
         const value = this.$route.params.id.replace(/\./g, '%2E')
         return value
@@ -165,7 +190,7 @@ export default {
         .set({
           key: countKey,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
-          uid: this.isUserDataChecked.uid,
+          uid: this.ayUserDataChecked.uid,
         })
 
       //  検索リンクに飛ばす
@@ -192,17 +217,17 @@ export default {
         .set({
           key: countKey,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
-          uid: this.isUserDataChecked.uid,
+          uid: this.ayUserDataChecked.uid,
         })
     },
     deleteKeyword() {
       //  引数idがあるなら
-      if (this.urlId) {
+      if (this.ayUrlId) {
         //  thenData以下の指定データを削除
         firebase
           .database()
           .ref('search')
-          .child(this.urlId)
+          .child(this.ayUrlId)
           .child('thenData')
           .child(this.srLinkNameEdited)
           .remove()
