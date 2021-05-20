@@ -17,10 +17,12 @@
           :key="value.key"
           class="itemPadding"
         >
+          <!-- search-card -->
+          <!-- 役割：検索キーワードと詳細のデータを表示する -->
           <search-card
-            :item="value"
-            :index="i"
-            :linkName="rankingValuesWithKeys[i].key"
+            :ojItem="value"
+            :nmIndex="i"
+            :srLinkName="rankingValuesWithKeys[i].key"
           ></search-card>
         </v-list-item>
       </template>

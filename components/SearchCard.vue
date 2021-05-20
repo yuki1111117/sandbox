@@ -1,12 +1,12 @@
 <template>
   <v-card elevation="0" color="background">
-    <a :href="searchLink">
+    <a :href="srSearchLink">
       <div>
         <v-card-text class="cardRankingInfo">
-          {{ index + 1 }}
+          {{ nmIndex + 1 }}
         </v-card-text>
         <h3>
-          <b @click.prevent="addUseCount"> {{ linkNameForTitle }} </b>
+          <b @click.prevent="addUseCount"> {{ srLinkNameForTitle }} </b>
         </h3>
       </div>
     </a>
@@ -20,21 +20,21 @@
             class="iconBtn"
             size="12px"
             color="fontcolor"
-            @click="deleteMessage"
+            @click="deleteKeyword"
           >
             mdi mdi-eraser
           </v-icon>
           <div class="iconBtn" @click="addGoodCount">
             <v-icon size="12px" color="fontcolor"> mdi-heart </v-icon>
-            <span class="infoText">{{ goodCount }}</span>
+            <span class="infoText">{{ itGoodCount }}</span>
           </div>
           <div class="iconBtn">
             <v-icon size="12px" color="fontcolor">
               mdi-hand-pointing-up
             </v-icon>
-            <span class="infoText">{{ useCount }}</span>
+            <span class="infoText">{{ itUseCount }}</span>
           </div>
-          <nuxt-link :to="'/search/' + linkNameEdited">
+          <nuxt-link :to="'/search/' + srLinkNameEdited">
             <v-icon size="12px" color="fontcolor"> mdi-message </v-icon>
           </nuxt-link>
           <span class="infoText">-1</span>
@@ -45,26 +45,45 @@
 </template>
 
 <script>
+// SearchCard.vue
+// 目的：検索キーワードの表示、編集機能をまとめる。
+// 役割：検索キーワードの表示、編集に使用する。検索キーワードの使用数等も表示する。検索、いいね、キーワードの削除を行う。
+// 何時：主にSearchRanking.vueの下で使用する。pages/search/_id.vueの頭としても使用する。
+
+// mapState
+// 目的：ログインしているかどうか確認する。
+// 役割：いいねしたとき、検索したときユーザーIDを記録するために使用する。
+// 何時：userDataChecked()でログインしているか確認するときに使用する。
 import { mapState } from 'vuex'
+
+// firebase
+// 目的：Firebaseにデータを集める。
+// 何時：addUseCount(),addGoodCount(),deleteKeyword()で検索、いいね、削除を行ったときの記録をFirebaseで行うときに使用する。
 import firebase from 'firebase/app'
 import 'firebase/database'
 
 export default {
   props: {
-    item: {
+    // ojItem
+    // 目的：検索キーワードの詳細を含めたデータを受け取る。
+    // 何時：intUseCount(),itGoodCount()で使用数、いいね数のデータを出すときに使用する。
+    ojItem: {
       type: Object,
       required: true,
     },
-    index: {
-      //  ランキングの順位を示す
+    // nmIndex
+    // 目的：ランキングの順位のデータを示す。
+    nmIndex: {
       type: Number,
       required: false,
       default: 0,
     },
-    linkName: {
+    // srLinkName
+    // 役割：タイトルと検索先リンクを作成するため使用する。
+    srLinkName: {
       type: String,
       required: false,
-      default: 'No linkName',
+      default: 'No srLinkName',
     },
   },
   data() {
@@ -73,46 +92,46 @@ export default {
     }
   },
   computed: {
-    ...mapState(['userData']),
-    userDataChecked() {
+    ...mapState(['ojUserData']),
+    isUserDataChecked() {
       // ログインしているかチェックする
-      if (this.userData) {
+      if (this.ojUserData) {
         //  ログインしているならユーザーデータを返す
-        return this.userData
+        return this.ojUserData
       } else {
         //  ログインしていないならnullを返す
         return null
       }
     },
-    searchLink() {
-      const link = this.engine + this.linkName
+    srSearchLink() {
+      const link = this.engine + this.srLinkName
       return link
     },
     // search>*id*>count以下のオブジェクトの数を検索リンクの使用カウント数とする
-    useCount() {
-      if (this.item.click) {
-        return Object.keys(this.item.click).length
+    itUseCount() {
+      if (this.ojItem.click) {
+        return Object.keys(this.ojItem.click).length
       } else {
         return 0
       }
     },
     // search>*id*>good以下のオブジェクトの数を検索リンクの使用カウント数とする
-    goodCount() {
-      if (this.item.good) {
-        return Object.keys(this.item.good).length
+    itGoodCount() {
+      if (this.ojItem.good) {
+        return Object.keys(this.ojItem.good).length
       } else {
         return 0
       }
     },
-    // linkNameからタイトルをつけ .:を変換する
-    linkNameEdited() {
-      let value = this.linkName.replace('.', '%2E')
+    // srLinkNameからタイトルをつけ .:を変換する
+    srLinkNameEdited() {
+      let value = this.srLinkName.replace('.', '%2E')
       value = value.replace(':', '%3A')
       return value
     },
-    // linkNameからタイトルをつけ %2Eを .:に変換する
-    linkNameForTitle() {
-      let value = this.linkName.replace('%2E', '.')
+    // srLinkNameからタイトルをつけ %2Eを .:に変換する
+    srLinkNameForTitle() {
+      let value = this.srLinkName.replace('%2E', '.')
       value = value.replace('%3A', ':')
       return value
     },
@@ -125,12 +144,6 @@ export default {
       }
     },
   },
-  mounted() {
-    // todo いらないかも
-    /* eslint-disable */
-    this.item.key = this.item.key.replace(/\./g, '%2E')
-    /* eslint-enable */
-  },
   methods: {
     //  検索文字列をクリックしたら一回カウントする
     addUseCount() {
@@ -138,7 +151,7 @@ export default {
       const countKey = firebase
         .database()
         .ref('search')
-        .child(this.linkNameEdited)
+        .child(this.srLinkNameEdited)
         .child('click')
         .push().key
 
@@ -146,17 +159,17 @@ export default {
       firebase
         .database()
         .ref('search')
-        .child(this.linkNameEdited)
+        .child(this.srLinkNameEdited)
         .child('click')
         .child(countKey)
         .set({
           key: countKey,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
-          uid: this.userDataChecked.uid,
+          uid: this.isUserDataChecked.uid,
         })
 
       //  検索リンクに飛ばす
-      window.open(this.searchLink)
+      window.open(this.srSearchLink)
     },
     //  TODOいいねボタンを追加
     //  いいねボタンをクリックしたら一回カウントする
@@ -165,7 +178,7 @@ export default {
       const countKey = firebase
         .database()
         .ref('search')
-        .child(this.linkNameEdited)
+        .child(this.srLinkNameEdited)
         .child('good')
         .push().key
 
@@ -173,16 +186,16 @@ export default {
       firebase
         .database()
         .ref('search')
-        .child(this.linkNameEdited)
+        .child(this.srLinkNameEdited)
         .child('good')
         .child(countKey)
         .set({
           key: countKey,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
-          uid: this.userDataChecked.uid,
+          uid: this.isUserDataChecked.uid,
         })
     },
-    deleteMessage() {
+    deleteKeyword() {
       //  引数idがあるなら
       if (this.urlId) {
         //  thenData以下の指定データを削除
@@ -191,11 +204,11 @@ export default {
           .ref('search')
           .child(this.urlId)
           .child('thenData')
-          .child(this.linkNameEdited)
+          .child(this.srLinkNameEdited)
           .remove()
       } else {
         // ないならsearch直下の指定データを削除する
-        firebase.database().ref('search').child(this.linkNameEdited).remove()
+        firebase.database().ref('search').child(this.srLinkNameEdited).remove()
       }
     },
   },

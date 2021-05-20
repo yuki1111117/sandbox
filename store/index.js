@@ -12,7 +12,7 @@ const appStore = () => {
       count: 0,
       // default.vue
       isLogin: false,
-      userData: null,
+      ojUserData: null,
       // default.vue END
       // search
       search: {},
@@ -37,7 +37,7 @@ const appStore = () => {
         state.isLogin = bool
       },
       setUserData(state, value) {
-        state.userData = value
+        state.ojUserData = value
       },
       // defualt.vue END
     },
@@ -51,7 +51,7 @@ const appStore = () => {
         firebase
           .database()
           .ref('publicR')
-          .child(context.state.userData.uid)
+          .child(context.state.ojUserData.uid)
           .child('cookie')
           .set({ count: context.state.count })
       },
@@ -65,7 +65,7 @@ const appStore = () => {
             firebase
               .database()
               .ref('publicR')
-              .child(context.state.userData.uid)
+              .child(context.state.ojUserData.uid)
               .child('cookie')
               .child('count')
               .on('value', (snapshot) =>

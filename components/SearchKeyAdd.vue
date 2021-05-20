@@ -28,16 +28,16 @@ export default {
   },
   data() {
     return {
-      ...mapState(['userData']),
+      ...mapState(['ojUserData']),
       model: [],
     }
   },
   computed: {
     userDataChecked() {
       // ログインしているかチェックする
-      if (this.userData) {
+      if (this.ojUserData) {
         //  ログインしているならユーザーデータを返す
-        return this.userData
+        return this.ojUserData
       } else {
         //  ログインしていないならnullを返す
         return null
@@ -74,8 +74,10 @@ export default {
           .child(this.id)
           .child('thenData')
           .child(q)
-          .update({})
-        firebase.database().ref('search').child(q).update({})
+          .update({
+            count: {},
+          })
+        firebase.database().ref('search').update(q)
       }
     },
   },

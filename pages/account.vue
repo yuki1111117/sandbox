@@ -24,7 +24,7 @@ export default {
     UserSetting,
   },
   computed: {
-    ...mapState(['count', 'isLogin', 'userData']),
+    ...mapState(['count', 'isLogin']),
   },
 }
 </script>

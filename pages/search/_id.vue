@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <v-img src="/assets/img/tamara-malaniy.jpg" max-height="30vh"></v-img>
-    <search-card :item="remoteData" :linkName="urlId"></search-card>
+    <!-- search-card -->
+    <!-- 役割：検索キーワードと詳細のデータを表示する -->
+    <search-card :ojItem="remoteData" :srLinkName="urlId"></search-card>
     <search-key-add :id="urlId"></search-key-add>
     <search-ranking :id="urlId" itemPerPage="10"></search-ranking>
   </v-app>

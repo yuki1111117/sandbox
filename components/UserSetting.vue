@@ -15,7 +15,7 @@ export default {
   data() {
     return { note_content: 'hello' }
   },
-  computed: mapState(['userData', 'nickName']),
+  computed: mapState(['ojUserData', 'nickName']),
   methods: {
     logout() {
       firebase.auth().signOut()
@@ -23,7 +23,7 @@ export default {
     saveContent(value) {
       firebase
         .database()
-        .ref('memo/' + this.userData.uid)
+        .ref('memo/' + this.ojUserData.uid)
         .set({ content: value })
     },
   },
