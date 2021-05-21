@@ -138,6 +138,7 @@ export default {
       const link = this.srEngineLink + this.srLinkName
       return link
     },
+    // todo clickがない場合のケースを処理する
     // search>*id*>count以下のオブジェクトの数を検索リンクの使用カウント数とする
     itClickCount() {
       if (this.ojItem && this.ojItem.click) {
@@ -145,6 +146,7 @@ export default {
       }
       return 0
     },
+    // todo goodがない場合のケースを処理する
     // search>*id*>good以下のオブジェクトの数を検索リンクの使用カウント数とする
     itGoodCount() {
       if (this.ojItem && this.ojItem.good) {
@@ -200,7 +202,7 @@ export default {
       //  検索リンクに飛ばす
       window.open(this.srSearchLink)
     },
-    //  TODOいいねボタンを追加
+    //  TODOいいねボタンを追加：どのページでも使用できるようにする
     //  いいねボタンをクリックしたら一回カウントする
     addGoodCount() {
       //  カウント用のIDを作成する

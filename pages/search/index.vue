@@ -20,11 +20,12 @@ export default {
   },
   data() {
     return {
+      // todo vuexで管理する
       engine: 'https://duckduckgo.com/',
     }
   },
 
-  // TODO 削除
+  // TODO 削除・・？何してるのかわからん
   // URL Search
   mounted() {
     if (!location.search) return
