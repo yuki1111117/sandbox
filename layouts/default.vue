@@ -127,7 +127,7 @@ export default {
   },
   computed: mapState(['isLogin']),
   mounted() {
-    this.$store.dispatch('getUserData')
+    this.$store.dispatch('setUserData')
   },
 }
 </script>
