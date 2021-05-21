@@ -1,7 +1,9 @@
 <template>
   <v-col cols="12" sm="6" md="6" lg="4" xl="3">
     <nuxt-link to="/category/test">
-      <h2 class="title">{{ title }}</h2>
+      <h2 class="title">
+        {{ title }}
+      </h2>
     </nuxt-link>
     <v-data-iterator
       :items="rankingValues"

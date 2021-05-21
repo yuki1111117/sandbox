@@ -5,19 +5,19 @@ import 'firebase/database'
 const appStore = () => {
   return new Vuex.Store({
     state: {
-      // tutorial
-      users: [],
-      // tutorial END
-      // default.vue
-      isLogin: false,
+      isLogin: null,
+      // 何時:SearchCard.vue,SearchKeyAdd.vue,UserSetting.vue
       ojUserData: null,
-      // default.vue END
     },
     mutations: {
-      // default.vue
+      // todo いらないはず・・・消すとisLoginが使えない
+      // 何時:getUserData()で使用する。
       isLoginChange(state, bool) {
         state.isLogin = bool
       },
+      // setUserData()
+      // 何時:getUserData()で使用する。
+
       setUserData(state, value) {
         state.ojUserData = value
       },
@@ -25,6 +25,9 @@ const appStore = () => {
     },
     actions: {
       // default.vue
+      // todo 名前の変更 getじゃない気がする
+      // getUserData()
+      // 何時:default.vueで使用する。
       getUserData(context) {
         firebase.auth().onAuthStateChanged((user) => {
           if (user) {
@@ -37,16 +40,6 @@ const appStore = () => {
         })
       },
       // default.vue END
-      // todo 使われてない
-      getIsLogin(context) {
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            context.commit('isLoginChange', true)
-          } else {
-            context.commit('isLoginChange', false)
-          }
-        })
-      },
     },
   })
 }
