@@ -1,5 +1,7 @@
 <template>
   <v-card color="background">
+    <!-- v-btn -->
+    <!-- 役割:検索キーワードを追加する。 -->
     <v-btn color="primary" @click="addKeyword"> 追加 </v-btn>
     <v-combobox
       v-model="model"
@@ -13,13 +15,21 @@
 </template>
 
 <script>
+// SearchKeyAdd.vue
+// 何時:pages/search/index.vueもしくはpages/search/_id.vueで検索キーワードを追加するときに使用する。
+
+// mapState
+// 何時:obUserDataを取りだして、ログインしているか確認するときに使用する。
 import { mapState } from 'vuex'
 import firebase from 'firebase/app'
 import 'firebase/database'
 
 export default {
   props: {
-    id: {
+    // srId
+    // 役割:開いているページがpages/search/index.vueなのかpages/search/_id.vueなのか判断するために使用する。
+    // 何時:addKeyword()で、
+    srId: {
       type: String,
       //    キーワードを保存する場所を指定するため、requireにする
       required: require,
@@ -29,25 +39,17 @@ export default {
   data() {
     return {
       ...mapState(['ojUserData']),
+      // model
+      // 何時:v-comboboxで検索キーワードを入力するときに使用する。
       model: [],
     }
   },
-  computed: {
-    userDataChecked() {
-      // ログインしているかチェックする
-      if (this.ojUserData) {
-        //  ログインしているならユーザーデータを返す
-        return this.ojUserData
-      } else {
-        //  ログインしていないならnullを返す
-        return null
-      }
-    },
-  },
   methods: {
+    // addKeyword()
+    // 役割：検索キーワードをFirebaseに追加する。
     addKeyword() {
       if (this.model === []) {
-        // コンボボックスに入力してないなら無効にする
+        // コンボボックスに入力してないなら終了する。
         return
       }
       // qに入力したデータmodelを詰め込んでいく
@@ -61,23 +63,22 @@ export default {
         q = q.concat(e).concat('+')
       })
       q = q.slice(0, -1)
-      //   TODO IDがないなら大本の所にデータを保存する
-      if (this.id == null) {
-        firebase.database().ref('search').child(q).update({
-          key: q,
-        })
-      } else {
-        //   TODO IDがあるならIDの所にデータを保存して、大本の所にもデータを保存する
+      // Firebaseのsearch直下にデータを保存する
+      firebase.database().ref('search').child(q).update({
+        createdAt: firebase.database.ServerValue.TIMESTAMP,
+      })
+      // pages/search/_id.vueではsrIdを渡す
+      if (this.srId !== null) {
+        // srIdを受け取ったなら、Firebaseのsearch>"srId"の下にデータを保存する
         firebase
           .database()
           .ref('search')
-          .child(this.id)
+          .child(this.srId)
           .child('thenData')
           .child(q)
           .update({
-            count: {},
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
           })
-        firebase.database().ref('search').update(q)
       }
     },
   },
