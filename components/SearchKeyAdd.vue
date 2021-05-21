@@ -28,7 +28,7 @@ export default {
   props: {
     // srId
     // 役割:開いているページがpages/search/index.vueなのかpages/search/_id.vueなのか判断するために使用する。
-    // 何時:addKeyword()で、
+    // 何時:addKeyword()で、使用する。
     srId: {
       type: String,
       //    キーワードを保存する場所を指定するため、requireにする

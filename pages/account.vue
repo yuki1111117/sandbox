@@ -6,7 +6,6 @@
         <Login v-if="!isLogin"></Login>
         <UserSetting v-if="isLogin"></UserSetting>
         <v-switch v-model="$vuetify.theme.dark" primary label="Dark"></v-switch>
-        <h2>クッキーの枚数: {{ count }}</h2>
         <h2>isLogin: {{ isLogin }}</h2>
       </v-col>
     </v-row>
@@ -24,7 +23,7 @@ export default {
     UserSetting,
   },
   computed: {
-    ...mapState(['count', 'isLogin']),
+    ...mapState(['isLogin']),
   },
 }
 </script>

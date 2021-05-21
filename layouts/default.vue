@@ -125,7 +125,7 @@ export default {
       title: 'はむちんのハウス',
     }
   },
-  computed: mapState(['count', 'isLogin']),
+  computed: mapState(['isLogin']),
   mounted() {
     this.$store.dispatch('getUserData')
   },

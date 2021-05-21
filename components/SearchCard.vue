@@ -140,19 +140,17 @@ export default {
     },
     // search>*id*>count以下のオブジェクトの数を検索リンクの使用カウント数とする
     itClickCount() {
-      if (this.ojItem.click) {
+      if (this.ojItem && this.ojItem.click) {
         return Object.keys(this.ojItem.click).length
-      } else {
-        return 0
       }
+      return 0
     },
     // search>*id*>good以下のオブジェクトの数を検索リンクの使用カウント数とする
     itGoodCount() {
-      if (this.ojItem.good) {
+      if (this.ojItem && this.ojItem.good) {
         return Object.keys(this.ojItem.good).length
-      } else {
-        return 0
       }
+      return 0
     },
     // srLinkNameからタイトルをつけ .:を変換する
     srLinkNameEdited() {
