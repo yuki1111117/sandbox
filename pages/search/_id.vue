@@ -28,13 +28,6 @@ export default {
     }
   },
 
-  data() {
-    return {
-      // todo データをvuexで管理する。
-      engine: 'https://duckduckgo.com/',
-    }
-  },
-
   computed: {
     srMainKey() {
       //  ピリオドがfirebaseで使えないので変換する
