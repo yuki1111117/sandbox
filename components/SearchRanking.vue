@@ -6,7 +6,7 @@
       </h2>
     </nuxt-link>
     <v-data-iterator
-      :items="arRankingValues"
+      :items="ayRankingValues"
       :sort-by="sortBy.toLowerCase()"
       :sort-desc="sortDesc"
       :items-per-page.sync="itemPerPage"
@@ -24,7 +24,7 @@
           <search-card
             :ojItem="value"
             :nmIndex="i"
-            :srLinkName="ayRankingValuesWithKeys[i].key"
+            :srLinkName="value.key"
           ></search-card>
         </v-list-item>
       </template>
@@ -75,18 +75,19 @@ export default {
     }
   },
   computed: {
-    // todo 修正予定
-    arRankingValues() {
-      const arValues = Object.values(this.remoteData)
-      const arKeys = Object.keys(this.remoteData)
-      if (arValues) {
-        for (let i = 0; i < arValues.length; i++) {
-          arValues[i].key = arKeys[i]
+    // TODO 修正予定
+    ayRankingValues() {
+      let arResult = Object.values(this.remoteData)
+      if (Object.entries(this.remoteData)) {
+        arResult = []
+        for (const [i, ojV] of Object.entries(this.remoteData)) {
+          ojV.key = i
+          arResult.push(ojV)
         }
       }
-      return arValues
+      return arResult
     },
-    // todo いらないかも
+    // TODO いらないかも
     // 何時:search-cardで使用する。
     ayRankingValuesWithKeys() {
       return Object.entries(this.remoteData).map(([key, value]) => ({
