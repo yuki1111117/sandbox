@@ -167,7 +167,7 @@ export default {
       value = value.replace('%3A', ':')
       return value
     },
-    ayUrlId() {
+    xxUrlId() {
       if (this.$route.params.id) {
         const value = this.$route.params.id.replace(/\./g, '%2E')
         return value
@@ -179,61 +179,118 @@ export default {
   methods: {
     //  検索文字列をクリックしたら一回カウントする
     addUseCount() {
-      //  カウント用のIDを作成する
-      const countKey = firebase
-        .database()
-        .ref('search')
-        .child(this.srLinkNameEdited)
-        .child('click')
-        .push().key
+      //  引数xxUrlIdが「ある」なら
+      if (this.xxUrlId) {
+        //  カウント用のIDを作成する
+        const countKey = firebase
+          .database()
+          .ref('search')
+          .child(this.xxUrlId)
+          .child('thenData')
+          .child(this.srLinkNameEdited)
+          .child('click')
+          .push().key
 
-      //   作成したIDをもとにクリックした回数と詳細情報をオブジェクトで記録する
-      firebase
-        .database()
-        .ref('search')
-        .child(this.srLinkNameEdited)
-        .child('click')
-        .child(countKey)
-        .set({
-          key: countKey,
-          createdAt: firebase.database.ServerValue.TIMESTAMP,
-          uid: this.ayUserDataChecked.uid,
-        })
+        //   作成したIDをもとにクリックした回数と詳細情報をオブジェクトで記録する
+        firebase
+          .database()
+          .ref('search')
+          .child(this.xxUrlId)
+          .child('thenData')
+          .child(this.srLinkNameEdited)
+          .child('click')
+          .child(countKey)
+          .set({
+            key: countKey,
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
+            uid: this.ayUserDataChecked.uid,
+          })
+      } else {
+        //  引数xxUrlIdが「ない」なら
+        //  カウント用のIDを作成する
+        const countKey = firebase
+          .database()
+          .ref('search')
+          .child(this.srLinkNameEdited)
+          .child('click')
+          .push().key
 
+        //   作成したIDをもとにクリックした回数と詳細情報をオブジェクトで記録する
+        firebase
+          .database()
+          .ref('search')
+          .child(this.srLinkNameEdited)
+          .child('click')
+          .child(countKey)
+          .set({
+            key: countKey,
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
+            uid: this.ayUserDataChecked.uid,
+          })
+      }
       //  検索リンクに飛ばす
       window.open(this.srSearchLink)
     },
     //  いいねボタンをクリックしたら一回カウントする
     addGoodCount() {
-      //  カウント用のIDを作成する
-      const countKey = firebase
-        .database()
-        .ref('search')
-        .child(this.srLinkNameEdited)
-        .child('good')
-        .push().key
+      //  引数xxUrlIdがあるなら
+      if (this.xxUrlId) {
+        //  カウント用のIDを作成する
+        const countKey = firebase
+          .database()
+          .ref('search')
+          .child(this.xxUrlId)
+          .child('thenData')
+          .child(this.srLinkNameEdited)
+          .child('good')
+          .push().key
 
-      //   作成したIDをもとにクリックした回数と詳細情報をオブジェクトで記録する
-      firebase
-        .database()
-        .ref('search')
-        .child(this.srLinkNameEdited)
-        .child('good')
-        .child(countKey)
-        .set({
-          key: countKey,
-          createdAt: firebase.database.ServerValue.TIMESTAMP,
-          uid: this.ayUserDataChecked.uid,
-        })
+        //   作成したIDをもとにいいねした回数と詳細情報をオブジェクトで記録する
+        firebase
+          .database()
+          .ref('search')
+          .child(this.xxUrlId)
+          .child('thenData')
+          .child(this.srLinkNameEdited)
+          .child('good')
+          .child(countKey)
+          .set({
+            key: countKey,
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
+            uid: this.ayUserDataChecked.uid,
+          })
+      } else {
+        //  引数xxUrlIdがないなら
+        //  カウント用のIDを作成する
+        const countKey = firebase
+          .database()
+          .ref('search')
+          .child(this.srLinkNameEdited)
+          .child('good')
+          .push().key
+
+        //   作成したIDをもとにいいねした回数と詳細情報をオブジェクトで記録する
+        firebase
+          .database()
+          .ref('search')
+          .child(this.srLinkNameEdited)
+          .child('good')
+          .child(countKey)
+          .set({
+            key: countKey,
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
+            uid: this.ayUserDataChecked.uid,
+          })
+      }
     },
     deleteKeyword() {
-      //  引数idがあるなら
-      if (this.ayUrlId) {
+      //  引数xxUrlIdがあるなら
+      if (this.xxUrlId) {
         //  thenData以下の指定データを削除
         firebase
           .database()
           .ref('search')
-          .child(this.ayUrlId)
+          .child(this.xxUrlId)
           .child('thenData')
           .child(this.srLinkNameEdited)
           .remove()
