@@ -2,11 +2,11 @@
   <v-col cols="12" sm="6" md="6" lg="4" xl="3">
     <nuxt-link to="/category/test">
       <h2 class="title">
-        {{ title }}
+        {{ srTitle }}
       </h2>
     </nuxt-link>
     <v-data-iterator
-      :items="rankingValues"
+      :items="arRankingValues"
       :sort-by="sortBy.toLowerCase()"
       :sort-desc="sortDesc"
       :items-per-page.sync="itemPerPage"
@@ -24,7 +24,7 @@
           <search-card
             :ojItem="value"
             :nmIndex="i"
-            :srLinkName="rankingValuesWithKeys[i].key"
+            :srLinkName="ayRankingValuesWithKeys[i].key"
           ></search-card>
         </v-list-item>
       </template>
@@ -42,7 +42,8 @@ export default {
     SearchCard,
   },
   props: {
-    title: {
+    // 何時:nuxt-linkで使用する。
+    srTitle: {
       type: String,
       required: false,
       default: 'SearchRanking',
@@ -57,8 +58,9 @@ export default {
       required: false,
       default: 3,
     },
-    // thenのランキング出すときに使用する
-    id: {
+    // srId
+    //  役割:search/index.vueかsearch/_id.vueにいるのか判断する場合に使用する。
+    srId: {
       type: String,
       required: false,
       default: null,
@@ -73,37 +75,42 @@ export default {
     }
   },
   computed: {
-    rankingValues() {
-      return Object.values(this.remoteData)
+    // todo 修正予定
+    arRankingValues() {
+      const arValues = Object.values(this.remoteData)
+      const arKeys = Object.keys(this.remoteData)
+      if (arValues) {
+        for (let i = 0; i < arValues.length; i++) {
+          arValues[i].key = arKeys[i]
+        }
+      }
+      return arValues
     },
-    // todo rankingKeysの削除のため作成
-    rankingValuesWithKeys() {
+    // todo いらないかも
+    // 何時:search-cardで使用する。
+    ayRankingValuesWithKeys() {
       return Object.entries(this.remoteData).map(([key, value]) => ({
         key,
         value,
       }))
     },
-    //  todo削除予定
-    rankingKeys() {
-      return Object.keys(this.remoteData)
-    },
-    urlId() {
+    srUrlId() {
       const value = this.$route.params.id.replace(/\./g, '%2E')
       return value
     },
   },
   mounted() {
-    // idが渡されたら
-    if (this.id) {
+    // srIdが渡されたら
+    if (this.srId) {
       // thenDataを使用する
       firebase
         .database()
         .ref('search')
-        .child(this.urlId)
+        .child(this.srUrlId)
         .child('thenData')
         .on('value', (snapshot) => (this.remoteData = snapshot.val()))
     } else {
-      // idが渡されなかったら
+      // srIdが渡されなかったら
       // search以下のデータをそのまま使う
       firebase
         .database()
@@ -111,12 +118,15 @@ export default {
         .on('value', (snapshot) => (this.remoteData = snapshot.val()))
     }
     if (
-      //  idを渡され、thenDataにデータがある場合
-      this.id &&
-      Object.prototype.hasOwnProperty.call(this.remoteData[this.id], 'thenData')
+      //  srIdを渡され、thenDataにデータがある場合
+      this.srId &&
+      Object.prototype.hasOwnProperty.call(
+        this.remoteData[this.srId],
+        'thenData'
+      )
     ) {
       //  rankingValueにthenData以下のデータを入れる
-      this.rankingValue = Object.values(this.remoteData[this.id].thenData)
+      this.rankingValue = Object.values(this.remoteData[this.srId].thenData)
     }
   },
   methods: {
@@ -124,10 +134,31 @@ export default {
       /* eslint-disable */
       items.sort((a, b) => {
         /* eslint-enable */
-        const priceA = Object.keys(a['good']).length
-        const priceB = Object.keys(b['good']).length
-        //  昇順
-        return priceB - priceA
+        // どっちもある場合
+        if (a.good && b.good) {
+          const priceA = Object.keys(a['good']).length
+          const priceB = Object.keys(b['good']).length
+          //  昇順
+          return priceB - priceA
+        }
+        // aがない場合
+        if (!a.good && b.good) {
+          const priceA = 0
+          const priceB = Object.keys(b['good']).length
+          //  昇順
+          return priceB - priceA
+        }
+        // bがない場合
+        if (a.good && !b.good) {
+          const priceA = Object.keys(a['good']).length
+          const priceB = 0
+          //  昇順
+          return priceB - priceA
+        }
+        // どっちもない場合
+        if (!a.good && !b.good) {
+          return 0
+        }
       })
       return items
     },

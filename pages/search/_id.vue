@@ -5,7 +5,7 @@
     <!-- 役割：検索キーワードと詳細のデータを表示する -->
     <search-card :ojItem="remoteData" :srLinkName="srMainKey"></search-card>
     <search-key-add :srId="srMainKey"></search-key-add>
-    <search-ranking :id="srMainKey" itemPerPage="10"></search-ranking>
+    <search-ranking :srId="srMainKey" itemPerPage="10"></search-ranking>
   </v-app>
 </template>
 
